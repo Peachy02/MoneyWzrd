@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/home_fragment">
+
+
+    <fragment
+        android:id="@+id/accounts_fragment"
+        android:name="ispy.corp.moneywzrd.accounts.Accounts_fragment"
+        android:label="accounts_fragment"
+        tools:layout="@layout/accounts_fragment" />
+    <fragment
+        android:id="@+id/home_fragment"
+        android:name="ispy.corp.moneywzrd.home.Home_fragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment" />
+    <fragment
+        android:id="@+id/expenses_fragment"
+        android:name="ispy.corp.moneywzrd.expenses.Expenses_fragment"
+        android:label="expenses_fragment"
+        tools:layout="@layout/expenses_fragment" />
+    <fragment
+        android:id="@+id/investment_fragment"
+        android:name="ispy.corp.moneywzrd.investments.Investment_fragment"
+        android:label="investment_fragment"
+        tools:layout="@layout/investment_fragment" />
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="ispy.corp.moneywzrd.settings.Settings_fragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+</navigation>

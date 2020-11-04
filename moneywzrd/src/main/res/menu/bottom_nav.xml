@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:moneywzrd="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Homebtn"
+        android:enabled="true"
+        android:icon="@drawable/home_icon"
+        android:title="@string/Homebtn"
+        moneywzrd:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/AccBtn"
+        android:enabled="true"
+        android:icon="@drawable/accounts_icon"
+        android:title="@string/Accbtn"
+        moneywzrd:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Expbtn"
+        android:enabled="true"
+        android:icon="@drawable/expenses_icon"
+        android:title="@string/Expbtn"
+        moneywzrd:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/InvBtn"
+        android:enabled="true"
+        android:icon="@drawable/investments_icon"
+        android:title="@string/Invbtn"
+        moneywzrd:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/SetBtn"
+        android:enabled="true"
+        android:icon="@drawable/settings_icon"
+        android:title="@string/Setbtn"
+        moneywzrd:showAsAction="ifRoom" />
+
+
+
+</menu>
