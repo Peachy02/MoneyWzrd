@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ispy.corp.moneywzrd">
 
     <application
@@ -10,8 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWzrd">
         <activity
-           android:name=".ui.login.Login"
-            android:label="@string/title_activity_login" />
+           android:name="ispy.corp.moneywzrd.ui.login.LoginActivity"
+            />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
