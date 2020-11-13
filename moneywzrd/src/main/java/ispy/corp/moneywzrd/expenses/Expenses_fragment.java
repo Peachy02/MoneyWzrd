@@ -45,6 +45,10 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         Button addExpenses = (Button)rootView.findViewById(R.id.addExpense);
         TextView expense1 = (TextView) rootView.findViewById(R.id.expense1);
         TextView date1 = (TextView) rootView.findViewById(R.id.date1);
+        TextView expense2 = (TextView) rootView.findViewById(R.id.expense2);
+        TextView date2 = (TextView) rootView.findViewById(R.id.date2);
+        TextView expense3 = (TextView) rootView.findViewById(R.id.expense3);
+        TextView date3 = (TextView) rootView.findViewById(R.id.date3);
         addExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,10 +97,20 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if (expense1.getText().toString().equals("")) {
+                        if (expense1.getText().toString().equals("") && date1.getText().toString().equals("")) {
                             //String input = input.getText().toString();
                             expense1.setText(input1.getText().toString());
                             date1.setText("Due " + input2.getText().toString());
+                        }
+                        else if (expense2.getText().toString().equals("") && date2.getText().toString().equals("")) {
+                            //String input = input.getText().toString();
+                            expense2.setText(input1.getText().toString());
+                            date2.setText("Due " + input2.getText().toString());
+                        }
+                        else if (expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+                            //String input = input.getText().toString();
+                            expense3.setText(input1.getText().toString());
+                            date3.setText("Due " + input2.getText().toString());
                         }
 
                     }
