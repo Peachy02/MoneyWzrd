@@ -28,6 +28,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ispy.corp.moneywzrd.R;
 
@@ -198,6 +199,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     editor.commit();
                     c1.setChecked(false);
                     c1.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -212,6 +214,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     editor.commit();
                     c2.setChecked(false);
                     c2.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -226,6 +229,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     editor.commit();
                     c3.setChecked(false);
                     c3.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
             }
         });
