@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.icu.util.Calendar;
@@ -16,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,8 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
     private ExpensesFragViewModel mViewModel;
     View rootView;
 
+    //SharedPreferences.Editor editor = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE).edit();
+
     public static Expenses_fragment newInstance() {
         return new Expenses_fragment();
     }
@@ -42,6 +47,8 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                              @Nullable Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.expenses_fragment, container, false);
+        SharedPreferences pref = rootView.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
         final DatePickerDialog.OnDateSetListener[] mDateSetListener = {null};
         Button addExpenses = (Button)rootView.findViewById(R.id.addExpense);
         TextView expense1 = (TextView) rootView.findViewById(R.id.expense1);
@@ -53,6 +60,18 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         CheckBox c1 = (CheckBox) rootView.findViewById(R.id.checkBox1);
         CheckBox c2 = (CheckBox) rootView.findViewById(R.id.checkBox2);
         CheckBox c3 = (CheckBox) rootView.findViewById(R.id.checkBox3);
+
+        //sets values if anything is saved
+        expense1.setText(pref.getString("expense1", null));
+        date1.setText(pref.getString("date1", null));
+        if ((expense1.getText().toString().equals("") && date1.getText().toString().equals(""))) {
+            c1.setVisibility(View.INVISIBLE);
+        }
+        else {
+            c1.setVisibility(View.VISIBLE);
+        }
+        //do above for the rest of the expenses
+
 
         addExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,8 +123,15 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
                         if (expense1.getText().toString().equals("") && date1.getText().toString().equals("")) {
                             //String input = input.getText().toString();
-                            expense1.setText(input1.getText().toString());
-                            date1.setText("Due " + input2.getText().toString());
+                            String i1 = input1.getText().toString();
+                            String d1 = input2.getText().toString();
+                            //expense1.setText(input1.getText().toString());
+                            //date1.setText("Due " + input2.getText().toString());
+                            editor.putString("expense1", i1);
+                            editor.putString("date1", d1);
+                            editor.commit();
+                            expense1.setText(pref.getString("expense1", null));
+                            date1.setText(pref.getString("date1", null));
                             c1.setVisibility(View.VISIBLE);
                         }
                         else if (expense2.getText().toString().equals("") && date2.getText().toString().equals("")) {
@@ -139,6 +165,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 if (c1.isChecked()) {
                     expense1.setText("");
                     date1.setText("");
+                    editor.remove("expense1");
+                    editor.remove("date1");
+                    editor.commit();
                     c1.setChecked(false);
                     c1.setVisibility(View.INVISIBLE);
                 }
