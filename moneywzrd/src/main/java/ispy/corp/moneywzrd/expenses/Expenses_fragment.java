@@ -70,7 +70,25 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         else {
             c1.setVisibility(View.VISIBLE);
         }
+
         //do above for the rest of the expenses
+        expense2.setText(pref.getString("expense2", null));
+        date2.setText(pref.getString("date2", null));
+        if ((expense2.getText().toString().equals("") && date2.getText().toString().equals(""))) {
+            c2.setVisibility(View.INVISIBLE);
+        }
+        else {
+            c2.setVisibility(View.VISIBLE);
+        }
+
+        expense3.setText(pref.getString("expense3", null));
+        date3.setText(pref.getString("date3", null));
+        if ((expense3.getText().toString().equals("") && date3.getText().toString().equals(""))) {
+            c3.setVisibility(View.INVISIBLE);
+        }
+        else {
+            c3.setVisibility(View.VISIBLE);
+        }
 
 
         addExpenses.setOnClickListener(new View.OnClickListener() {
@@ -136,14 +154,24 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                         }
                         else if (expense2.getText().toString().equals("") && date2.getText().toString().equals("")) {
                             //String input = input.getText().toString();
-                            expense2.setText(input1.getText().toString());
-                            date2.setText("Due " + input2.getText().toString());
+                            String i2 = input1.getText().toString();
+                            String d2 = input2.getText().toString();
+                            editor.putString("expense2", i2);
+                            editor.putString("date2", d2);
+                            editor.commit();
+                            expense2.setText(pref.getString("expense2", null));
+                            date2.setText(pref.getString("date2", null));
                             c2.setVisibility(View.VISIBLE);
                         }
                         else if (expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                             //String input = input.getText().toString();
-                            expense3.setText(input1.getText().toString());
-                            date3.setText("Due " + input2.getText().toString());
+                            String i3 = input1.getText().toString();
+                            String d3 = input2.getText().toString();
+                            editor.putString("expense3", i3);
+                            editor.putString("date3", d3);
+                            editor.commit();
+                            expense3.setText(pref.getString("expense3", null));
+                            date3.setText(pref.getString("date3", null));
                             c3.setVisibility(View.VISIBLE);
                         }
 
@@ -179,6 +207,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 if (c2.isChecked()) {
                     expense2.setText("");
                     date2.setText("");
+                    editor.remove("expense2");
+                    editor.remove("date2");
+                    editor.commit();
                     c2.setChecked(false);
                     c2.setVisibility(View.INVISIBLE);
                 }
@@ -190,6 +221,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 if (c3.isChecked()) {
                     expense3.setText("");
                     date3.setText("");
+                    editor.remove("expense3");
+                    editor.remove("date3");
+                    editor.commit();
                     c3.setChecked(false);
                     c3.setVisibility(View.INVISIBLE);
                 }
