@@ -96,7 +96,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                         if (expense1.getText().toString().equals("")) {
                             //String input = input.getText().toString();
                             expense1.setText(input1.getText().toString());
-                            date1.setText(input2.getText().toString());
+                            date1.setText("Due " + input2.getText().toString());
                         }
 
                     }
