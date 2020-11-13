@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -49,6 +50,10 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         TextView date2 = (TextView) rootView.findViewById(R.id.date2);
         TextView expense3 = (TextView) rootView.findViewById(R.id.expense3);
         TextView date3 = (TextView) rootView.findViewById(R.id.date3);
+        CheckBox c1 = (CheckBox) rootView.findViewById(R.id.checkBox1);
+        CheckBox c2 = (CheckBox) rootView.findViewById(R.id.checkBox2);
+        CheckBox c3 = (CheckBox) rootView.findViewById(R.id.checkBox3);
+
         addExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,16 +106,19 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             //String input = input.getText().toString();
                             expense1.setText(input1.getText().toString());
                             date1.setText("Due " + input2.getText().toString());
+                            c1.setVisibility(View.VISIBLE);
                         }
                         else if (expense2.getText().toString().equals("") && date2.getText().toString().equals("")) {
                             //String input = input.getText().toString();
                             expense2.setText(input1.getText().toString());
                             date2.setText("Due " + input2.getText().toString());
+                            c2.setVisibility(View.VISIBLE);
                         }
                         else if (expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                             //String input = input.getText().toString();
                             expense3.setText(input1.getText().toString());
                             date3.setText("Due " + input2.getText().toString());
+                            c3.setVisibility(View.VISIBLE);
                         }
 
                     }
@@ -125,8 +133,43 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             }
         });
 
+        c1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (c1.isChecked()) {
+                    expense1.setText("");
+                    date1.setText("");
+                    c1.setChecked(false);
+                    c1.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        c2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (c2.isChecked()) {
+                    expense2.setText("");
+                    date2.setText("");
+                    c2.setChecked(false);
+                    c2.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        c3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (c3.isChecked()) {
+                    expense3.setText("");
+                    date3.setText("");
+                    c3.setChecked(false);
+                    c3.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
         return rootView;
     }
+
 
     /*@Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
