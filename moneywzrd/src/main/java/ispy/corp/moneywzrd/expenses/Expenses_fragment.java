@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 import ispy.corp.moneywzrd.R;
 
-public class Expenses_fragment extends Fragment {
+public class Expenses_fragment extends Fragment { //brandon nicoll
 
     private ExpensesFragViewModel mViewModel;
 
