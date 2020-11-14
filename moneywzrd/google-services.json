@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "2692184463",
+    "firebase_url": "https://moneywzrd-bafbc.firebaseio.com",
+    "project_id": "moneywzrd-bafbc",
+    "storage_bucket": "moneywzrd-bafbc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2692184463:android:d195dd4c6488cdd3ed73fa",
+        "android_client_info": {
+          "package_name": "ispy.corp.moneywzrd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "2692184463-c2scg8rckiag1v7onqk70briqj1nskat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArRMBeatUsS_v2a3nZzqQ64MYR7g8lsOw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "2692184463-c2scg8rckiag1v7onqk70briqj1nskat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
