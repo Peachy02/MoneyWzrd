@@ -11,14 +11,20 @@
     <string name="login_failed">"Login failed"</string>
 
 
-
     <string name="Homebtn">Home</string>
     <string name="Accbtn">Accounts</string>
     <string name="Expbtn">Expenses</string>
     <string name="Invbtn">Investments</string>
     <string name="Setbtn">Settings</string>
-
-
+    <string name="moneywzrd">MoneyWzrd</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="your_one_stop_banking_app">Your one stop banking app!</string>
+    <string name="login">LOGIN</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register">Register</string>
+    <string name="expenses">Expenses</string>
+    <string name="add">+</string>
 
 
 </resources>

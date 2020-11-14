@@ -64,6 +64,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         CheckBox c3 = (CheckBox) rootView.findViewById(R.id.checkBox3);
 
         msg.setVisibility(View.INVISIBLE);
+        if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+            msg.setVisibility(View.VISIBLE);
+        }
         //sets values if anything is saved
         expense1.setText(pref.getString("expense1", null));
         date1.setText(pref.getString("date1", null));
@@ -93,9 +96,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         else {
             c3.setVisibility(View.VISIBLE);
         }
-        if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-            msg.setVisibility(View.VISIBLE);
-        }
+
 
 
         addExpenses.setOnClickListener(new View.OnClickListener() {
