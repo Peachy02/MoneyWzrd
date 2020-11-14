@@ -139,6 +139,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/checkBox2"
                 tools:visibility="visible" />
 
+            <TextView
+                android:id="@+id/friendlymsg"
+                android:layout_width="250dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="161dp"
+                android:layout_marginBottom="26dp"
+                android:text="You have no current expenses!"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/date2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/expense1"
+                app:layout_constraintTop_toBottomOf="@+id/date1" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

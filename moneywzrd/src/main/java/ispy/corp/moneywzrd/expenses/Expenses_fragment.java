@@ -58,15 +58,18 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         TextView date2 = (TextView) rootView.findViewById(R.id.date2);
         TextView expense3 = (TextView) rootView.findViewById(R.id.expense3);
         TextView date3 = (TextView) rootView.findViewById(R.id.date3);
+        TextView msg = (TextView) rootView.findViewById(R.id.friendlymsg);
         CheckBox c1 = (CheckBox) rootView.findViewById(R.id.checkBox1);
         CheckBox c2 = (CheckBox) rootView.findViewById(R.id.checkBox2);
         CheckBox c3 = (CheckBox) rootView.findViewById(R.id.checkBox3);
 
+        msg.setVisibility(View.INVISIBLE);
         //sets values if anything is saved
         expense1.setText(pref.getString("expense1", null));
         date1.setText(pref.getString("date1", null));
         if ((expense1.getText().toString().equals("") && date1.getText().toString().equals(""))) {
             c1.setVisibility(View.INVISIBLE);
+            //msg.setVisibility(View.VISIBLE);
         }
         else {
             c1.setVisibility(View.VISIBLE);
@@ -89,6 +92,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         }
         else {
             c3.setVisibility(View.VISIBLE);
+        }
+        if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+            msg.setVisibility(View.VISIBLE);
         }
 
 
@@ -152,6 +158,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             expense1.setText(pref.getString("expense1", null));
                             date1.setText(pref.getString("date1", null));
                             c1.setVisibility(View.VISIBLE);
+                            msg.setVisibility(View.INVISIBLE);
                         }
                         else if (expense2.getText().toString().equals("") && date2.getText().toString().equals("")) {
                             //String input = input.getText().toString();
@@ -163,6 +170,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             expense2.setText(pref.getString("expense2", null));
                             date2.setText(pref.getString("date2", null));
                             c2.setVisibility(View.VISIBLE);
+                            msg.setVisibility(View.INVISIBLE);
                         }
                         else if (expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                             //String input = input.getText().toString();
@@ -174,6 +182,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             expense3.setText(pref.getString("expense3", null));
                             date3.setText(pref.getString("date3", null));
                             c3.setVisibility(View.VISIBLE);
+                            msg.setVisibility(View.INVISIBLE);
                         }
 
                     }
@@ -199,6 +208,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     editor.commit();
                     c1.setChecked(false);
                     c1.setVisibility(View.INVISIBLE);
+                    if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+                        msg.setVisibility(View.VISIBLE);
+                    }
                     Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
             }
@@ -214,6 +226,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     editor.commit();
                     c2.setChecked(false);
                     c2.setVisibility(View.INVISIBLE);
+                    if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+                        msg.setVisibility(View.VISIBLE);
+                    }
                     Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
             }
@@ -229,6 +244,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     editor.commit();
                     c3.setChecked(false);
                     c3.setVisibility(View.INVISIBLE);
+                    if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+                        msg.setVisibility(View.VISIBLE);
+                    }
                     Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
             }
