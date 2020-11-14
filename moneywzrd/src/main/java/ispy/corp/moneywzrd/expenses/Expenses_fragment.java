@@ -146,7 +146,12 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if (expense1.getText().toString().equals("") && date1.getText().toString().equals("")) {
+                        if (input1.getText().toString().isEmpty() || input2.getText().toString().equals(" Click to select due date")) {
+                            Toast.makeText(getContext(), "*MUST ENTER BOTH REQUIRED FIELDS*", Toast.LENGTH_LONG).show();
+                            dialog.cancel();
+                        }
+
+                        else if (expense1.getText().toString().equals("") && date1.getText().toString().equals("")) {
                             //String input = input.getText().toString();
                             String i1 = input1.getText().toString();
                             String d1 = input2.getText().toString();
