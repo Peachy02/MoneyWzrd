@@ -7,7 +7,7 @@
     tools:context=".accounts.Accounts_fragment">
 
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,6 +16,16 @@
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/addAccount"
+        android:layout_width="75dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="1dp"
+        android:background="@null"
+        android:src="@drawable/plus_icon"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
@@ -31,6 +41,7 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/CV"
                 android:layout_width="395dp"
                 android:layout_height="107dp"
                 android:layout_marginStart="8dp"
@@ -47,7 +58,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/AccountN"
                         android:layout_width="395dp"
                         android:layout_height="33dp"
                         android:background="@color/colorPrimary"
@@ -60,17 +71,17 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/Account"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="48dp"
                         android:layout_marginEnd="4dp"
                         android:text="$1,000"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                        app:layout_constraintTop_toBottomOf="@+id/AccountN" />
 
                     <ImageButton
-                        android:id="@+id/imageButton"
+                        android:id="@+id/edit"
                         android:layout_width="35dp"
                         android:layout_height="33dp"
                         android:background="@null"
@@ -82,6 +93,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/CV1"
                 android:layout_width="395dp"
                 android:layout_height="107dp"
                 android:layout_marginStart="8dp"
@@ -96,7 +108,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/AccountN1"
                         android:layout_width="395dp"
                         android:layout_height="33dp"
                         android:background="@color/colorPrimary"
@@ -109,17 +121,17 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/Account1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="48dp"
                         android:layout_marginEnd="4dp"
                         android:text="$22,222"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                        app:layout_constraintTop_toBottomOf="@+id/AccountN1" />
 
                     <ImageButton
-                        android:id="@+id/imageButton1"
+                        android:id="@+id/edit1"
                         android:layout_width="35dp"
                         android:layout_height="33dp"
                         android:background="@null"
