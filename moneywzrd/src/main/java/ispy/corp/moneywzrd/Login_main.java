@@ -97,6 +97,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
                 }
                 else {
                     Toast.makeText(Login_main.this, "Failed to login, Please check your credentials", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
