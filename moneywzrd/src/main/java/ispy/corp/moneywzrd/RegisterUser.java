@@ -71,6 +71,15 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             editTextEmail.requestFocus();
             return;
         }
-
+        if (password.isEmpty()) {
+            editTextPassword.setError("Password is required!");
+            editTextPassword.requestFocus();
+            return;
+        }
+        if (password.length() < 6) {
+            editTextPassword.setError("Password should be a minimum of 6 characters!");
+            editTextPassword.requestFocus();
+            return;
+        }
     }
 }
