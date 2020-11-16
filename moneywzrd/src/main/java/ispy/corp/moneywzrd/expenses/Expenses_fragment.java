@@ -1,6 +1,7 @@
 package ispy.corp.moneywzrd.expenses;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
@@ -30,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 
 public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
@@ -48,6 +50,12 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                              @Nullable Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.expenses_fragment, container, false);
+
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+
         SharedPreferences pref = rootView.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         final DatePickerDialog.OnDateSetListener[] mDateSetListener = {null};

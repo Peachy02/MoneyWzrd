@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,7 +31,9 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
+import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 
 
@@ -46,6 +49,12 @@ public class Accounts_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         V = inflater.inflate(R.layout.accounts_fragment, container, false);
+
+        Toolbar toolbar = (Toolbar) V.findViewById(R.id.toolbar);
+        ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
+        TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+
         SharedPreferences pref = V.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         ImageButton addAccount = (ImageButton)V.findViewById(R.id.addAccount);
