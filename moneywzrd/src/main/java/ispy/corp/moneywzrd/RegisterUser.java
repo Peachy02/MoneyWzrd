@@ -113,6 +113,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterUser.this, "User has been registered", Toast.LENGTH_LONG).show();
+                                progressBar.setVisibility(View.GONE);
+                                startActivity(new Intent(RegisterUser.this, Login_main.class));
                             }
                             else {
                                 Toast.makeText(RegisterUser.this, "Failed to register! Try Again!", Toast.LENGTH_LONG).show();
