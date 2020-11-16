@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "2692184463-1es5uav8mm4kgmklsopg5hqdv86tvi8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ispy.corp.moneywzrd",
+            "certificate_hash": "1607a6d0162f33afd7fc85bd1feec1d2bcd8de96"
+          }
+        },
+        {
           "client_id": "2692184463-c2scg8rckiag1v7onqk70briqj1nskat.apps.googleusercontent.com",
           "client_type": 3
         }

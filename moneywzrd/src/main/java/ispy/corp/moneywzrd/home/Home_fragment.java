@@ -17,6 +17,7 @@ import ispy.corp.moneywzrd.R;
 public class Home_fragment extends Fragment {
 
     private HomeFragmentViewModel mViewModel;
+    View rootView;
 
     public static Home_fragment newInstance() {
         return new Home_fragment();
@@ -25,7 +26,11 @@ public class Home_fragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.home_fragment, container, false);
+        rootView = inflater.inflate(R.layout.expenses_fragment, container, false);
+
+
+
+        return rootView;
     }
 
     @Override
