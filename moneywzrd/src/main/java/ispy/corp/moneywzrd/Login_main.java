@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Login_main extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView register;
+    private TextView register, forgotPass;
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
 
@@ -44,6 +44,9 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
         progressBar = (ProgressBar)findViewById(R.id.progressBarR);
         mAuth = FirebaseAuth.getInstance();
 
+        forgotPass = (TextView)findViewById(R.id.forgotpass);
+        forgotPass.setOnClickListener(this);
+
     }
 
     @Override
@@ -55,7 +58,36 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
             case R.id.loginBTN:
                 userLogin();
                 break;
+            case R.id.forgotpass:
+                forgotPass();
+                break;
         }
+
+    }
+
+    private void forgotPass() {
+        String email = editTextEmail.getText().toString().trim();
+
+        if (email.isEmpty()){
+            editTextEmail.setError("Email is required!");
+            editTextEmail.requestFocus();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editTextEmail.setError("Please provide valid email!");
+            editTextEmail.requestFocus();
+            return;
+        }
+
+        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Login_main.this, "Password reset has been sent to your email! This could take up to 5 minutes!", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
     }
 
