@@ -50,7 +50,8 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                              @Nullable Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.expenses_fragment, container, false);
-
+        TextView msg = (TextView) rootView.findViewById(R.id.friendlymsg);
+        msg.setText("");
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -66,15 +67,13 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         TextView date2 = (TextView) rootView.findViewById(R.id.date2);
         TextView expense3 = (TextView) rootView.findViewById(R.id.expense3);
         TextView date3 = (TextView) rootView.findViewById(R.id.date3);
-        TextView msg = (TextView) rootView.findViewById(R.id.friendlymsg);
+
         CheckBox c1 = (CheckBox) rootView.findViewById(R.id.checkBox1);
         CheckBox c2 = (CheckBox) rootView.findViewById(R.id.checkBox2);
         CheckBox c3 = (CheckBox) rootView.findViewById(R.id.checkBox3);
 
-        msg.setVisibility(View.INVISIBLE);
-        if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-            msg.setVisibility(View.VISIBLE);
-        }
+
+
         //sets values if anything is saved
         expense1.setText(pref.getString("expense1", null));
         date1.setText(pref.getString("date1", null));
@@ -104,7 +103,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         else {
             c3.setVisibility(View.VISIBLE);
         }
-
+        if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+            msg.setText("You have no current expenses!");
+        }
 
 
         addExpenses.setOnClickListener(new View.OnClickListener() {
@@ -223,7 +224,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     c1.setChecked(false);
                     c1.setVisibility(View.INVISIBLE);
                     if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setVisibility(View.VISIBLE);
+                        msg.setText("You have no current expenses!");
                     }
                     Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
@@ -241,7 +242,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     c2.setChecked(false);
                     c2.setVisibility(View.INVISIBLE);
                     if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setVisibility(View.VISIBLE);
+                        msg.setText("You have no current expenses!");
                     }
                     Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
@@ -259,7 +260,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     c3.setChecked(false);
                     c3.setVisibility(View.INVISIBLE);
                     if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setVisibility(View.VISIBLE);
+                        msg.setText("You have no current expenses!");
                     }
                     Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }

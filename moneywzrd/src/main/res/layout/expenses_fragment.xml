@@ -44,20 +44,18 @@
                 android:id="@+id/addExpense"
                 android:layout_width="41dp"
                 android:layout_height="45dp"
-                android:layout_marginStart="343dp"
-                android:layout_marginBottom="349dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:text="@string/add"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/expense1"
                 android:layout_width="158dp"
                 android:layout_height="81dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="132dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="96dp"
                 android:textColor="#000000"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -86,8 +84,8 @@
                 android:id="@+id/date1"
                 android:layout_width="105dp"
                 android:layout_height="80dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="132dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="96dp"
                 android:textColor="#000000"
                 app:layout_constraintStart_toEndOf="@+id/expense1"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -114,10 +112,10 @@
 
             <CheckBox
                 android:id="@+id/checkBox1"
-                android:layout_width="48dp"
-                android:layout_height="46dp"
+                android:layout_width="46dp"
+                android:layout_height="34dp"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="54dp"
+                android:layout_marginTop="35dp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/date1"
                 app:layout_constraintTop_toBottomOf="@+id/addExpense"
@@ -125,10 +123,10 @@
 
             <CheckBox
                 android:id="@+id/checkBox2"
-                android:layout_width="48dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="59dp"
+                android:layout_width="45dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="72dp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/date2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox1"
@@ -136,10 +134,10 @@
 
             <CheckBox
                 android:id="@+id/checkBox3"
-                android:layout_width="48dp"
-                android:layout_height="46dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="48dp"
+                android:layout_width="47dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="63dp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/date3"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox2"
@@ -149,16 +147,16 @@
                 android:id="@+id/friendlymsg"
                 android:layout_width="250dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="1dp"
-                android:layout_marginEnd="161dp"
-                android:layout_marginBottom="26dp"
-                android:text="You have no current expenses!"
+                android:layout_marginStart="87dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="75dp"
+                android:layout_marginBottom="15dp"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@+id/date2"
+                app:layout_constraintBottom_toTopOf="@+id/expense1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/expense1"
-                app:layout_constraintTop_toBottomOf="@+id/date1" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
