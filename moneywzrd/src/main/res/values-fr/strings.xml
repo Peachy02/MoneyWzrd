@@ -23,4 +23,6 @@
     <string name="toolbarInv">Investissements</string>
     <string name="toolbarSet">Paramètres</string>
     <string name="toolbarAcc">Comptes</string>
+    <string name="accHom">Comptes en un coup "d'oeil"</string>
+    <string name="expHom">Dépense en un coup d\'oeil</string>
 </resources>

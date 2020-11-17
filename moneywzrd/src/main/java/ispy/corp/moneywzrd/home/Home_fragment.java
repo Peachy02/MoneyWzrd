@@ -1,6 +1,7 @@
 package ispy.corp.moneywzrd.home;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
@@ -54,7 +55,32 @@ public class Home_fragment extends Fragment {
 
         SharedPreferences pref = rootView.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
+        CardView CV = (CardView) rootView.findViewById(R.id.CVH);
+        CardView CV1 = (CardView) rootView.findViewById(R.id.CVH1);
+        TextView AccountN = rootView.findViewById(R.id.AccountN);
+        TextView Account = rootView.findViewById(R.id.Account);
+        TextView AccountN1 = rootView.findViewById(R.id.AccountN1);
+        TextView Account1 = rootView.findViewById(R.id.Account1);
+        AccountN.setText(" " + pref.getString("AccountN",null));
+        Account.setText("$"+pref.getString("Account",null));
+        AccountN1.setText(" "+pref.getString("AccountN1",null));
+        Account1.setText("$" + pref.getString("Account1",null));
 
+        if ((AccountN.getText().toString().equals(" null") && Account.getText().toString().equals("$null"))) {
+            CV.setVisibility(View.INVISIBLE);
+        }
+        else {
+            CV.setVisibility(View.VISIBLE);
+        }
+
+        if ((AccountN1.getText().toString().equals(" null") && Account1.getText().toString().equals("$null"))) {
+            CV1.setVisibility(View.INVISIBLE);
+        }
+        else {
+            CV1.setVisibility(View.VISIBLE);
+        }
+
+        TextView msg = rootView.findViewById(R.id.friendlymsg);
         TextView eHome1 = (TextView)rootView.findViewById(R.id.eHome1);
         TextView eHome2 = (TextView)rootView.findViewById(R.id.eHome2);
         TextView eHome3 = (TextView)rootView.findViewById(R.id.eHome3);
@@ -67,6 +93,10 @@ public class Home_fragment extends Fragment {
         eDate1.setText(pref.getString("date1", null));
         eDate2.setText(pref.getString("date2", null));
         eDate3.setText(pref.getString("date3", null));
+
+        if (eHome1.getText().toString().equals("") && eDate1.getText().toString().equals("") && eHome2.getText().toString().equals("") && eDate2.getText().toString().equals("") && eHome3.getText().toString().equals("") && eDate3.getText().toString().equals("")) {
+            msg.setText("You have no current expenses!");
+        }
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");

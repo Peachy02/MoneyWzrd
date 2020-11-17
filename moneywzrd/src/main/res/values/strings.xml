@@ -30,6 +30,8 @@
     <string name="toolbarInv">Investments</string>
     <string name="toolbarSet">Settings</string>
     <string name="toolbarAcc">Accounts</string>
+    <string name="accHom">Accounts at a glance</string>
+    <string name="expHom">Expenses at a glance</string>
 
 
 </resources>

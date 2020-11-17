@@ -1,37 +1,26 @@
 package ispy.corp.moneywzrd.accounts;
 
-import androidx.annotation.RequiresApi;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.app.AlertDialog;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.icu.util.Calendar;
-import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
+import android.text.InputType;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
@@ -40,7 +29,7 @@ import ispy.corp.moneywzrd.R;
 public class Accounts_fragment extends Fragment {
 
     private AccountsFragViewModel mViewModel;
-        View V;
+    View V;
     public static Accounts_fragment newInstance() {
         return new Accounts_fragment();
     }
@@ -66,11 +55,11 @@ public class Accounts_fragment extends Fragment {
         TextView Account1 = (TextView) V.findViewById(R.id.Account1);
         CardView CV = (CardView) V.findViewById(R.id.CV);
         CardView CV1 = (CardView) V.findViewById(R.id.CV1);
-
         //sets values if anything is saved
-        Account.setText(pref.getString("Account", null));
-        AccountN.setText(pref.getString("AccountN", null));
-        if ((Account.getText().toString().equals("") && AccountN.getText().toString().equals(""))) {
+
+        AccountN.setText(" " + pref.getString("AccountN", null));
+        Account.setText("$" + pref.getString("Account", null));
+        if ((AccountN.getText().toString().equals(" null") && Account.getText().toString().equals("$null"))) {
             CV.setVisibility(View.INVISIBLE);
         }
         else {
@@ -78,9 +67,9 @@ public class Accounts_fragment extends Fragment {
         }
 
         //do above for the rest of the expenses
-        Account1.setText(pref.getString("Account1", null));
-        AccountN1.setText(pref.getString("AccountN1", null));
-        if ((Account1.getText().toString().equals("") && AccountN1.getText().toString().equals(""))) {
+        AccountN1.setText(" " + pref.getString("AccountN1", null));
+        Account1.setText("$" + pref.getString("Account1", null));
+        if ((AccountN1.getText().toString().equals(" null") && Account1.getText().toString().equals("$null"))) {
             CV1.setVisibility(View.INVISIBLE);
         }
         else {
@@ -91,39 +80,40 @@ public class Accounts_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Account value and name");
+                builder.setTitle("Account name and value");
 
-                final EditText input1 = new EditText(getContext());
-                final EditText input2 = new EditText(getContext());
+                final EditText name = new EditText(getContext());
+                final EditText value = new EditText(getContext());
+                value.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 LinearLayout lila1= new LinearLayout(getContext());
                 lila1.setOrientation(LinearLayout.VERTICAL);
-                lila1.addView(input1);
-                lila1.addView(input2);
+                lila1.addView(name);
+                lila1.addView(value);
                 builder.setView(lila1);
 
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if (Account.getText().toString().equals("") && AccountN.getText().toString().equals("")) {
-                            String i1 = input1.getText().toString();
-                            String d1 = input2.getText().toString();
-                            editor.putString("Account", i1);
-                            editor.putString("AccountN", d1);
+                        if (AccountN.getText().toString().equals("") && Account.getText().toString().equals("")) {
+                            String i1 = name.getText().toString();
+                            String Stext = value.getText().toString();
+                            editor.putString("AccountN", i1);
+                            editor.putString("Account", Stext);
                             editor.commit();
-                            Account.setText(pref.getString("Account", null));
-                            AccountN.setText(pref.getString("AccountN", null));
+                            AccountN.setText(" " + pref.getString("AccountN", null));
+                            Account.setText("$" + pref.getString("Account", null));
                             CV.setVisibility(View.VISIBLE);
                         }
-                        else if (Account1.getText().toString().equals("") && AccountN1.getText().toString().equals("")) {
+                        else if (AccountN1.getText().toString().equals("") && Account1.getText().toString().equals("")) {
                             //String input = input.getText().toString();
-                            String i2 = input1.getText().toString();
-                            String d2 = input2.getText().toString();
-                            editor.putString("Account1", i2);
-                            editor.putString("AccountN1", d2);
+                            String i2 = name.getText().toString();
+                            String d2 = value.getText().toString();
+                            editor.putString("AccountN1", i2);
+                            editor.putString("Account1", d2);
                             editor.commit();
-                            Account1.setText(pref.getString("Account1", null));
-                            AccountN1.setText(pref.getString("AccountN1", null));
+                            AccountN1.setText(" " + pref.getString("AccountN1", null));
+                            Account1.setText("$" + pref.getString("Account1", null));
                             CV1.setVisibility(View.VISIBLE);
                         }
 
@@ -141,10 +131,10 @@ public class Accounts_fragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Account.setText("");
                 AccountN.setText("");
-                editor.remove("Account");
+                Account.setText("");
                 editor.remove("AccountN");
+                editor.remove("Account");
                 editor.commit();
                 CV.setVisibility(View.INVISIBLE);
                 Toast.makeText(getContext(), "Account deleted", Toast.LENGTH_LONG).show();
@@ -155,13 +145,13 @@ public class Accounts_fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                    Account1.setText("");
-                    AccountN1.setText("");
-                    editor.remove("Account1");
-                    editor.remove("AccountN1");
-                    editor.commit();
-                    CV1.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getContext(), "Account deleted", Toast.LENGTH_LONG).show();
+                AccountN1.setText("");
+                Account1.setText("");
+                editor.remove("AccountN1");
+                editor.remove("Account1");
+                editor.commit();
+                CV1.setVisibility(View.INVISIBLE);
+                Toast.makeText(getContext(), "Account deleted", Toast.LENGTH_LONG).show();
 
             }
         });
