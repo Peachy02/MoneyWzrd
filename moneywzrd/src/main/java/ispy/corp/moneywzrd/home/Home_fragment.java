@@ -3,6 +3,8 @@ package ispy.corp.moneywzrd.home;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -49,6 +51,22 @@ public class Home_fragment extends Fragment {
         ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+
+        SharedPreferences pref = rootView.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+
+        TextView eHome1 = (TextView)rootView.findViewById(R.id.eHome1);
+        TextView eHome2 = (TextView)rootView.findViewById(R.id.eHome2);
+        TextView eHome3 = (TextView)rootView.findViewById(R.id.eHome3);
+        TextView eDate1 = (TextView)rootView.findViewById(R.id.eDate1);
+        TextView eDate2 = (TextView)rootView.findViewById(R.id.eDate2);
+        TextView eDate3 = (TextView)rootView.findViewById(R.id.eDate3);
+        eHome1.setText(pref.getString("expense1", null));
+        eHome2.setText(pref.getString("expense2", null));
+        eHome3.setText(pref.getString("expense3", null));
+        eDate1.setText(pref.getString("date1", null));
+        eDate2.setText(pref.getString("date2", null));
+        eDate3.setText(pref.getString("date3", null));
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
