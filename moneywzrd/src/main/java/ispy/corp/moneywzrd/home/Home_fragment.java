@@ -64,6 +64,7 @@ public class Home_fragment extends Fragment {
         TextView AccountN1 = rootView.findViewById(R.id.AccountN1);
         TextView Account1 = rootView.findViewById(R.id.Account1);
 
+        TextView msg2 = rootView.findViewById(R.id.noAcc);
         AccountN.setText(" " + pref.getString("AccountN",""));
         Account.setText("$"+pref.getString("Account",""));
         AccountN1.setText(" "+pref.getString("AccountN1",""));
@@ -81,6 +82,9 @@ public class Home_fragment extends Fragment {
         }
         else {
             CV1.setVisibility(View.VISIBLE);
+        }
+        if (AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$") && AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$")) {
+            msg2.setText("You have no accounts setup!");
         }
 
         TextView msg = rootView.findViewById(R.id.friendlymsg);
