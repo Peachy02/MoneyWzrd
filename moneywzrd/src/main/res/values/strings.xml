@@ -25,10 +25,11 @@
     <string name="register">Register</string>
     <string name="expenses">Expenses</string>
     <string name="add">+</string>
-    <string name="toolbarexp">Expenses</string>
-    <string name="toolbarhom">Home</string>
+    <string name="toolbarExp">Expenses</string>
+    <string name="toolbarHom">Home</string>
     <string name="toolbarInv">Investments</string>
     <string name="toolbarSet">Settings</string>
+    <string name="toolbarAcc">Accounts</string>
 
 
 </resources>

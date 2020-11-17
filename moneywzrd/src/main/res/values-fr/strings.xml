@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MoneyWzrd</string>
+    <string name="prompt_password">mot de passe</string>
+    <string name="action_sign_in">Se connecter ou s\'inscrire</string>
+    <string name="action_sign_in_short">Se connecter</string>
+    <string name="welcome">Bienvenue</string>
+    <string name="invalid_username">Pas un nom d\'utilisateur valide</string>
+    <string name="invalid_password">Le mot de passe doit être >5 caractères</string>
+    <string name="login_failed">"Échoué login "</string>
+    <string name="Homebtn">Accueil</string>
+    <string name="Accbtn">Comptes</string>
+    <string name="Expbtn">Dépenses</string>
+    <string name="Invbtn">Investissements</string>
+    <string name="Setbtn">Paramètres</string>
+    <string name="password">Mot de passe</string>
+    <string name="your_one_stop_banking_app">Votre tout en un bancaire app</string>
+    <string name="forgot_password">Mot de passe oublié?</string>
+    <string name="register">S\'inscrire</string>
+    <string name="expenses">Dépenses</string>
+    <string name="toolbarExp">Dépenses</string>
+    <string name="toolbarHom">Accueil</string>
+    <string name="toolbarInv">Investissements</string>
+    <string name="toolbarSet">Paramètres</string>
+    <string name="toolbarAcc">Comptes</string>
+</resources>
