@@ -57,9 +57,9 @@ public class Accounts_fragment extends Fragment {
         CardView CV1 = (CardView) V.findViewById(R.id.CV1);
         //sets values if anything is saved
 
-        AccountN.setText(" " + pref.getString("AccountN", null));
-        Account.setText("$" + pref.getString("Account", null));
-        if ((AccountN.getText().toString().equals(" null") && Account.getText().toString().equals("$null"))) {
+        AccountN.setText(" " + pref.getString("AccountN", ""));
+        Account.setText("$" + pref.getString("Account", ""));
+        if ((AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$"))) {
             CV.setVisibility(View.INVISIBLE);
         }
         else {
@@ -67,9 +67,9 @@ public class Accounts_fragment extends Fragment {
         }
 
         //do above for the rest of the expenses
-        AccountN1.setText(" " + pref.getString("AccountN1", null));
-        Account1.setText("$" + pref.getString("Account1", null));
-        if ((AccountN1.getText().toString().equals(" null") && Account1.getText().toString().equals("$null"))) {
+        AccountN1.setText(" " + pref.getString("AccountN1", ""));
+        Account1.setText("$" + pref.getString("Account1", ""));
+        if ((AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$"))) {
             CV1.setVisibility(View.INVISIBLE);
         }
         else {
@@ -95,7 +95,7 @@ public class Accounts_fragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        if (AccountN.getText().toString().equals("") && Account.getText().toString().equals("")) {
+                        if (AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$")) {
                             String i1 = name.getText().toString();
                             String Stext = value.getText().toString();
                             editor.putString("AccountN", i1);
@@ -105,7 +105,7 @@ public class Accounts_fragment extends Fragment {
                             Account.setText("$" + pref.getString("Account", null));
                             CV.setVisibility(View.VISIBLE);
                         }
-                        else if (AccountN1.getText().toString().equals("") && Account1.getText().toString().equals("")) {
+                        else if (AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$")) {
                             //String input = input.getText().toString();
                             String i2 = name.getText().toString();
                             String d2 = value.getText().toString();
@@ -131,8 +131,8 @@ public class Accounts_fragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AccountN.setText("");
-                Account.setText("");
+                AccountN.setText(" ");
+                Account.setText("$");
                 editor.remove("AccountN");
                 editor.remove("Account");
                 editor.commit();
@@ -145,8 +145,8 @@ public class Accounts_fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                AccountN1.setText("");
-                Account1.setText("");
+                AccountN1.setText(" ");
+                Account1.setText("$");
                 editor.remove("AccountN1");
                 editor.remove("Account1");
                 editor.commit();

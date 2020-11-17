@@ -55,25 +55,28 @@ public class Home_fragment extends Fragment {
 
         SharedPreferences pref = rootView.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
+
         CardView CV = (CardView) rootView.findViewById(R.id.CVH);
         CardView CV1 = (CardView) rootView.findViewById(R.id.CVH1);
+
         TextView AccountN = rootView.findViewById(R.id.AccountN);
         TextView Account = rootView.findViewById(R.id.Account);
         TextView AccountN1 = rootView.findViewById(R.id.AccountN1);
         TextView Account1 = rootView.findViewById(R.id.Account1);
-        AccountN.setText(" " + pref.getString("AccountN",null));
-        Account.setText("$"+pref.getString("Account",null));
-        AccountN1.setText(" "+pref.getString("AccountN1",null));
-        Account1.setText("$" + pref.getString("Account1",null));
 
-        if ((AccountN.getText().toString().equals(" null") && Account.getText().toString().equals("$null"))) {
+        AccountN.setText(" " + pref.getString("AccountN",""));
+        Account.setText("$"+pref.getString("Account",""));
+        AccountN1.setText(" "+pref.getString("AccountN1",""));
+        Account1.setText("$" + pref.getString("Account1",""));
+
+        if ((AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$"))) {
             CV.setVisibility(View.INVISIBLE);
         }
         else {
             CV.setVisibility(View.VISIBLE);
         }
 
-        if ((AccountN1.getText().toString().equals(" null") && Account1.getText().toString().equals("$null"))) {
+        if ((AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$"))) {
             CV1.setVisibility(View.INVISIBLE);
         }
         else {
