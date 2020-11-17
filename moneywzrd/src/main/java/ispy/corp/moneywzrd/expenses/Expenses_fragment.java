@@ -34,6 +34,9 @@ import android.widget.Toast;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 
+import static ispy.corp.moneywzrd.R.string.ExpPaid;
+import static ispy.corp.moneywzrd.R.string.mustenter;
+
 public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
     private ExpensesFragViewModel mViewModel;
@@ -104,7 +107,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             c3.setVisibility(View.VISIBLE);
         }
         if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-            msg.setText("You have no current expenses!");
+            msg.setText(R.string.noExp);
         }
 
 
@@ -112,11 +115,11 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Enter Expense");
+                builder.setTitle(R.string.ExpEnt);
 
                 final EditText input1 = new EditText(getContext());
                 final TextView input2 = new TextView(getContext());
-                input2.setText(" Click to select due date");
+                input2.setText(R.string.Duedate);
                 LinearLayout lila1= new LinearLayout(getContext());
                 lila1.setOrientation(LinearLayout.VERTICAL);
                 lila1.addView(input1);
@@ -151,13 +154,14 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                         input2.setText(date);
                     }
                 };
-
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                //Strings for the notification buttons
+                String ok = rootView.getResources().getString(R.string.ok);
+                String cancel = rootView.getResources().getString(R.string.cancel);
+                builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         if (input1.getText().toString().isEmpty() || input2.getText().toString().equals(" Click to select due date")) {
-                            Toast.makeText(getContext(), "*MUST ENTER BOTH REQUIRED FIELDS*", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), mustenter, Toast.LENGTH_LONG).show();
                             dialog.cancel();
                         }
 
@@ -202,7 +206,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -224,7 +228,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     c1.setChecked(false);
                     c1.setVisibility(View.INVISIBLE);
                     if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setText("You have no current expenses!");
+                        msg.setText(R.string.noExp);
                     }
                     Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
                 }
@@ -242,9 +246,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     c2.setChecked(false);
                     c2.setVisibility(View.INVISIBLE);
                     if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setText("You have no current expenses!");
+                        msg.setText(R.string.noExp);
                     }
-                    Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), ExpPaid, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -260,9 +264,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     c3.setChecked(false);
                     c3.setVisibility(View.INVISIBLE);
                     if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setText("You have no current expenses!");
+                        msg.setText(R.string.noExp);
                     }
-                    Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), ExpPaid, Toast.LENGTH_LONG).show();
                 }
             }
         });

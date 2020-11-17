@@ -18,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import static ispy.corp.moneywzrd.R.string.fail_log;
+import static ispy.corp.moneywzrd.R.string.pass_reset;
+import static ispy.corp.moneywzrd.R.string.success_log;
+
 public class Login_main extends AppCompatActivity implements View.OnClickListener{
 
     private TextView register, forgotPass;
@@ -69,12 +73,12 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
         String email = editTextEmail.getText().toString().trim();
 
         if (email.isEmpty()){
-            editTextEmail.setError("Email is required!");
+            editTextEmail.setError(getString(R.string.email_required));
             editTextEmail.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please provide valid email!");
+            editTextEmail.setError(getString(R.string.valid_email));
             editTextEmail.requestFocus();
             return;
         }
@@ -84,7 +88,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Login_main.this, "Password reset has been sent to your email! This could take up to 5 minutes!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Login_main.this, pass_reset, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -97,22 +101,22 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
         String password = editTextPassword.getText().toString().trim();
 
         if (email.isEmpty()){
-            editTextEmail.setError("Email is required!");
+            editTextEmail.setError(getString(R.string.email_required));
             editTextEmail.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please provide valid email!");
+            editTextEmail.setError(getString(R.string.valid_email));
             editTextEmail.requestFocus();
             return;
         }
         if (password.isEmpty()) {
-            editTextPassword.setError("Password is required!");
+            editTextPassword.setError(getString(R.string.pass_required));
             editTextPassword.requestFocus();
             return;
         }
         if (password.length() < 6) {
-            editTextPassword.setError("Password should be a minimum of 6 characters!");
+            editTextPassword.setError(getString(R.string.pass_min));
             editTextPassword.requestFocus();
             return;
         }
@@ -124,11 +128,11 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-                    Toast.makeText(Login_main.this, "Successfully Logged in!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login_main.this, success_log, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(Login_main.this, MainActivity.class));
                 }
                 else {
-                    Toast.makeText(Login_main.this, "Failed to login, Please check your credentials", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login_main.this, fail_log, Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
 

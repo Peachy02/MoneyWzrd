@@ -80,7 +80,7 @@ public class Accounts_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Account name and value");
+                builder.setTitle(R.string.accnandvalue);
 
                 final EditText name = new EditText(getContext());
                 final EditText value = new EditText(getContext());
@@ -90,8 +90,10 @@ public class Accounts_fragment extends Fragment {
                 lila1.addView(name);
                 lila1.addView(value);
                 builder.setView(lila1);
+                String ok = V.getResources().getString(R.string.ok);
+                String cancel = V.getResources().getString(R.string.cancel);
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -119,7 +121,7 @@ public class Accounts_fragment extends Fragment {
 
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -131,27 +133,28 @@ public class Accounts_fragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String accdelet = V.getResources().getString(R.string.accdelet);
                 AccountN.setText(" ");
                 Account.setText("$");
                 editor.remove("AccountN");
                 editor.remove("Account");
                 editor.commit();
                 CV.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), "Account deleted", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), accdelet, Toast.LENGTH_LONG).show();
 
             }
         });
         edit1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String accdelet = V.getResources().getString(R.string.accdelet);
                 AccountN1.setText(" ");
                 Account1.setText("$");
                 editor.remove("AccountN1");
                 editor.remove("Account1");
                 editor.commit();
                 CV1.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), "Account deleted", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), accdelet, Toast.LENGTH_LONG).show();
 
             }
         });

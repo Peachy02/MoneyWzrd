@@ -7,7 +7,7 @@
     <string name="welcome">Bienvenue</string>
     <string name="invalid_username">Pas un nom d\'utilisateur valide</string>
     <string name="invalid_password">Le mot de passe doit être >5 caractères</string>
-    <string name="login_failed">"Échoué login "</string>
+    <string name="login_failed">Connexion échoué</string>
     <string name="Homebtn">Accueil</string>
     <string name="Accbtn">Comptes</string>
     <string name="Expbtn">Dépenses</string>
@@ -24,5 +24,37 @@
     <string name="toolbarSet">Paramètres</string>
     <string name="toolbarAcc">Comptes</string>
     <string name="accHom">Comptes en un coup "d'oeil"</string>
-    <string name="expHom">Dépense en un coup d\'oeil</string>
+    <string name="expHom">Dépenses en un coup d\'oeil</string>
+    <string name="email_address">Adresse életronique</string>
+    <string name="login">Connecter</string>
+    <string name="title_activity_login">Connecter</string>
+    <string name="prompt_email">E-mail</string>
+    <string name="moneywzrd">SorcierPez</string>
+    <string name="noExp">Vous n\'avez pas de frais</string>
+    <string name="ExpEnt">Entrez la dépense</string>
+    <string name="Duedate">Cliquez pour sélectionner la date d\'échéance</string>
+    <string name="ExpPaid">Dépense payée</string>
+    <string name="add">+</string>
+    <string name="welc">Nous saluons le retour&#160;</string>
+    <string name="exclamation">!</string>
+    <string name="ok">Confirmer</string>
+    <string name="accdelet">Compte supprimé</string>
+    <string name="cancel">Annuler</string>
+    <string name="noAcc">Pas de compte configuré</string>
+    <string name="accnandvalue">Nom et valeur du compte</string>
+    <string name="logout">Déconnecter</string>
+    <string name="logged">Déconnecté avec succès</string>
+    <string name="mustenter">DOIT ENTRER LES DEUX CHAMPS OBLIGATOIRES</string>
+    <string name="clear_all_data">Effacer toutes les données</string>
+    <string name="email_required">L\'email est exigé!</string>
+    <string name="valid_email">S.V.P fournis un e-mail valide!</string>
+    <string name="pass_required">Mot de passe est exigé!</string>
+    <string name="name_required">Nom et prénom sont exigent!</string>
+    <string name="pass_reset">"Réinitialisation de mot de passe a envoyé à votre e-mail! Cela peut prendre 5 minutes! "</string>
+    <string name="pass_min">Mot de passe doit est un minimum de 6 caractères!</string>
+    <string name="success_log">Connecter avec succès!</string>
+    <string name="fail_log">Connexion échoua. Vérifie votre identiafiants</string>
+    <string name="usr_regis">L\'utilisateur a été enregistré</string>
+    <string name="fail_regis">L\'enregistration a échoué! Essayez de nouveau!</string>
+
 </resources>

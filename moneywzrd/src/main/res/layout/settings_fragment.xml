@@ -34,19 +34,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
         android:layout_marginEnd="156dp"
-        android:text="Logout"
+        android:text="@string/logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/clearBtn"
-        android:layout_width="253dp"
-        android:layout_height="53dp"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
         android:layout_marginTop="27dp"
-        android:text="Clear all data"
+        android:text="@string/clear_all_data"
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,8 @@ import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 
+import static ispy.corp.moneywzrd.R.string.logged;
+
 public class Settings_fragment extends Fragment {
 
     private SettingsFragmentViewModel mViewModel;
@@ -61,7 +63,7 @@ public class Settings_fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getContext(), "Successfully logged out!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getContext(), Login_main.class));
             }
         });

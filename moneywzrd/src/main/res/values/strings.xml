@@ -10,7 +10,11 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
-
+    <string name="ok">ok</string>
+    <string name="accdelet">Account deleted</string>
+    <string name="cancel">cancel</string>
+    <string name="welc">Welcome back</string>
+    <string name="exclamation">!</string>
     <string name="Homebtn">Home</string>
     <string name="Accbtn">Accounts</string>
     <string name="Expbtn">Expenses</string>
@@ -32,6 +36,26 @@
     <string name="toolbarAcc">Accounts</string>
     <string name="accHom">Accounts at a glance</string>
     <string name="expHom">Expenses at a glance</string>
+    <string name="noExp">You have no current expenses!</string>
+    <string name="ExpEnt">Enter Expense</string>
+    <string name="Duedate"> Click to select due date</string>
+    <string name="ExpPaid">Expense paid</string>
+    <string name="noAcc">You have no accounts setup!</string>
+    <string name="accnandvalue">Account name and value</string>
+    <string name="mustenter">*MUST ENTER BOTH REQUIRED FIELDS*</string>
+    <string name="logged">Successfully logged out!</string>
+    <string name="logout">Logout</string>
+    <string name="clear_all_data">Clear all data</string>
+    <string name="email_required">Email is required!</string>
+    <string name="valid_email">Please provide valid email!</string>
+    <string name="pass_required">Password is required!</string>
+    <string name="pass_min">Password should be a minimum of 6 characters!</string>
+    <string name="success_log">Successfully Logged in!</string>
+    <string name="fail_log">Failed to login, Please check your credentials</string>
+    <string name="pass_reset">Password reset has been sent to your email! This could take up to 5 minutes!</string>
+    <string name="usr_regis">User has been registered</string>
+    <string name="fail_regis">Failed to register! Try Again!</string>
+    <string name="name_required">Full name is required!</string>
 
 
 </resources>

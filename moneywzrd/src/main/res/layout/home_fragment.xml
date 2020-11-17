@@ -30,15 +30,15 @@
 
     <TextView
         android:id="@+id/welcomeName"
-        android:layout_width="249dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="81dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="81dp"
-        android:layout_marginBottom="605dp"
+        android:layout_width="324dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="47dp"
+        android:layout_marginBottom="34dp"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -149,6 +149,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"

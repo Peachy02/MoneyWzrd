@@ -84,7 +84,7 @@ public class Home_fragment extends Fragment {
             CV1.setVisibility(View.VISIBLE);
         }
         if (AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$") && AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$")) {
-            msg2.setText("You have no accounts setup!");
+            msg2.setText(R.string.noAcc);
         }
 
         TextView msg = rootView.findViewById(R.id.friendlymsg);
@@ -102,7 +102,7 @@ public class Home_fragment extends Fragment {
         eDate3.setText(pref.getString("date3", null));
 
         if (eHome1.getText().toString().equals("") && eDate1.getText().toString().equals("") && eHome2.getText().toString().equals("") && eDate2.getText().toString().equals("") && eHome3.getText().toString().equals("") && eDate3.getText().toString().equals("")) {
-            msg.setText("You have no current expenses!");
+            msg.setText(R.string.noExp);
         }
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -113,12 +113,14 @@ public class Home_fragment extends Fragment {
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String wel = rootView.getResources().getString(R.string.welc);
+                String exc = rootView.getResources().getString(R.string.exclamation);
                 User userprofile = snapshot.getValue(User.class);
                 if (userprofile != null) {
                     String fullName = userprofile.fullName;
                     String email = userprofile.email;
 
-                    welcome.setText("Welcome back, " + fullName + "!");
+                    welcome.setText(String.format("%s%s%s", wel, fullName, exc));
                 }
             }
 
