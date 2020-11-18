@@ -35,7 +35,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="47dp"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="10dp"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/cardView2"
@@ -47,12 +47,12 @@
         android:id="@+id/cardView"
         android:layout_width="500dp"
         android:layout_height="268dp"
-        android:layout_marginTop="298dp"
-        app:cardBackgroundColor="#F2EBFF"
+        android:layout_marginBottom="37dp"
+        app:cardBackgroundColor="@color/BackgroundPages"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeName">
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -152,8 +152,7 @@
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/BackgroundPages"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,8 +161,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="290dp"
-            android:background="@color/BackgroundPages">
+            android:layout_height="290dp">
 
             <TextView
                 android:id="@+id/textView"
@@ -173,7 +171,7 @@
                 android:fontFamily="sans-serif"
                 android:text="@string/accHom"
                 android:textAlignment="center"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +185,6 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/rounded_corner"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -204,7 +201,7 @@
                         android:background="@color/colorPrimary"
                         android:fontFamily="sans-serif"
                         android:text=" Checkings"
-                        android:textColor="#FFFFFF"
+                        android:textColor="@color/white"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -242,7 +239,6 @@
                 android:layout_height="107dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="150dp"
-                android:background="@drawable/rounded_corner"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

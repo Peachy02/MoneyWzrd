@@ -13,7 +13,7 @@
     <string name="ok">ok</string>
     <string name="accdelet">Account deleted</string>
     <string name="cancel">cancel</string>
-    <string name="welc">Welcome back</string>
+    <string name="welc">Welcome back&#160;</string>
     <string name="exclamation">!</string>
     <string name="Homebtn">Home</string>
     <string name="Accbtn">Accounts</string>
