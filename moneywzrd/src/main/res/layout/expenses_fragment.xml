@@ -106,8 +106,8 @@
                 android:id="@+id/clearExp"
                 android:layout_width="151dp"
                 android:layout_height="39dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="248dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="244dp"
                 android:text="Clear All"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -171,7 +171,7 @@
                 android:id="@+id/checkBox1"
                 android:layout_width="46dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="28dp"
                 android:layout_marginTop="44dp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/date1"
@@ -182,8 +182,8 @@
                 android:id="@+id/checkBox2"
                 android:layout_width="45dp"
                 android:layout_height="32dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="76dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="72dp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toEndOf="@+id/date2"
                 app:layout_constraintTop_toBottomOf="@+id/checkBox1"
@@ -220,38 +220,81 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.334" />
+                app:layout_constraintVertical_bias="0.253" />
 
             <TextView
                 android:id="@+id/price1"
-                android:layout_width="111dp"
-                android:layout_height="26dp"
+                android:layout_width="92dp"
+                android:layout_height="25dp"
                 android:textColor="#040404"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.259"
+                app:layout_constraintHorizontal_bias="0.328"
                 app:layout_constraintStart_toEndOf="@+id/expense1"
                 app:layout_constraintTop_toBottomOf="@+id/date1" />
 
             <TextView
                 android:id="@+id/price2"
-                android:layout_width="111dp"
-                android:layout_height="26dp"
+                android:layout_width="92dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="1dp"
                 android:textColor="#040404"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.248"
+                app:layout_constraintHorizontal_bias="0.337"
                 app:layout_constraintStart_toEndOf="@+id/expense2"
                 app:layout_constraintTop_toBottomOf="@+id/date2" />
 
             <TextView
                 android:id="@+id/price3"
-                android:layout_width="111dp"
-                android:layout_height="31dp"
+                android:layout_width="94dp"
+                android:layout_height="29dp"
                 android:layout_marginTop="1dp"
                 android:textColor="#040404"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.259"
+                app:layout_constraintHorizontal_bias="0.333"
                 app:layout_constraintStart_toEndOf="@+id/expense3"
+                app:layout_constraintTop_toBottomOf="@+id/date3" />
+
+            <TextView
+                android:id="@+id/totalE"
+                android:layout_width="385dp"
+                android:layout_height="37dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="19dp"
+                android:background="#EDE3FF"
+                android:textColor="#4B2F7E"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/expense3" />
+
+            <TextView
+                android:id="@+id/dollar"
+                android:layout_width="8dp"
+                android:layout_height="24dp"
+                android:text="$"
+                android:textColor="#000000"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/price1"
+                app:layout_constraintTop_toBottomOf="@+id/date1" />
+
+            <TextView
+                android:id="@+id/dollar2"
+                android:layout_width="8dp"
+                android:layout_height="24dp"
+                android:text="$"
+                android:textColor="#000000"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/price2"
+                app:layout_constraintTop_toBottomOf="@+id/date2" />
+
+            <TextView
+                android:id="@+id/dollar3"
+                android:layout_width="8dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="1dp"
+                android:text="$"
+                android:textColor="#000000"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/price3"
                 app:layout_constraintTop_toBottomOf="@+id/date3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
