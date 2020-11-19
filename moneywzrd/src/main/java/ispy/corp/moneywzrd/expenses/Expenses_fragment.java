@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         TextView date2 = (TextView) rootView.findViewById(R.id.date2);
         TextView expense3 = (TextView) rootView.findViewById(R.id.expense3);
         TextView date3 = (TextView) rootView.findViewById(R.id.date3);
+        TextView price1 = (TextView) rootView.findViewById(R.id.price1);
+        TextView price2 = (TextView) rootView.findViewById(R.id.price2);
+        TextView price3 = (TextView) rootView.findViewById(R.id.price3);
 
         CheckBox c1 = (CheckBox) rootView.findViewById(R.id.checkBox1);
         CheckBox c2 = (CheckBox) rootView.findViewById(R.id.checkBox2);
@@ -81,6 +85,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         //sets values if anything is saved
         expense1.setText(pref.getString("expense1", null));
         date1.setText(pref.getString("date1", null));
+        price1.setText("$" + pref.getString("price1", ""));
         if ((expense1.getText().toString().equals("") && date1.getText().toString().equals(""))) {
             c1.setVisibility(View.INVISIBLE);
             //msg.setVisibility(View.VISIBLE);
@@ -92,6 +97,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         //do above for the rest of the expenses
         expense2.setText(pref.getString("expense2", null));
         date2.setText(pref.getString("date2", null));
+        price2.setText("$" + pref.getString("price2", ""));
         if ((expense2.getText().toString().equals("") && date2.getText().toString().equals(""))) {
             c2.setVisibility(View.INVISIBLE);
         }
@@ -101,6 +107,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
         expense3.setText(pref.getString("expense3", null));
         date3.setText(pref.getString("date3", null));
+        price3.setText("$" + pref.getString("price3", ""));
         if ((expense3.getText().toString().equals("") && date3.getText().toString().equals(""))) {
             c3.setVisibility(View.INVISIBLE);
         }
@@ -120,11 +127,14 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
                 final EditText input1 = new EditText(getContext());
                 final TextView input2 = new TextView(getContext());
+                final EditText price = new EditText(getContext());
+                price.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 input2.setText(R.string.Duedate);
                 LinearLayout lila1= new LinearLayout(getContext());
                 lila1.setOrientation(LinearLayout.VERTICAL);
                 lila1.addView(input1);
                 lila1.addView(input2);
+                lila1.addView(price);
                 builder.setView(lila1);
 
                 input2.setOnClickListener(new View.OnClickListener() {
@@ -161,8 +171,8 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (input1.getText().toString().isEmpty()){ //|| input2.getText().toString().equals("Click to select due date")) {
-                            Toast.makeText(getContext(), mustenter, Toast.LENGTH_LONG).show();
+                        if (input1.getText().toString().isEmpty() || input2.getText().toString().equals("Click to select due date") || price.getText().toString().isEmpty() || price.getText().toString().equals("$")) {
+                            Toast.makeText(getContext(), "MUST ENTER ALL REQUIRED FIELDS!", Toast.LENGTH_LONG).show();
                             dialog.cancel();
                            // input1.setError("Cannot be empty!");
                            // input1.requestFocus();
@@ -178,13 +188,16 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             //String input = input.getText().toString();
                             String i1 = input1.getText().toString();
                             String d1 = input2.getText().toString();
+                            String p1 = price.getText().toString();
                             //expense1.setText(input1.getText().toString());
                             //date1.setText("Due " + input2.getText().toString());
                             editor.putString("expense1", i1);
                             editor.putString("date1", d1);
+                            editor.putString("price1", p1);
                             editor.commit();
                             expense1.setText(pref.getString("expense1", null));
                             date1.setText(pref.getString("date1", null));
+                            price1.setText("$" + pref.getString("price1", null));
                             c1.setVisibility(View.VISIBLE);
                             msg.setVisibility(View.INVISIBLE);
                         }
@@ -192,11 +205,14 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             //String input = input.getText().toString();
                             String i2 = input1.getText().toString();
                             String d2 = input2.getText().toString();
+                            String p2 = price.getText().toString();
                             editor.putString("expense2", i2);
                             editor.putString("date2", d2);
+                            editor.putString("price2", p2);
                             editor.commit();
                             expense2.setText(pref.getString("expense2", null));
                             date2.setText(pref.getString("date2", null));
+                            price2.setText("$" + pref.getString("price2", null));
                             c2.setVisibility(View.VISIBLE);
                             msg.setVisibility(View.INVISIBLE);
                         }
@@ -204,11 +220,14 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             //String input = input.getText().toString();
                             String i3 = input1.getText().toString();
                             String d3 = input2.getText().toString();
+                            String p3 = price.getText().toString();
                             editor.putString("expense3", i3);
                             editor.putString("date3", d3);
+                            editor.putString("price3", p3);
                             editor.commit();
                             expense3.setText(pref.getString("expense3", null));
                             date3.setText(pref.getString("date3", null));
+                            price3.setText("$" + pref.getString("price3", null));
                             c3.setVisibility(View.VISIBLE);
                             msg.setVisibility(View.INVISIBLE);
                         }
@@ -231,8 +250,10 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 if (c1.isChecked()) {
                     expense1.setText("");
                     date1.setText("");
+                    price1.setText("");
                     editor.remove("expense1");
                     editor.remove("date1");
+                    editor.remove("price1");
                     editor.commit();
                     c1.setChecked(false);
                     c1.setVisibility(View.INVISIBLE);
@@ -249,8 +270,10 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 if (c2.isChecked()) {
                     expense2.setText("");
                     date2.setText("");
+                    price2.setText("");
                     editor.remove("expense2");
                     editor.remove("date2");
+                    editor.remove("price2");
                     editor.commit();
                     c2.setChecked(false);
                     c2.setVisibility(View.INVISIBLE);
@@ -267,8 +290,10 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 if (c3.isChecked()) {
                     expense3.setText("");
                     date3.setText("");
+                    price3.setText("");
                     editor.remove("expense3");
                     editor.remove("date3");
+                    editor.remove("price3");
                     editor.commit();
                     c3.setChecked(false);
                     c3.setVisibility(View.INVISIBLE);
@@ -282,27 +307,37 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         clearExp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 expense1.setText("");
                 date1.setText("");
+                price1.setText("");
                 editor.remove("expense1");
                 editor.remove("date1");
+                editor.remove("price1");
                 editor.commit();
                 c1.setChecked(false);
                 c1.setVisibility(View.INVISIBLE);
+
                 expense2.setText("");
                 date2.setText("");
+                price2.setText("");
                 editor.remove("expense2");
                 editor.remove("date2");
+                editor.remove("price2");
                 editor.commit();
                 c2.setChecked(false);
                 c2.setVisibility(View.INVISIBLE);
+
                 expense3.setText("");
                 date3.setText("");
+                price3.setText("");
                 editor.remove("expense3");
                 editor.remove("date3");
+                editor.remove("price3");
                 editor.commit();
                 c3.setChecked(false);
                 c3.setVisibility(View.INVISIBLE);
+
                 msg.setText(R.string.noExp);
 
                 Toast.makeText(getContext(), "All expenses cleared", Toast.LENGTH_LONG).show();
