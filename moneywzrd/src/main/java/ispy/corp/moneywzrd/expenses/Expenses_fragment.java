@@ -64,6 +64,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         SharedPreferences.Editor editor = pref.edit();
         final DatePickerDialog.OnDateSetListener[] mDateSetListener = {null};
         Button addExpenses = (Button)rootView.findViewById(R.id.addExpense);
+        Button clearExp = (Button)rootView.findViewById(R.id.clearExp);
         TextView expense1 = (TextView) rootView.findViewById(R.id.expense1);
         TextView date1 = (TextView) rootView.findViewById(R.id.date1);
         TextView expense2 = (TextView) rootView.findViewById(R.id.expense2);
@@ -160,10 +161,18 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (input1.getText().toString().isEmpty() || input2.getText().toString().equals(" Click to select due date")) {
+                        if (input1.getText().toString().isEmpty()){ //|| input2.getText().toString().equals("Click to select due date")) {
                             Toast.makeText(getContext(), mustenter, Toast.LENGTH_LONG).show();
                             dialog.cancel();
+                           // input1.setError("Cannot be empty!");
+                           // input1.requestFocus();
                         }
+                        /*if (input2.getText().toString().equals("Click to select due date")) {
+                            input2.setError("Date required!");
+                            input2.requestFocus();
+                        }
+
+                         */
 
                         else if (expense1.getText().toString().equals("") && date1.getText().toString().equals("")) {
                             //String input = input.getText().toString();
@@ -268,6 +277,36 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     }
                     Toast.makeText(getContext(), ExpPaid, Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+        clearExp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                expense1.setText("");
+                date1.setText("");
+                editor.remove("expense1");
+                editor.remove("date1");
+                editor.commit();
+                c1.setChecked(false);
+                c1.setVisibility(View.INVISIBLE);
+                expense2.setText("");
+                date2.setText("");
+                editor.remove("expense2");
+                editor.remove("date2");
+                editor.commit();
+                c2.setChecked(false);
+                c2.setVisibility(View.INVISIBLE);
+                expense3.setText("");
+                date3.setText("");
+                editor.remove("expense3");
+                editor.remove("date3");
+                editor.commit();
+                c3.setChecked(false);
+                c3.setVisibility(View.INVISIBLE);
+                msg.setText(R.string.noExp);
+
+                Toast.makeText(getContext(), "All expenses cleared", Toast.LENGTH_LONG).show();
+
             }
         });
 
