@@ -86,6 +86,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         expense1.setText(pref.getString("expense1", null));
         date1.setText(pref.getString("date1", null));
         price1.setText("$" + pref.getString("price1", ""));
+        if (price1.getText().toString().equals("$")){
+            price1.setText("");
+        }
         if ((expense1.getText().toString().equals("") && date1.getText().toString().equals(""))) {
             c1.setVisibility(View.INVISIBLE);
             //msg.setVisibility(View.VISIBLE);
@@ -98,6 +101,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         expense2.setText(pref.getString("expense2", null));
         date2.setText(pref.getString("date2", null));
         price2.setText("$" + pref.getString("price2", ""));
+        if (price2.getText().toString().equals("$")){
+            price2.setText("");
+        }
         if ((expense2.getText().toString().equals("") && date2.getText().toString().equals(""))) {
             c2.setVisibility(View.INVISIBLE);
         }
@@ -108,6 +114,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         expense3.setText(pref.getString("expense3", null));
         date3.setText(pref.getString("date3", null));
         price3.setText("$" + pref.getString("price3", ""));
+        if (price3.getText().toString().equals("$")){
+            price3.setText("");
+        }
         if ((expense3.getText().toString().equals("") && date3.getText().toString().equals(""))) {
             c3.setVisibility(View.INVISIBLE);
         }
@@ -247,100 +256,174 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (c1.isChecked()) {
-                    expense1.setText("");
-                    date1.setText("");
-                    price1.setText("");
-                    editor.remove("expense1");
-                    editor.remove("date1");
-                    editor.remove("price1");
-                    editor.commit();
-                    c1.setChecked(false);
-                    c1.setVisibility(View.INVISIBLE);
-                    if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setText(R.string.noExp);
+
+                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
+                uSure.setTitle("Remove Expense");
+                uSure.setMessage("Has this expense been paid?");
+                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (c1.isChecked()) {
+                            expense1.setText("");
+                            date1.setText("");
+                            price1.setText("");
+                            editor.remove("expense1");
+                            editor.remove("date1");
+                            editor.remove("price1");
+                            editor.commit();
+                            c1.setChecked(false);
+                            c1.setVisibility(View.INVISIBLE);
+                            if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+                                msg.setText(R.string.noExp);
+                            }
+                            Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
+                        }
                     }
-                    Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
-                }
+                });
+                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        c1.setChecked(false);
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = uSure.create();
+                alert.show();
+
             }
         });
         c2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (c2.isChecked()) {
-                    expense2.setText("");
-                    date2.setText("");
-                    price2.setText("");
-                    editor.remove("expense2");
-                    editor.remove("date2");
-                    editor.remove("price2");
-                    editor.commit();
-                    c2.setChecked(false);
-                    c2.setVisibility(View.INVISIBLE);
-                    if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setText(R.string.noExp);
+
+                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
+                uSure.setTitle("Remove Expense");
+                uSure.setMessage("Has this expense been paid?");
+                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (c2.isChecked()) {
+                            expense2.setText("");
+                            date2.setText("");
+                            price2.setText("");
+                            editor.remove("expense2");
+                            editor.remove("date2");
+                            editor.remove("price2");
+                            editor.commit();
+                            c2.setChecked(false);
+                            c2.setVisibility(View.INVISIBLE);
+                            if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+                                msg.setText(R.string.noExp);
+                            }
+                            Toast.makeText(getContext(), ExpPaid, Toast.LENGTH_LONG).show();
+                        }
                     }
-                    Toast.makeText(getContext(), ExpPaid, Toast.LENGTH_LONG).show();
-                }
+                });
+                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        c2.setChecked(false);
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = uSure.create();
+                alert.show();
+
             }
         });
         c3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (c3.isChecked()) {
-                    expense3.setText("");
-                    date3.setText("");
-                    price3.setText("");
-                    editor.remove("expense3");
-                    editor.remove("date3");
-                    editor.remove("price3");
-                    editor.commit();
-                    c3.setChecked(false);
-                    c3.setVisibility(View.INVISIBLE);
-                    if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
-                        msg.setText(R.string.noExp);
+
+                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
+                uSure.setTitle("Remove Expense");
+                uSure.setMessage("Has this expense been paid?");
+                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (c3.isChecked()) {
+                            expense3.setText("");
+                            date3.setText("");
+                            price3.setText("");
+                            editor.remove("expense3");
+                            editor.remove("date3");
+                            editor.remove("price3");
+                            editor.commit();
+                            c3.setChecked(false);
+                            c3.setVisibility(View.INVISIBLE);
+                            if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
+                                msg.setText(R.string.noExp);
+                            }
+                            Toast.makeText(getContext(), ExpPaid, Toast.LENGTH_LONG).show();
+                        }
                     }
-                    Toast.makeText(getContext(), ExpPaid, Toast.LENGTH_LONG).show();
-                }
+                });
+                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        c3.setChecked(false);
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = uSure.create();
+                alert.show();
+
             }
         });
         clearExp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                expense1.setText("");
-                date1.setText("");
-                price1.setText("");
-                editor.remove("expense1");
-                editor.remove("date1");
-                editor.remove("price1");
-                editor.commit();
-                c1.setChecked(false);
-                c1.setVisibility(View.INVISIBLE);
+                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
+                uSure.setTitle("Remove All Expenses");
+                uSure.setMessage("Do you want to delete all your expenses?");
+                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        expense1.setText("");
+                        date1.setText("");
+                        price1.setText("");
+                        editor.remove("expense1");
+                        editor.remove("date1");
+                        editor.remove("price1");
+                        editor.commit();
+                        c1.setChecked(false);
+                        c1.setVisibility(View.INVISIBLE);
 
-                expense2.setText("");
-                date2.setText("");
-                price2.setText("");
-                editor.remove("expense2");
-                editor.remove("date2");
-                editor.remove("price2");
-                editor.commit();
-                c2.setChecked(false);
-                c2.setVisibility(View.INVISIBLE);
+                        expense2.setText("");
+                        date2.setText("");
+                        price2.setText("");
+                        editor.remove("expense2");
+                        editor.remove("date2");
+                        editor.remove("price2");
+                        editor.commit();
+                        c2.setChecked(false);
+                        c2.setVisibility(View.INVISIBLE);
 
-                expense3.setText("");
-                date3.setText("");
-                price3.setText("");
-                editor.remove("expense3");
-                editor.remove("date3");
-                editor.remove("price3");
-                editor.commit();
-                c3.setChecked(false);
-                c3.setVisibility(View.INVISIBLE);
+                        expense3.setText("");
+                        date3.setText("");
+                        price3.setText("");
+                        editor.remove("expense3");
+                        editor.remove("date3");
+                        editor.remove("price3");
+                        editor.commit();
+                        c3.setChecked(false);
+                        c3.setVisibility(View.INVISIBLE);
 
-                msg.setText(R.string.noExp);
+                        msg.setText(R.string.noExp);
 
-                Toast.makeText(getContext(), "All expenses cleared", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), "All expenses cleared", Toast.LENGTH_LONG).show();
+                    }
+                });
+                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = uSure.create();
+                alert.show();
+
 
             }
         });
