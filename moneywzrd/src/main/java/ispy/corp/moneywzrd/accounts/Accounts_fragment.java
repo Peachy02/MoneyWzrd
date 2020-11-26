@@ -3,7 +3,6 @@ package ispy.corp.moneywzrd.accounts;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -12,21 +11,35 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
+import ispy.corp.moneywzrd.accounts.DAO.DAO;
+import ispy.corp.moneywzrd.accounts.adapter.RecyclerViewAdapter;
+import ispy.corp.moneywzrd.accounts.objects.Account;
 
 
 public class Accounts_fragment extends Fragment {
+
+    Context context;
+    LinearLayout linlay;
+    RecyclerView.Adapter rvAdap;
+    RecyclerView.LayoutManager rvLayMan;
+    RecyclerView rv;
 
     private AccountsFragViewModel mViewModel;
     View V;
@@ -43,38 +56,16 @@ public class Accounts_fragment extends Fragment {
         ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-
-        SharedPreferences pref = V.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
         ImageButton addAccount = (ImageButton)V.findViewById(R.id.addAccount);
-        ImageButton edit = (ImageButton)V.findViewById(R.id.edit);
-        ImageButton edit1 = (ImageButton)V.findViewById(R.id.edit1);
         TextView AccountN = (TextView) V.findViewById(R.id.AccountN);
-        TextView Account = (TextView) V.findViewById(R.id.Account);
+        TextView Account0 = (TextView) V.findViewById(R.id.Account);
         TextView AccountN1 = (TextView) V.findViewById(R.id.AccountN1);
         TextView Account1 = (TextView) V.findViewById(R.id.Account1);
-        CardView CV = (CardView) V.findViewById(R.id.CV);
-        CardView CV1 = (CardView) V.findViewById(R.id.CV1);
-        //sets values if anything is saved
+        rv = V.findViewById(R.id.rv);
+        context = V.getContext();
+        ExtractDB();
 
-        AccountN.setText(" " + pref.getString("AccountN", ""));
-        Account.setText("$" + pref.getString("Account", ""));
-        if ((AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$"))) {
-            CV.setVisibility(View.INVISIBLE);
-        }
-        else {
-            CV.setVisibility(View.VISIBLE);
-        }
 
-        //do above for the rest of the expenses
-        AccountN1.setText(" " + pref.getString("AccountN1", ""));
-        Account1.setText("$" + pref.getString("Account1", ""));
-        if ((AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$"))) {
-            CV1.setVisibility(View.INVISIBLE);
-        }
-        else {
-            CV1.setVisibility(View.VISIBLE);
-        }
 
         addAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,28 +87,22 @@ public class Accounts_fragment extends Fragment {
                 builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        if(!(name.getText().toString().equals("") || value.getText().toString().equals(""))){
+                            DAO dao = new DAO(getActivity().getApplicationContext());
+                            Account account = new Account();
+                            account.setName(name.getText().toString());
+                            account.setValue(Integer.valueOf(value.getText().toString()));
+                            dao.insertAccount(account);
+                            dao.close();
 
-                        if (AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$")) {
-                            String i1 = name.getText().toString();
-                            String Stext = value.getText().toString();
-                            editor.putString("AccountN", i1);
-                            editor.putString("Account", Stext);
-                            editor.commit();
-                            AccountN.setText(" " + pref.getString("AccountN", null));
-                            Account.setText("$" + pref.getString("Account", null));
-                            CV.setVisibility(View.VISIBLE);
+                            ExtractDB();
                         }
-                        else if (AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$")) {
-                            //String input = input.getText().toString();
-                            String i2 = name.getText().toString();
-                            String d2 = value.getText().toString();
-                            editor.putString("AccountN1", i2);
-                            editor.putString("Account1", d2);
-                            editor.commit();
-                            AccountN1.setText(" " + pref.getString("AccountN1", null));
-                            Account1.setText("$" + pref.getString("Account1", null));
-                            CV1.setVisibility(View.VISIBLE);
+                        else{
+                            Toast.makeText(V.getContext(),"Please fill all the fields.", Toast.LENGTH_SHORT).show();
                         }
+
+
+
 
                     }
                 });
@@ -130,40 +115,33 @@ public class Accounts_fragment extends Fragment {
                 builder.show();
             }
         });
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String accdelet = V.getResources().getString(R.string.accdelet);
-                AccountN.setText(" ");
-                Account.setText("$");
-                editor.remove("AccountN");
-                editor.remove("Account");
-                editor.commit();
-                CV.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), accdelet, Toast.LENGTH_LONG).show();
-
-            }
-        });
-        edit1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String accdelet = V.getResources().getString(R.string.accdelet);
-                AccountN1.setText(" ");
-                Account1.setText("$");
-                editor.remove("AccountN1");
-                editor.remove("Account1");
-                editor.commit();
-                CV1.setVisibility(View.INVISIBLE);
-                Toast.makeText(getContext(), accdelet, Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-
-
         return V;
     }
 
+    private void ExtractDB() {
+        DAO dao2 = new DAO(getActivity().getApplicationContext());
+
+        List<Account> accounts = dao2.searchAccount();
+
+        List<String> names = new ArrayList<String>();
+        List<String> values = new ArrayList<String>();
+
+        String[] data_names = new String[] {};
+        String[] data_values = new String[] {};
+
+        for(Account nameSearched : accounts){
+            names.add(nameSearched.getName());
+            values.add(String.valueOf(nameSearched.getValue()));
+        }
+
+        data_names = names.toArray(new String[0]);
+        data_values = values.toArray(new String[0]);
+
+        rvLayMan = new LinearLayoutManager(context);
+        rv.setLayoutManager(rvLayMan);
+        rvAdap = new RecyclerViewAdapter(context,data_names, data_values);
+        rv.setAdapter(rvAdap);
+    }
 
 
     @Override
