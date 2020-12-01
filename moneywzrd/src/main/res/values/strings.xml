@@ -56,6 +56,9 @@
     <string name="usr_regis">User has been registered</string>
     <string name="fail_regis">Failed to register! Try Again!</string>
     <string name="name_required">Full name is required!</string>
+    <string name="ToolbareditAcc">Account editor</string>
+    <string name="value">Value:</string>
+    <string name="name">Name:</string>
 
 
 </resources>

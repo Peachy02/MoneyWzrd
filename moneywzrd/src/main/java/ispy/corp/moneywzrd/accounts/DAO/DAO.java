@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -16,11 +17,11 @@ import ispy.corp.moneywzrd.accounts.objects.Account;
 
 public class DAO extends SQLiteOpenHelper {
     public DAO(Context context){
-        super(context,"banco",null, 3);
+        super(context,"banco",null, 6);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE account(name TEXT,value Integer);";
+        String sql = "CREATE TABLE account(name TEXT UNIQUE,value Integer);";
         db.execSQL(sql);
     }
 
@@ -31,13 +32,25 @@ public class DAO extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertAccount(Account account) {
+    public void insertAccount(Account account, String whichAcc) {
         SQLiteDatabase db = getWritableDatabase();
-        ContentValues data = new ContentValues();
 
-        data.put("name", account.getName());
+        ContentValues data = new ContentValues();
+        if(whichAcc != null){
+            data.put("name", whichAcc);
+        }
+        else{
+            data.put("name", account.getName());
+        }
+
         data.put("value", account.getValue());
-        db.insert("account", null, data);
+        try{
+
+            db.insertOrThrow("account", null, data);}
+        catch (SQLiteConstraintException e){
+            data.put("name", account.getName());
+            db.update("account",data,"name = ?", new String[]{whichAcc});
+        }
     }
     public List<Account> searchAccount(){
         SQLiteDatabase db = getReadableDatabase();

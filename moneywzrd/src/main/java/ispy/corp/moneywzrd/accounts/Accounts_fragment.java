@@ -57,10 +57,7 @@ public class Accounts_fragment extends Fragment {
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton addAccount = (ImageButton)V.findViewById(R.id.addAccount);
-        TextView AccountN = (TextView) V.findViewById(R.id.AccountN);
-        TextView Account0 = (TextView) V.findViewById(R.id.Account);
-        TextView AccountN1 = (TextView) V.findViewById(R.id.AccountN1);
-        TextView Account1 = (TextView) V.findViewById(R.id.Account1);
+
         rv = V.findViewById(R.id.rv);
         context = V.getContext();
         ExtractDB();
@@ -88,12 +85,7 @@ public class Accounts_fragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if(!(name.getText().toString().equals("") || value.getText().toString().equals(""))){
-                            DAO dao = new DAO(getActivity().getApplicationContext());
-                            Account account = new Account();
-                            account.setName(name.getText().toString());
-                            account.setValue(Integer.valueOf(value.getText().toString()));
-                            dao.insertAccount(account);
-                            dao.close();
+                            insertAccount(name, value);
 
                             ExtractDB();
                         }
@@ -116,6 +108,15 @@ public class Accounts_fragment extends Fragment {
             }
         });
         return V;
+    }
+
+    private void insertAccount(EditText name, EditText value) {
+        DAO dao = new DAO(getActivity().getApplicationContext());
+        Account account = new Account();
+        account.setName(name.getText().toString());
+        account.setValue(Integer.valueOf(value.getText().toString()));
+        dao.insertAccount(account, null);
+        dao.close();
     }
 
     private void ExtractDB() {
@@ -141,6 +142,11 @@ public class Accounts_fragment extends Fragment {
         rv.setLayoutManager(rvLayMan);
         rvAdap = new RecyclerViewAdapter(context,data_names, data_values);
         rv.setAdapter(rvAdap);
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        ExtractDB();
     }
 
 

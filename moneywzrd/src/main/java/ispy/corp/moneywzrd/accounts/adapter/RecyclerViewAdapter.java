@@ -1,6 +1,7 @@
 package ispy.corp.moneywzrd.accounts.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ispy.corp.moneywzrd.R;
-import ispy.corp.moneywzrd.accounts.DAO.DAO;
+import ispy.corp.moneywzrd.accounts.AccountData;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
@@ -61,11 +62,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DAO dao = new DAO(context);
-                dao.deleteAccount(names.get(position));
-                names.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, names.size());
+
+                Intent intent = new Intent(context, AccountData.class);
+                intent.putExtra("name", names.get(position));
+                intent.putExtra("value", values[position]);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
             }
         });
     }
