@@ -4,14 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B48FBA"
+    android:background="#514353"
     tools:context=".splash_Activity">
 
     <TextView
         android:id="@+id/welcomeMSG"
-        android:layout_width="252dp"
-        android:layout_height="145dp"
+        android:layout_width="399dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:textColor="#FFFEFE"
         android:textSize="30sp"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="32dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="411dp"
+        android:layout_height="447dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeMSG"
+        app:srcCompat="@drawable/clipart774233" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="381dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="56dp"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
+        android:indeterminateDuration="10"
+        android:indeterminateOnly="true"
+        android:maxHeight="24dip"
+        android:minHeight="24dip"
+        android:progressBackgroundTint="#208afa"
+        android:progressBackgroundTintMode="multiply"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
