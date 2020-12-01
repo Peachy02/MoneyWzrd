@@ -3,6 +3,8 @@ package ispy.corp.moneywzrd;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -129,7 +131,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
 
                 if (task.isSuccessful()) {
                     Toast.makeText(Login_main.this, success_log, Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(Login_main.this, MainActivity.class));
+                    startActivity(new Intent(Login_main.this, splash_Activity.class));
                 }
                 else {
                     Toast.makeText(Login_main.this, fail_log, Toast.LENGTH_LONG).show();
@@ -139,5 +141,17 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
             }
         });
 
+    }
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want exit the app?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finishAffinity();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 }

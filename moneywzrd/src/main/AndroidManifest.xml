@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWzrd">
-        <activity android:name=".accounts.AccountData"></activity>
+        <activity android:name=".splash_Activity"></activity>
+        <activity android:name=".accounts.AccountData" />
         <activity android:name=".investments.Addstock" />
         <activity android:name=".investments.Stock_edit" />
         <activity android:name=".RegisterUser" />
