@@ -27,7 +27,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
 
     private TextView banner, registerUser;
-    private EditText editTextFullName, editTextEmail, editTextPassword;
+    private EditText editTextFullName, editTextEmail, editTextPassword, pass2;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
 
@@ -47,6 +47,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         editTextFullName = (EditText)findViewById(R.id.fullname);
         editTextEmail = (EditText)findViewById(R.id.email);
         editTextPassword = (EditText)findViewById(R.id.password);
+        pass2 = (EditText)findViewById(R.id.password2);
         progressBar = (ProgressBar)findViewById(R.id.progressBarR);
     }
 
@@ -73,6 +74,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullName.getText().toString().trim();
+        String password2 = pass2.getText().toString().trim();
 
         if (fullName.isEmpty()) {
             editTextFullName.setError(getString(R.string.name_required));
@@ -97,6 +99,16 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         if (password.length() < 6) {
             editTextPassword.setError(getString(R.string.pass_min));
             editTextPassword.requestFocus();
+            return;
+        }
+        if (password2.isEmpty()) {
+            pass2.setError("Please confirm your password!");
+            pass2.requestFocus();
+            return;
+        }
+        if (!(password2.equals(password))) {
+            pass2.setError("Passwords do not match, please try again!");
+            pass2.requestFocus();
             return;
         }
 
