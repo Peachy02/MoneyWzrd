@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,6 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -33,6 +37,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.User;
@@ -40,9 +45,10 @@ import ispy.corp.moneywzrd.accounts.DAO.DAO;
 import ispy.corp.moneywzrd.accounts.adapter.RecyclerViewAdapter;
 import ispy.corp.moneywzrd.accounts.objects.Account;
 
+import static ispy.corp.moneywzrd.R.string.logged;
+
 public class Home_fragment extends Fragment {
 
-    private HomeFragmentViewModel mViewModel;
     View rootView;
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -64,12 +70,10 @@ public class Home_fragment extends Fragment {
         ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        setHasOptionsMenu(true);
 
         SharedPreferences pref = rootView.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-
-
-
 
         rv = rootView.findViewById(R.id.rvh);
         context = rootView.getContext();
@@ -125,6 +129,25 @@ public class Home_fragment extends Fragment {
 
 
         return rootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getContext(), Login_main.class));
+                break;
+            }
+
+        }
+        return true;
     }
 
     private void ExtractDB() {

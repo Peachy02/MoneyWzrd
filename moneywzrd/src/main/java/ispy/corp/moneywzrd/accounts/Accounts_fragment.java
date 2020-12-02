@@ -3,9 +3,13 @@ package ispy.corp.moneywzrd.accounts;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -23,14 +27,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.accounts.DAO.DAO;
 import ispy.corp.moneywzrd.accounts.adapter.RecyclerViewAdapter;
 import ispy.corp.moneywzrd.accounts.objects.Account;
+
+import static ispy.corp.moneywzrd.R.string.logged;
 
 
 public class Accounts_fragment extends Fragment {
@@ -54,12 +63,11 @@ public class Accounts_fragment extends Fragment {
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton addAccount = (ImageButton)V.findViewById(R.id.addAccount);
+        setHasOptionsMenu(true);
 
         rv = V.findViewById(R.id.rv);
         context = V.getContext();
         ExtractDB();
-
-
 
         addAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,7 +114,11 @@ public class Accounts_fragment extends Fragment {
         });
         return V;
     }
-
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
     private void insertAccount(EditText name, EditText value) {
         DAO dao = new DAO(getActivity().getApplicationContext());
         Account account = new Account();
@@ -116,6 +128,19 @@ public class Accounts_fragment extends Fragment {
         dao.close();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getContext(), Login_main.class));
+                break;
+            }
+
+        }
+        return true;
+    }
     private void ExtractDB() {
         DAO dao2 = new DAO(getActivity().getApplicationContext());
 

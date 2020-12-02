@@ -12,14 +12,22 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 
+import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
+
+import static ispy.corp.moneywzrd.R.string.logged;
 
 public class Investment_fragment extends Fragment {
 
@@ -38,6 +46,8 @@ public class Investment_fragment extends Fragment {
         ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+
+        setHasOptionsMenu(true);
 
         return rootView;
     }
@@ -67,7 +77,24 @@ public class Investment_fragment extends Fragment {
 
 
     }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getContext(), Login_main.class));
+                break;
+            }
 
+        }
+        return true;
+    }
     private void OnClickReorderButton(View v) {
         Intent intent = new Intent(getActivity(), Stock_edit.class);
         startActivity(intent);

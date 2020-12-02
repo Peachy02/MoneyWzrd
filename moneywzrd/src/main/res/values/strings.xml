@@ -38,7 +38,7 @@
     <string name="expHom">Expenses at a glance</string>
     <string name="noExp">You have no current expenses!</string>
     <string name="ExpEnt">Enter Expense, Due date, and Fee price</string>
-    <string name="Duedate">          Click to select due date</string>
+    <string name="Duedate">Click to select due date</string>
     <string name="ExpPaid">Expense paid</string>
     <string name="noAcc">You have no accounts setup!</string>
     <string name="accnandvalue">Account name and value</string>

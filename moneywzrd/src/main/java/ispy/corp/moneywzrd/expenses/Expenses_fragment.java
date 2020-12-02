@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -22,6 +23,9 @@ import androidx.fragment.app.Fragment;
 import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,15 +36,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 
 import static ispy.corp.moneywzrd.R.string.ExpPaid;
+import static ispy.corp.moneywzrd.R.string.logged;
 import static ispy.corp.moneywzrd.R.string.mustenter;
 
 public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
-    private ExpensesFragViewModel mViewModel;
     View rootView;
 
     //SharedPreferences.Editor editor = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE).edit();
@@ -85,6 +92,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         TextView do2 = (TextView)rootView.findViewById(R.id.dollar2);
         TextView do3 = (TextView)rootView.findViewById(R.id.dollar3);
 
+        setHasOptionsMenu(true);
         int total;
 
 
@@ -496,10 +504,23 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
      */
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ExpensesFragViewModel.class);
-        // TODO: Use the ViewModel
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getContext(), Login_main.class));
+                break;
+            }
+
+        }
+        return true;
+    }
+
 
 }

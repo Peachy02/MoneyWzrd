@@ -13,6 +13,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -29,7 +32,6 @@ import static ispy.corp.moneywzrd.R.string.logged;
 
 public class Settings_fragment extends Fragment {
 
-    private SettingsFragmentViewModel mViewModel;
     View rootView;
 
     public static Settings_fragment newInstance() {
@@ -47,8 +49,10 @@ public class Settings_fragment extends Fragment {
         ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-
         TextView clearbtn = rootView.findViewById(R.id.clearBtn);
+
+        setHasOptionsMenu(true);
+
         clearbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,12 +75,23 @@ public class Settings_fragment extends Fragment {
 
         return rootView;
     }
-
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(SettingsFragmentViewModel.class);
-        // TODO: Use the ViewModel
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.sign_out: {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getContext(), Login_main.class));
+                break;
+            }
+
+        }
+        return true;
     }
 
 }
