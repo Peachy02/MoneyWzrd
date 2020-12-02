@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import ispy.corp.moneywzrd.accounts.Accounts_fragment;
 import ispy.corp.moneywzrd.expenses.Expenses_fragment;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .show();
+        FirebaseAuth.getInstance().signOut();
     }
 }
 
