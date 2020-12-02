@@ -9,4 +9,8 @@
         android:id="@+id/sign_out"
         android:title="@string/logout"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/Settingsbtn"
+        android:title="@string/toolbarSet"
+        app:showAsAction="never"/>
 </menu>
