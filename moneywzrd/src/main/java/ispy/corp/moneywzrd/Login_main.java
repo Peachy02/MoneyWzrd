@@ -139,7 +139,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
         }
         catch (ApiException e){
             Toast.makeText(Login_main.this, "Unsuccessful login with Google, please try again!", Toast.LENGTH_LONG).show();
-            FirebaseGoogleAuth(null);
+            //FirebaseGoogleAuth(null);
         }
     }
 
