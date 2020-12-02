@@ -11,6 +11,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +30,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.User;
+import ispy.corp.moneywzrd.accounts.DAO.DAO;
+import ispy.corp.moneywzrd.accounts.adapter.RecyclerViewAdapter;
+import ispy.corp.moneywzrd.accounts.objects.Account;
 
 public class Home_fragment extends Fragment {
 
@@ -39,7 +47,10 @@ public class Home_fragment extends Fragment {
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userID;
-
+    RecyclerView.Adapter rvAdap;
+    RecyclerView.LayoutManager rvLayMan;
+    RecyclerView rv;
+    Context context;
     public static Home_fragment newInstance() {
         return new Home_fragment();
     }
@@ -49,6 +60,7 @@ public class Home_fragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.home_fragment, container, false);
         Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        context = rootView.getContext();
         ((MainActivity) getActivity()).getDelegate().setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getDelegate().getSupportActionBar().setDisplayShowTitleEnabled(false);
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
@@ -56,36 +68,14 @@ public class Home_fragment extends Fragment {
         SharedPreferences pref = rootView.getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
 
-        CardView CV = (CardView) rootView.findViewById(R.id.CVH);
-        CardView CV1 = (CardView) rootView.findViewById(R.id.CVH1);
 
-        TextView AccountN = rootView.findViewById(R.id.AccountN);
-        TextView Account = rootView.findViewById(R.id.Account);
-        TextView AccountN1 = rootView.findViewById(R.id.AccountN1);
-        TextView Account1 = rootView.findViewById(R.id.Account1);
 
-        TextView msg2 = rootView.findViewById(R.id.noAcc);
-        AccountN.setText(" " + pref.getString("AccountN",""));
-        Account.setText("$"+pref.getString("Account",""));
-        AccountN1.setText(" "+pref.getString("AccountN1",""));
-        Account1.setText("$" + pref.getString("Account1",""));
 
-        if ((AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$"))) {
-            CV.setVisibility(View.INVISIBLE);
-        }
-        else {
-            CV.setVisibility(View.VISIBLE);
-        }
+        rv = rootView.findViewById(R.id.rvh);
+        context = rootView.getContext();
+        ExtractDB();
 
-        if ((AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$"))) {
-            CV1.setVisibility(View.INVISIBLE);
-        }
-        else {
-            CV1.setVisibility(View.VISIBLE);
-        }
-        if (AccountN.getText().toString().equals(" ") && Account.getText().toString().equals("$") && AccountN1.getText().toString().equals(" ") && Account1.getText().toString().equals("$")) {
-            msg2.setText(R.string.noAcc);
-        }
+
 
         TextView msg = rootView.findViewById(R.id.friendlymsg);
         TextView eHome1 = (TextView)rootView.findViewById(R.id.eHome1);
@@ -137,11 +127,29 @@ public class Home_fragment extends Fragment {
         return rootView;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(HomeFragmentViewModel.class);
-        // TODO: Use the ViewModel
+    private void ExtractDB() {
+        DAO dao2 = new DAO(getActivity().getApplicationContext());
+
+        List<Account> accounts = dao2.searchAccount();
+
+        List<String> names = new ArrayList<String>();
+        List<String> values = new ArrayList<String>();
+
+        String[] data_names = new String[] {};
+        String[] data_values = new String[] {};
+
+        for(Account nameSearched : accounts){
+            names.add(nameSearched.getName());
+            values.add(String.valueOf(nameSearched.getValue()));
+        }
+
+        data_names = names.toArray(new String[0]);
+        data_values = values.toArray(new String[0]);
+
+        rvLayMan = new LinearLayoutManager(context);
+        rv.setLayoutManager(rvLayMan);
+        rvAdap = new RecyclerViewAdapter(context,data_names, data_values);
+        rv.setAdapter(rvAdap);
     }
 
 }

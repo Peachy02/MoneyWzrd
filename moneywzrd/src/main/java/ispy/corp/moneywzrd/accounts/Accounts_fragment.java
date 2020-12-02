@@ -36,12 +36,9 @@ import ispy.corp.moneywzrd.accounts.objects.Account;
 public class Accounts_fragment extends Fragment {
 
     Context context;
-    LinearLayout linlay;
     RecyclerView.Adapter rvAdap;
     RecyclerView.LayoutManager rvLayMan;
     RecyclerView rv;
-
-    private AccountsFragViewModel mViewModel;
     View V;
     public static Accounts_fragment newInstance() {
         return new Accounts_fragment();
@@ -147,14 +144,6 @@ public class Accounts_fragment extends Fragment {
     public void onResume(){
         super.onResume();
         ExtractDB();
-    }
-
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(AccountsFragViewModel.class);
-        // TODO: Use the ViewModel
     }
 
 }
