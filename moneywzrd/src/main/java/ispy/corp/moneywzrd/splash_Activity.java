@@ -30,14 +30,14 @@ public class splash_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Users");
+        reference = FirebaseDatabase.getInstance().getReference(getString(R.string.userPath));
         userID = user.getUid();
 
         TextView welcome = (TextView)findViewById(R.id.welcomeMSG);
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String wel = getResources().getString(R.string.welc);
+                String wel = "Welcome ";
                 String exc = getResources().getString(R.string.exclamation);
                 User userprofile = snapshot.getValue(User.class);
                 if (userprofile != null) {

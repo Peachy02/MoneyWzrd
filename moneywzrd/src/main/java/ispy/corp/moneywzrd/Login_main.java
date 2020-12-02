@@ -237,7 +237,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
                     startActivity(new Intent(Login_main.this, splash_Activity.class));
                 }
                 else {
-                    Toast.makeText(Login_main.this, fail_log, Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login_main.this, "Failed to login, account may be linked to Google already?", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
 
