@@ -122,6 +122,9 @@ public class Home_fragment extends Fragment {
 
                     welcome.setText(String.format("%s%s%s", wel, fullName, exc));
                 }
+                else {
+                    welcome.setText(String.format("%s%s%s", wel, "User", exc));
+                }
             }
 
             @Override

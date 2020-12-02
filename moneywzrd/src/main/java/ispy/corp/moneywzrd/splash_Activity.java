@@ -46,6 +46,9 @@ public class splash_Activity extends AppCompatActivity {
 
                     welcome.setText(String.format("%s%s%s", wel, fullName, exc));
                 }
+                else {
+                    welcome.setText(String.format("%s%s%s", wel, "User", exc));
+                }
             }
 
             @Override
