@@ -26,9 +26,4 @@
         android:name="ispy.corp.moneywzrd.investments.Investment_fragment"
         android:label="investment_fragment"
         tools:layout="@layout/investment_fragment" />
-    <fragment
-        android:id="@+id/settings_fragment"
-        android:name="ispy.corp.moneywzrd.settings.Settings_fragment"
-        android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" />
 </navigation>

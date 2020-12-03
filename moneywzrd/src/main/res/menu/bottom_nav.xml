@@ -25,12 +25,6 @@
         android:icon="@drawable/investments_icon"
         android:title="@string/Invbtn"
         moneywzrd:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/SetBtn"
-        android:enabled="true"
-        android:icon="@drawable/settings_icon"
-        android:title="@string/Setbtn"
-        moneywzrd:showAsAction="always" />
 
 
 

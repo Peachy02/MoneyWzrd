@@ -20,7 +20,6 @@ import ispy.corp.moneywzrd.accounts.Accounts_fragment;
 import ispy.corp.moneywzrd.expenses.Expenses_fragment;
 import ispy.corp.moneywzrd.home.Home_fragment;
 import ispy.corp.moneywzrd.investments.Investment_fragment;
-import ispy.corp.moneywzrd.settings.Settings_fragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.AccBtn:
                                 selectedFragment = new Accounts_fragment();
-                                break;
-                            case R.id.SetBtn:
-                                selectedFragment = new Settings_fragment();
                                 break;
                             case R.id.InvBtn:
                                 selectedFragment = new Investment_fragment();
