@@ -109,10 +109,11 @@ public class Investment_fragment extends Fragment {
                 });
                 AlertDialog alert = uSure.create();
                 alert.show();
-
+                break;
             }
             case R.id.Settingsbtn: {
                 startActivity(new Intent(getContext(), Settings_activity.class));
+                break;
             }
 
         }

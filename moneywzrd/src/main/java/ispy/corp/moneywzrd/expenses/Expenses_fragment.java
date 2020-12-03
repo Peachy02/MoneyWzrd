@@ -533,10 +533,11 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 });
                 AlertDialog alert = uSure.create();
                 alert.show();
-
+                break;
             }
             case R.id.Settingsbtn: {
                 startActivity(new Intent(getContext(), Settings_activity.class));
+                break;
             }
 
         }
