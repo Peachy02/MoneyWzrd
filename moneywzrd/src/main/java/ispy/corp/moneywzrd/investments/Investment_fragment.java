@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
+import ispy.corp.moneywzrd.Settings_activity;
 
 import static ispy.corp.moneywzrd.R.string.logged;
 
@@ -109,6 +110,9 @@ public class Investment_fragment extends Fragment {
                 AlertDialog alert = uSure.create();
                 alert.show();
 
+            }
+            case R.id.Settingsbtn: {
+                startActivity(new Intent(getContext(), Settings_activity.class));
             }
 
         }

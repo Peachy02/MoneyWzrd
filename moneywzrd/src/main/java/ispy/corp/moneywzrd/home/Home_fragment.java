@@ -42,6 +42,7 @@ import java.util.List;
 import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
+import ispy.corp.moneywzrd.Settings_activity;
 import ispy.corp.moneywzrd.User;
 import ispy.corp.moneywzrd.accounts.DAO.DAO;
 import ispy.corp.moneywzrd.accounts.adapter.RecyclerViewAdapter;
@@ -163,6 +164,9 @@ public class Home_fragment extends Fragment {
                 AlertDialog alert = uSure.create();
                 alert.show();
 
+            }
+            case R.id.Settingsbtn: {
+                startActivity(new Intent(getContext(), Settings_activity.class));
             }
 
         }

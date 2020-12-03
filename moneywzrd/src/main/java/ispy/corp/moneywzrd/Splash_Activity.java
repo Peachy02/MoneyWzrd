@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class splash_Activity extends AppCompatActivity {
+public class Splash_Activity extends AppCompatActivity {
 
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -53,13 +53,13 @@ public class splash_Activity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(splash_Activity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Splash_Activity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
             }
         });
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(splash_Activity.this, MainActivity.class);
+                Intent intent = new Intent(Splash_Activity.this, MainActivity.class);
                 startActivity(intent);
             }
         }, 4000); // 4 seconds

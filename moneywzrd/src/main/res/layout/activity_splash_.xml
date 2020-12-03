@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#514353"
-    tools:context=".splash_Activity">
+    tools:context=".Splash_Activity">
 
     <TextView
         android:id="@+id/welcomeMSG"

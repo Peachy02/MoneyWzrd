@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ispy.corp.moneywzrd">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWzrd">
-        <activity android:name=".splash_Activity"></activity>
+        <activity android:name=".Settings_activity"></activity>
+        <activity android:name=".Splash_Activity" />
         <activity android:name=".accounts.AccountData" />
         <activity android:name=".investments.Addstock" />
         <activity android:name=".investments.Stock_edit" />
