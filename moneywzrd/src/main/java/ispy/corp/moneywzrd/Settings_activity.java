@@ -1,14 +1,16 @@
 package ispy.corp.moneywzrd;
 
-import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 
-public class Settings_activity extends AppCompatActivity {
+public class Settings_activity extends PreferenceActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings_activity);
+        //setContentView(R.layout.activity_settings_activity);
+        addPreferencesFromResource(R.xml.prefs);
     }
 }
