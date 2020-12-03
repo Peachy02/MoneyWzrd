@@ -34,7 +34,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import static ispy.corp.moneywzrd.R.string.fail_log;
 import static ispy.corp.moneywzrd.R.string.pass_reset;
 import static ispy.corp.moneywzrd.R.string.success_log;
 
@@ -151,7 +150,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
                 if (task.isSuccessful()){
                     Toast.makeText(Login_main.this, "Successful login with Google!", Toast.LENGTH_LONG).show();
                     FirebaseUser user = mAuth.getCurrentUser();
-                    startActivity(new Intent(Login_main.this, splash_Activity.class));
+                    startActivity(new Intent(Login_main.this, Splash_Activity.class));
                 }
                 else {
                     Toast.makeText(Login_main.this, "Unsuccessful login with Google, please try again!", Toast.LENGTH_LONG).show();
@@ -234,7 +233,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
                         loginPrefsEditor.commit();
                     }
                     Toast.makeText(Login_main.this, success_log, Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(Login_main.this, splash_Activity.class));
+                    startActivity(new Intent(Login_main.this, Splash_Activity.class));
                 }
                 else {
                     Toast.makeText(Login_main.this, "Failed to login, account may be linked to Google already?", Toast.LENGTH_LONG).show();
