@@ -132,10 +132,27 @@ public class Accounts_fragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sign_out: {
-                FirebaseAuth.getInstance().signOut();
-                Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getContext(), Login_main.class));
-                break;
+                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
+                uSure.setTitle("Logout");
+                uSure.setMessage("Are you sure you want to logout?");
+                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        FirebaseAuth.getInstance().signOut();
+                        Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getContext(), Login_main.class));
+
+                    }
+                });
+                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alert = uSure.create();
+                alert.show();
+
             }
 
         }
