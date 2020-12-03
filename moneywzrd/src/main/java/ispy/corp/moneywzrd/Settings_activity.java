@@ -63,12 +63,15 @@ public class Settings_activity extends PreferenceActivity {
         String orien = sp.getString("ORIENTATION", "false");
         if ("1".equals(orien)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_BEHIND);
+            LP.setSummary(LP.getEntry());
         }
         else if ("2".equals(orien)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            LP.setSummary(LP.getEntry());
         }
         else if ("3".equals(orien)) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            LP.setSummary(LP.getEntry());
         }
 
         LP.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -88,6 +91,9 @@ public class Settings_activity extends PreferenceActivity {
                             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                             break;
                     }
+
+                    ListPreference LPP = (ListPreference)prefs;
+                    LPP.setSummary(LPP.getEntries()[LPP.findIndexOfValue(items)]);
                 }
 
                 return true;
