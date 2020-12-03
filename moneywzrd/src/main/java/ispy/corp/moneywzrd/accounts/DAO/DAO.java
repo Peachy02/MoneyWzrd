@@ -17,7 +17,7 @@ import ispy.corp.moneywzrd.accounts.objects.Account;
 
 public class DAO extends SQLiteOpenHelper {
     public DAO(Context context){
-        super(context,"banco",null, 6);
+        super(context,"banco",null, 11);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {

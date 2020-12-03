@@ -61,6 +61,7 @@
     <string name="name">Name:</string>
     <string name="welc2">Welcome </string>
     <string name="userPath">Users</string>
+    <string name="noacc_tv">You have no accounts yet!</string>
 
 
 </resources>
