@@ -6,4 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".investments.Addstock">
 
+
+    <AutoCompleteTextView
+        android:id="@+id/stock_search"
+        android:layout_width="411dp"
+        android:layout_height="80dp"
+        android:drawableLeft="@drawable/stock_search"
+        android:hint="Search"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
