@@ -65,10 +65,12 @@ public class Accounts_fragment extends Fragment {
         TextView mTitle = (TextView) toolbar.findViewById(R.id.toolbar_title);
         ImageButton addAccount = (ImageButton)V.findViewById(R.id.addAccount);
         setHasOptionsMenu(true);
+        TextView noacc = V.findViewById(R.id.textView8);
 
         rv = V.findViewById(R.id.rv);
         context = V.getContext();
         ExtractDB();
+        noacc(noacc);
 
         addAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +96,7 @@ public class Accounts_fragment extends Fragment {
                             insertAccount(name, value);
 
                             ExtractDB();
+                            noacc(noacc);
                         }
                         else{
                             Toast.makeText(V.getContext(),"Please fill all the fields.", Toast.LENGTH_SHORT).show();
@@ -115,6 +118,18 @@ public class Accounts_fragment extends Fragment {
         });
         return V;
     }
+
+    private void noacc(TextView noacc) {
+        if (rvAdap.getItemCount() == 0)
+        {
+            noacc.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            noacc.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
@@ -153,10 +168,11 @@ public class Accounts_fragment extends Fragment {
                 });
                 AlertDialog alert = uSure.create();
                 alert.show();
-
+                break;
             }
             case R.id.Settingsbtn: {
                 startActivity(new Intent(getContext(), Settings_activity.class));
+                break;
             }
 
         }

@@ -27,8 +27,8 @@
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
-        android:layout_width="406dp"
-        android:layout_height="635dp"
+        android:layout_width="710dp"
+        android:layout_height="290dp"
         android:layout_marginTop="2dp"
         android:background="@color/BackgroundPages"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -261,13 +261,11 @@
                 android:id="@+id/totalE"
                 android:layout_width="385dp"
                 android:layout_height="37dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="19dp"
                 android:background="#EDE3FF"
                 android:textColor="#4B2F7E"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/expense3" />
+                app:layout_constraintStart_toEndOf="@+id/expense3"
+                tools:layout_editor_absoluteY="306dp" />
 
             <TextView
                 android:id="@+id/dollar"
