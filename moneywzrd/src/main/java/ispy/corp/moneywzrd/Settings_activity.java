@@ -59,6 +59,7 @@ public class Settings_activity extends PreferenceActivity {
             }
         });
 
+
         ListPreference LP = (ListPreference) findPreference("ORIENTATION");
         String orien = sp.getString("ORIENTATION", "false");
         if ("1".equals(orien)) {

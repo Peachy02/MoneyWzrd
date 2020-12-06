@@ -3,13 +3,13 @@
 
 
     <PreferenceCategory
-        android:title="Enable Night Mode">
+        android:title="Enable Dark Mode">
 
         <CheckBoxPreference
-            android:title="Night Mode"
+            android:title="Dark Mode"
             android:key="NIGHT"
-            android:summaryOff="Night mode is disabled"
-            android:summaryOn="Night mode is enabled"
+            android:summaryOff="Dark mode is disabled"
+            android:summaryOn="Dark mode is enabled"
             android:defaultValue="false" />
 
     </PreferenceCategory>
