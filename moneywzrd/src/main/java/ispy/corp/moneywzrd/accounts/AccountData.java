@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +45,13 @@ public class AccountData extends AppCompatActivity {
 
         nameet.setText(intent.getStringExtra("name"));
         valueet.setText(intent.getStringExtra("value"));
+        String display = valueet.getText().toString();
+
+        if(!TextUtils.isEmpty(display)) {
+            display  = display.substring(1);
+
+            valueet.setText(display);
+        }
 
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
