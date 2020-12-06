@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -22,18 +21,24 @@ import android.widget.TextView;
 import ispy.corp.moneywzrd.R;
 
 public class Addstock extends AppCompatActivity {
-    public Settings settings_;
+    private Settings settings_;
     private IQuoteService quote_service_;
     private SymbolSearchAdapter search_adapter_;
     private SymbolSearchThread thread_;
     private Handler message_handler_;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addstock);
 
+
         settings_ = StockApplication.getSettings();
+
+//        if (!initializeQuoteService())
+//            return;
 
         SymbolSearchThread.OnSearchResults callback = new SymbolSearchThread.OnSearchResults() {
             @Override
@@ -52,6 +57,11 @@ public class Addstock extends AppCompatActivity {
         thread_ = new SymbolSearchThread(quote_service_, callback);
     }
 
+
+
+
+
+
     @Override
     protected void onDestroy() {
         if (quote_service_ != null) {
@@ -65,12 +75,17 @@ public class Addstock extends AppCompatActivity {
         super.onDestroy();
     }
 
+
+
+
     @Override
     protected void onStart() {
         super.onStart();
 
         if (quote_service_ == null)
             return;
+
+
 
         final AutoCompleteTextView view = (AutoCompleteTextView)findViewById(R.id.stock_search);
         view.addTextChangedListener(new TextWatcher() {
@@ -88,8 +103,8 @@ public class Addstock extends AppCompatActivity {
             }
         });
 
+
         view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onItemClick(AdapterView<?> parent, View item, int position, long id) {
                 SymbolSuggestion suggestion = search_adapter_.getItem(position);
@@ -99,7 +114,6 @@ public class Addstock extends AppCompatActivity {
         });
 
         view.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE ||
@@ -117,13 +131,14 @@ public class Addstock extends AppCompatActivity {
         view.setThreshold(0);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+
+
     private void addSymbol(String symbol, String companyName) {
-        ispy.corp.moneywzrd.investments.Settings.addSymbol(symbol, companyName);
+        settings_.addSymbol(symbol, companyName);
         finish();
     }
 
-    // Executed in the worker thread.
+
     private void performSearch(String text) {
         if (text.length() == 0)
             return;
@@ -131,7 +146,9 @@ public class Addstock extends AppCompatActivity {
         thread_.beginSearch(text);
     }
 
-    // This is invoked in the search thread.
+
+
+
     private void postSearchResultMessage(SymbolSuggestion[] suggestions) {
         Bundle b = new Bundle();
         b.putInt("count", suggestions.length);
@@ -146,7 +163,9 @@ public class Addstock extends AppCompatActivity {
         message_handler_.sendMessage(msg);
     }
 
-    // This is invoked in the UI thread.
+
+
+
     private void handleSearchMessage(Message msg) {
         Bundle b = msg.getData();
         int count = b.getInt("count");
@@ -158,6 +177,22 @@ public class Addstock extends AppCompatActivity {
         }
         search_adapter_.update(suggestions);
     }
+
+
+
+
+    private boolean initializeQuoteService() {
+        quote_service_ = settings_.createQuoteService();
+        if (quote_service_ == null) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+            return false;
+        }
+        return true;
+    }
+
+
+
 
 
 }

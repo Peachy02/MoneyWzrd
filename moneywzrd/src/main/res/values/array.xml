@@ -15,4 +15,22 @@
 
     </string-array>
 
+    <string-array name="api_names">
+        <item>IEX Cloud</item>
+        <item>World Trading Data</item>
+        <item>Alpha Vantage</item>
+        <item>Intrinio</item>
+    </string-array>
+
+    <string-array name="api_values">
+        <item>iexcloud</item>
+        <item>worldtradingdata</item>
+        <item>alphavantage</item>
+        <item>intrinio</item>
+    </string-array>
+
+
+
+
+
 </resources>

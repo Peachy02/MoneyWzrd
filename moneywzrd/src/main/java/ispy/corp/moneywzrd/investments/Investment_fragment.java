@@ -1,25 +1,12 @@
 package ispy.corp.moneywzrd.investments;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.os.Handler;
 import android.os.Message;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -32,12 +19,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,12 +52,11 @@ public class Investment_fragment extends Fragment {
     static final private String TAG = "Investment_fragment";
 
 
-
+    private InvestmentFragmentViewModel mViewModel;
+    View rootView;
     private Settings settings_;
     private IQuoteService quote_service_;
     private QuoteFetcher quote_fetcher_;
-
-    // Map symbol to view rows.
     private Map<String, View> stock_rows_ = new HashMap<String, View>();
     private TaskToken refresh_task_;
     private SwipeRefreshLayout refresh_view_;
@@ -67,14 +65,26 @@ public class Investment_fragment extends Fragment {
         Value,
         Percent
     };
-    ispy.corp.moneywzrd.investments.Investment_fragment.ChangeBoxMode changebox_mode_ = ispy.corp.moneywzrd.investments.Investment_fragment.ChangeBoxMode.Value;
+    ChangeBoxMode changebox_mode_ = ChangeBoxMode.Value;
 
 
-    private InvestmentFragmentViewModel mViewModel;
-    View rootView;
+
     public static Investment_fragment newInstance() {
         return new Investment_fragment();
     }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        settings_ = StockApplication.getSettings();
+    }
+
+
+
+
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -90,6 +100,12 @@ public class Investment_fragment extends Fragment {
         return rootView;
     }
 
+
+
+
+
+
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -99,21 +115,19 @@ public class Investment_fragment extends Fragment {
 
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
 
-        settings_ = StockApplication.getSettings();
-    }
-
-
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onStart() {
         super.onStart();
+
         populate();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("LLLL d");
+        TextView text = getActivity().findViewById(R.id.subtitle);
+        text.setText(LocalDate.now().format(formatter));
+
+
 
 
         View view = getView().findViewById(R.id.list_button);
@@ -124,88 +138,46 @@ public class Investment_fragment extends Fragment {
             }
         });
 
-        refresh_view_ = getActivity().findViewById(R.id.swipe_refresh);
+
+
+        view = getView().findViewById(R.id.settings_button);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OnClickSettingsButton(v);
+            }
+        });
+
+        refresh_view_ = (SwipeRefreshLayout)getActivity().findViewById(R.id.swipe_refresh);
         refresh_view_.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refresh();
             }
         });
+
+
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (quote_fetcher_ != null)
-            quote_fetcher_.shutdown();
-    }
-
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu);
-        super.onCreateOptionsMenu(menu,inflater);
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.sign_out: {
-                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Logout");
-                uSure.setMessage("Are you sure you want to logout?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        FirebaseAuth.getInstance().signOut();
-                        Toast.makeText(getContext(), logged, Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getContext(), Login_main.class));
-
-                    }
-                });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog alert = uSure.create();
-                alert.show();
-                break;
-            }
-            case R.id.Settingsbtn: {
-                startActivity(new Intent(getContext(), Settings_activity.class));
-                break;
-            }
-
-        }
-        return true;
-    }
-    private void OnClickReorderButton(View v) {
-        Intent intent = new Intent(getActivity(), Stock_edit.class);
-        startActivity(intent);
-    }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private  void populate() {
-        Map<String, CachedQuote> cachedQuotes = ispy.corp.moneywzrd.investments.Settings.getCachedQuotes();
+    private void populate() {
+        Map<String, CachedQuote> cachedQuotes = settings_.getCachedQuotes();
 
         LinearLayout container = (LinearLayout)getActivity().findViewById(R.id.stock_list);
         container.removeAllViews();
 
         LayoutInflater inflater = getLayoutInflater();
-        String[] symbols = ispy.corp.moneywzrd.investments.Settings.getStockSymbols();
+        String[] symbols = settings_.getStockSymbols();
         for (String symbol : symbols) {
             CachedQuote quote = cachedQuotes.get(symbol);
             View view = addStockRow(inflater, container, symbol);
             stock_rows_.put(symbol, view);
             updateStockRow(symbol, quote);
-
+            container.addView(inflater.inflate(R.layout.divider_line, null));
         }
 
         refresh();
     }
+
 
     private View addStockRow(LayoutInflater inflater, LinearLayout container, String symbol) {
         View root = inflater.inflate(R.layout.stock_row, null);
@@ -215,8 +187,6 @@ public class Investment_fragment extends Fragment {
 
         View changebox = root.findViewById(R.id.change_box);
         changebox.setOnClickListener(new View.OnClickListener() {
-
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
                 flipChangeBoxMode();
@@ -232,16 +202,15 @@ public class Investment_fragment extends Fragment {
 
         List<QuoteRequest> requests = new ArrayList<QuoteRequest>();
         for (Map.Entry<String, View> entry : stock_rows_.entrySet()) {
-            CachedQuote cache = ispy.corp.moneywzrd.investments.Settings.getCachedQuotes().get(entry.getKey());
+            CachedQuote cache = settings_.getCachedQuotes().get(entry.getKey());
             String lastTradeDate = cache != null ? cache.lastTradeDate : null;
             boolean fetchName = (cache == null || cache.companyName == null);
             requests.add(new QuoteRequest(entry.getKey(), lastTradeDate, fetchName));
         }
 
-        final ispy.corp.moneywzrd.investments.Investment_fragment activity = this;
+        final Investment_fragment activity = this;
 
         final Handler handler = new Handler() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void handleMessage(Message msg) {
                 activity.handleQuoteMessage(msg.getData());
@@ -266,7 +235,7 @@ public class Investment_fragment extends Fragment {
             }
         };
 
-//        refresh_task_ = quote_fetcher_.fetch(requests, callback);
+       // refresh_task_ = quote_fetcher_.fetch(requests, callback);
     }
 
     private void cancelRefresh() {
@@ -278,7 +247,6 @@ public class Investment_fragment extends Fragment {
         refresh_view_.setRefreshing(false);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void handleQuoteMessage(Bundle b) {
         int task_id = b.getInt("task_id");
         if (refresh_task_ == null || refresh_task_.getTaskId() != task_id)
@@ -311,7 +279,6 @@ public class Investment_fragment extends Fragment {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void updateStockRow(String symbol, CachedQuote quote) {
         View view = stock_rows_.get(symbol);
         if (view == null) {
@@ -335,16 +302,15 @@ public class Investment_fragment extends Fragment {
     }
 
     // CachedQuote here can be null.
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void updateChangeBox(TextView changebox, CachedQuote quote) {
         String value;
         BigDecimal change = null;
         String change_text = null;
-        if (changebox_mode_ == ispy.corp.moneywzrd.investments.Investment_fragment.ChangeBoxMode.Value) {
+        if (changebox_mode_ == ChangeBoxMode.Value) {
             change = CachedQuote.getPriceChange(quote);
             if (change != null)
                 change_text = Utilities.formatPrice(change);
-        } else if (changebox_mode_ == ispy.corp.moneywzrd.investments.Investment_fragment.ChangeBoxMode.Percent) {
+        } else if (changebox_mode_ == ChangeBoxMode.Percent) {
             change = CachedQuote.getPercentChange(quote);
             if (change != null)
                 change_text = Utilities.formatPercent(change);
@@ -378,14 +344,13 @@ public class Investment_fragment extends Fragment {
         changebox.setTextColor(ResourcesCompat.getColor(getResources(), textcolor_id, null));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void flipChangeBoxMode() {
-        if (changebox_mode_ == ispy.corp.moneywzrd.investments.Investment_fragment.ChangeBoxMode.Percent)
-            changebox_mode_ = ispy.corp.moneywzrd.investments.Investment_fragment.ChangeBoxMode.Value;
+        if (changebox_mode_ == ChangeBoxMode.Percent)
+            changebox_mode_ = ChangeBoxMode.Value;
         else
-            changebox_mode_ = ispy.corp.moneywzrd.investments.Investment_fragment.ChangeBoxMode.Percent;
+            changebox_mode_ = ChangeBoxMode.Percent;
 
-        Map<String, CachedQuote> quotes = ispy.corp.moneywzrd.investments.Settings.getCachedQuotes();
+        Map<String, CachedQuote> quotes = settings_.getCachedQuotes();
         for (Map.Entry<String, View> entry : stock_rows_.entrySet()) {
             String symbol = entry.getKey();
             View view = entry.getValue();
@@ -394,8 +359,7 @@ public class Investment_fragment extends Fragment {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    private static CachedQuote updateCache(QuoteResult result) {
+    private CachedQuote updateCache(QuoteResult result) {
         CachedQuote quote = new CachedQuote(result.symbol);
         quote.lastTradeDate = result.lastTradeDate;
         quote.recentQuote = result.recentQuote;
@@ -403,10 +367,7 @@ public class Investment_fragment extends Fragment {
         // If the service didn't return a quote for the previous day, use the cached result. This
         // can happen if we're trying to avoid an extra query on APIs that have separate endpoints
         // for realtime queries vs historical.
-
-
-
-        CachedQuote prev_quote = ispy.corp.moneywzrd.investments.Settings.getCachedQuotes().get(result.symbol);
+        CachedQuote prev_quote = settings_.getCachedQuotes().get(result.symbol);
         if (result.prevDayQuote != null)
             quote.prevDayQuote = result.prevDayQuote;
         else if (prev_quote != null && prev_quote.lastTradeDate.equals(result.lastTradeDate))
@@ -419,13 +380,12 @@ public class Investment_fragment extends Fragment {
             quote.companyName = prev_quote.companyName;
 
         quote.cacheDate = LocalDate.now(Utilities.UTC).toString();
-        ispy.corp.moneywzrd.investments.Settings.saveCachedQuote(quote);
+        settings_.saveCachedQuote(quote);
         return quote;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private CachedQuote maybeFetchCache(String symbol) {
-        CachedQuote quote = ispy.corp.moneywzrd.investments.Settings.getCachedQuotes().get(symbol);
+        CachedQuote quote = settings_.getCachedQuotes().get(symbol);
         if (quote == null || quote.lastTradeDate == null)
             return null;
 
@@ -436,4 +396,22 @@ public class Investment_fragment extends Fragment {
             return null;
         return quote;
     }
+
+
+    private void OnClickSettingsButton(View v) {
+        LaunchSettingsActivity();
+    }
+
+    private void LaunchSettingsActivity() {
+        Intent intent = new Intent(getActivity(), SettingsActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void OnClickReorderButton(View v) {
+        Intent intent = new Intent(getActivity(), Stock_edit.class);
+        startActivity(intent);
+    }
+
+
 }
