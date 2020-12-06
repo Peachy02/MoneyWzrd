@@ -28,6 +28,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -133,7 +134,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-            Toast.makeText(Login_main.this, "Successful login with Google!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(Login_main.this, "Successful login with Google!", Toast.LENGTH_LONG).show();
             FirebaseGoogleAuth(acc);
         }
         catch (ApiException e){
@@ -148,7 +149,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(Login_main.this, "Successful login with Google!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Login_main.this, "Successful login with Google!", Toast.LENGTH_LONG).show();
                     FirebaseUser user = mAuth.getCurrentUser();
                     startActivity(new Intent(Login_main.this, Splash_Activity.class));
                 }
@@ -232,7 +233,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
                         loginPrefsEditor.clear();
                         loginPrefsEditor.commit();
                     }
-                    Toast.makeText(Login_main.this, success_log, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Login_main.this, success_log, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(Login_main.this, Splash_Activity.class));
                 }
                 else {
