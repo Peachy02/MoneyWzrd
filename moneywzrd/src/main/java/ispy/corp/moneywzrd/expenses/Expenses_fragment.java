@@ -111,6 +111,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         }
         else {
             c1.setVisibility(View.VISIBLE);
+            do1.setVisibility(View.VISIBLE);
         }
 
         //do above for the rest of the expenses
@@ -126,6 +127,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         }
         else {
             c2.setVisibility(View.VISIBLE);
+            do2.setVisibility(View.VISIBLE);
         }
 
         expense3.setText(pref.getString("expense3", ""));
@@ -140,6 +142,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         }
         else {
             c3.setVisibility(View.VISIBLE);
+            do3.setVisibility(View.VISIBLE);
         }
         if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
             msg.setText(R.string.noExp);
@@ -273,6 +276,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
                             totalE.setText("Total Expenses: $" + tot);
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Cannot enter more then three expenses!", Toast.LENGTH_LONG).show();
                         }
 
                     }

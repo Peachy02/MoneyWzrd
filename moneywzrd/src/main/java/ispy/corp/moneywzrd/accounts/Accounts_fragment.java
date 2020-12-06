@@ -191,7 +191,7 @@ public class Accounts_fragment extends Fragment {
 
         for(Account nameSearched : accounts){
             names.add(nameSearched.getName());
-            values.add(String.valueOf(nameSearched.getValue()));
+            values.add("$" + String.valueOf(nameSearched.getValue()));
         }
 
         data_names = names.toArray(new String[0]);

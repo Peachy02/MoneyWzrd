@@ -1,7 +1,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/CV"
-    android:layout_width="395dp"
+    android:layout_width="match_parent"
     android:layout_height="107dp"
     android:layout_marginStart="8dp"
     android:layout_marginTop="10dp"
@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/AccountN"
-            android:layout_width="395dp"
+            android:layout_width="match_parent"
             android:layout_height="33dp"
             android:background="@color/colorPrimary"
             android:fontFamily="sans-serif"

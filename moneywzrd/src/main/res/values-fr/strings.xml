@@ -4,7 +4,7 @@
     <string name="prompt_password">mot de passe</string>
     <string name="action_sign_in">Se connecter ou s\'inscrire</string>
     <string name="action_sign_in_short">Se connecter</string>
-    <string name="welcome">Bienvenue</string>
+    <string name="welcome">Bienvenue !</string>
     <string name="invalid_username">Pas un nom d\'utilisateur valide</string>
     <string name="invalid_password">Le mot de passe doit être >5 caractères</string>
     <string name="login_failed">Connexion échoué</string>
@@ -56,5 +56,19 @@
     <string name="fail_log">Connexion échoua. Vérifie votre identiafiants</string>
     <string name="usr_regis">L\'utilisateur a été enregistré</string>
     <string name="fail_regis">L\'enregistration a échoué! Essayez de nouveau!</string>
+    <string name="ToolbareditAcc">L\'éditeur de comptes</string>
+    <string name="value">valeur</string>
+    <string name="name">Nom</string>
+    <string name="welc2">Bienvenue</string>
+    <string name="userPath">Utilisateurs</string>
+    <string name="noacc_tv">Pas encore de comptes!</string>
+    <string name="wentwrong">Quelque chose a mal tourné</string>
+    <string name="exit">Quitter les paramètres?</string>
+    <string name="confirmpass">Confirmer votre mot de passe S.V.P!</string>
+    <string name="Passnomatch">Les mots de passe ne correspondent pas, essayer à nouveau S.V.P!</string>
+    <string name="Exitapp">Vous êtes sûr que vouloir quitter l\'application</string>
+    <string name="SuccessGoogle">Connexion réussie avec Google!</string>
+    <string name="UnsuccessGoogle">Connexion échouée avec Googel, essayer à nouveau S.V.P!</string>
+    <string name="Linkedgoogle">Échec de connexion, le compte pourra être lié à Google dejá?</string>
 
 </resources>

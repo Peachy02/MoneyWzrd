@@ -34,8 +34,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import static ispy.corp.moneywzrd.R.string.Linkedgoogle;
+import static ispy.corp.moneywzrd.R.string.SuccessGoogle;
+import static ispy.corp.moneywzrd.R.string.UnsuccessGoogle;
 import static ispy.corp.moneywzrd.R.string.pass_reset;
 import static ispy.corp.moneywzrd.R.string.success_log;
+
+
+import static ispy.corp.moneywzrd.R.string.ok;
+import static ispy.corp.moneywzrd.R.string.cancel;
 
 public class Login_main extends AppCompatActivity implements View.OnClickListener{
 
@@ -133,11 +140,11 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-            Toast.makeText(Login_main.this, "Successful login with Google!", Toast.LENGTH_LONG).show();
+            //Toast.makeText(Login_main.this, SuccessGoogle, Toast.LENGTH_LONG).show();
             FirebaseGoogleAuth(acc);
         }
         catch (ApiException e){
-            Toast.makeText(Login_main.this, "Unsuccessful login with Google, please try again!", Toast.LENGTH_LONG).show();
+            Toast.makeText(Login_main.this, UnsuccessGoogle, Toast.LENGTH_LONG).show();
             //FirebaseGoogleAuth(null);
         }
     }
@@ -148,12 +155,12 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(Login_main.this, "Successful login with Google!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Login_main.this, SuccessGoogle, Toast.LENGTH_LONG).show();
                     FirebaseUser user = mAuth.getCurrentUser();
                     startActivity(new Intent(Login_main.this, Splash_Activity.class));
                 }
                 else {
-                    Toast.makeText(Login_main.this, "Unsuccessful login with Google, please try again!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login_main.this, UnsuccessGoogle, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -232,11 +239,11 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
                         loginPrefsEditor.clear();
                         loginPrefsEditor.commit();
                     }
-                    Toast.makeText(Login_main.this, success_log, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(Login_main.this, success_log, Toast.LENGTH_LONG).show();
                     startActivity(new Intent(Login_main.this, Splash_Activity.class));
                 }
                 else {
-                    Toast.makeText(Login_main.this, "Failed to login, account may be linked to Google already?", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login_main.this, Linkedgoogle, Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
 
@@ -246,14 +253,14 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
     }
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want exit the app?")
+                .setMessage(R.string.Exitapp)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(cancel, null)
                 .show();
     }
 }
