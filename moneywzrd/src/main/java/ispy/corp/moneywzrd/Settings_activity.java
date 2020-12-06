@@ -15,9 +15,9 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
-import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.prefs.PreferenceChangeEvent;
+import static ispy.corp.moneywzrd.R.string.ok;
+import static ispy.corp.moneywzrd.R.string.cancel;
 
 public class Settings_activity extends PreferenceActivity {
 
@@ -111,14 +111,14 @@ public class Settings_activity extends PreferenceActivity {
 
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setMessage("Exit settings?")
+                .setMessage(R.string.exit)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         startActivity(new Intent(Settings_activity.this, MainActivity.class));
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(cancel, null)
                 .show();
 
     }

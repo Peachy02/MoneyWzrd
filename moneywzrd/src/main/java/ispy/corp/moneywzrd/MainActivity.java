@@ -4,10 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -17,7 +13,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +21,9 @@ import ispy.corp.moneywzrd.accounts.Accounts_fragment;
 import ispy.corp.moneywzrd.expenses.Expenses_fragment;
 import ispy.corp.moneywzrd.home.Home_fragment;
 import ispy.corp.moneywzrd.investments.Investment_fragment;
+
+import static ispy.corp.moneywzrd.R.string.ok;
+import static ispy.corp.moneywzrd.R.string.cancel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,14 +99,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want exit the app?")
+                .setMessage(R.string.Exitapp)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         finishAffinity();
                     }
                 })
-                .setNegativeButton("No", null)
+                .setNegativeButton(cancel, null)
                 .show();
         FirebaseAuth.getInstance().signOut();
     }

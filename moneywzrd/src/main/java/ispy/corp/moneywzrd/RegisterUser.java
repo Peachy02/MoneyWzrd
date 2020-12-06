@@ -102,12 +102,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
             return;
         }
         if (password2.isEmpty()) {
-            pass2.setError("Please confirm your password!");
+            pass2.setError(getString(R.string.confirmpass));
             pass2.requestFocus();
             return;
         }
         if (!(password2.equals(password))) {
-            pass2.setError("Passwords do not match, please try again!");
+            pass2.setError(getString(R.string.Passnomatch));
             pass2.requestFocus();
             return;
         }
