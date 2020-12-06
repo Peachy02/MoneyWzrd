@@ -12,7 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoneyWzrd">
-        <activity android:name=".Settings_activity"/>
+        <activity
+            android:name=".Settings_activity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/settings_activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ispy.corp.moneywzrd.MainActivity" />
+        </activity>
         <activity android:name=".Splash_Activity" />
         <activity android:name=".accounts.AccountData" />
         <activity android:name=".investments.Addstock" />

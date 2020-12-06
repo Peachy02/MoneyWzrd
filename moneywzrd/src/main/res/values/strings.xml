@@ -70,6 +70,7 @@
     <string name="SuccessGoogle">Successful login with Google!</string>
     <string name="UnsuccessGoogle">Unsuccessful login with Google, please try again!</string>
     <string name="Linkedgoogle">Failed to login, account may be linked to Google already?</string>
+    <string name="settings_activity">settingsact</string>
 
 
 </resources>
