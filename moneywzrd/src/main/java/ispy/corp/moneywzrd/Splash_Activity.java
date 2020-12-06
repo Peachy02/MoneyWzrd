@@ -17,6 +17,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static ispy.corp.moneywzrd.R.string.exclamation;
+import static ispy.corp.moneywzrd.R.string.welc2;
+import static ispy.corp.moneywzrd.R.string.wentwrong;
+
 public class Splash_Activity extends AppCompatActivity {
 
     private FirebaseUser user;
@@ -37,8 +41,8 @@ public class Splash_Activity extends AppCompatActivity {
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String wel = "Welcome ";
-                String exc = getResources().getString(R.string.exclamation);
+                String wel = getString(welc2);
+                String exc = getString(exclamation);
                 User userprofile = snapshot.getValue(User.class);
                 if (userprofile != null) {
                     String fullName = userprofile.fullName;
@@ -53,7 +57,7 @@ public class Splash_Activity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Splash_Activity.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+                Toast.makeText(Splash_Activity.this, wentwrong, Toast.LENGTH_LONG).show();
             }
         });
         mHandler.postDelayed(new Runnable() {

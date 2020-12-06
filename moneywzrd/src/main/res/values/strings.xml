@@ -62,6 +62,14 @@
     <string name="welc2">Welcome </string>
     <string name="userPath">Users</string>
     <string name="noacc_tv">You have no accounts yet!</string>
+    <string name="wentwrong">Something went wrong!</string>
+    <string name="exit">Exit settings?</string>
+    <string name="confirmpass">Please confirm your password!</string>
+    <string name="Passnomatch">Passwords do not match, please try again!</string>
+    <string name="Exitapp">Are you sure you want exit the app?</string>
+    <string name="SuccessGoogle">Successful login with Google!</string>
+    <string name="UnsuccessGoogle">Unsuccessful login with Google, please try again!</string>
+    <string name="Linkedgoogle">Failed to login, account may be linked to Google already?</string>
 
 
 </resources>
