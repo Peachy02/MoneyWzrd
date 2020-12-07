@@ -44,8 +44,18 @@ import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.Settings_activity;
 
 import static ispy.corp.moneywzrd.R.string.ExpPaid;
+import static ispy.corp.moneywzrd.R.string.RemExp;
 import static ispy.corp.moneywzrd.R.string.logged;
-import static ispy.corp.moneywzrd.R.string.mustenter;
+import static ispy.corp.moneywzrd.R.string.Mustenterfields;
+import static ispy.corp.moneywzrd.R.string.selectduedate;
+import static ispy.corp.moneywzrd.R.string.totalexp;
+import static ispy.corp.moneywzrd.R.string.ok;
+import static ispy.corp.moneywzrd.R.string.cancel;
+import static ispy.corp.moneywzrd.R.string.morethanthree;
+import static ispy.corp.moneywzrd.R.string.Hasbeenpaidexp;
+import static ispy.corp.moneywzrd.R.string.allexpclear;
+import static ispy.corp.moneywzrd.R.string.logout;
+import static ispy.corp.moneywzrd.R.string.Surelogout;
 
 public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
@@ -201,8 +211,8 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (input1.getText().toString().isEmpty() || input2.getText().toString().equals("Click to select due date") || price.getText().toString().isEmpty() || price.getText().toString().equals("$")) {
-                            Toast.makeText(getContext(), "MUST ENTER ALL REQUIRED FIELDS!", Toast.LENGTH_LONG).show();
+                        if (input1.getText().toString().isEmpty() || input2.getText().toString().equals(getString(selectduedate)) || price.getText().toString().isEmpty() || price.getText().toString().equals("$")) {
+                            Toast.makeText(getContext(), Mustenterfields, Toast.LENGTH_LONG).show();
                             dialog.cancel();
                            // input1.setError("Cannot be empty!");
                            // input1.requestFocus();
@@ -234,7 +244,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             msg.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText("Total Expenses: $" + tot);
+                            totalE.setText(totalexp + tot);
 
                         }
                         else if (expense2.getText().toString().equals("") && date2.getText().toString().equals("")) {
@@ -255,7 +265,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             msg.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText("Total Expenses: $" + tot);
+                            totalE.setText(totalexp + tot);
                         }
                         else if (expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                             //String input = input.getText().toString();
@@ -275,10 +285,10 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             msg.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText("Total Expenses: $" + tot);
+                            totalE.setText(totalexp + tot);
                         }
                         else {
-                            Toast.makeText(getContext(), "Cannot enter more then three expenses!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), morethanthree, Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -298,9 +308,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             public void onClick(View v) {
 
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Remove Expense");
-                uSure.setMessage("Has this expense been paid?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setTitle(RemExp);
+                uSure.setMessage(Hasbeenpaidexp);
+                uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (c1.isChecked()) {
@@ -317,15 +327,15 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             do1.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText("Total Expenses: $" + tot);
+                            totalE.setText(totalexp + tot);
                             if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                                 msg.setText(R.string.noExp);
                             }
-                            Toast.makeText(getContext(), "Expense paid", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(), R.string.expensepaid, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         c1.setChecked(false);
@@ -342,8 +352,8 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             public void onClick(View v) {
 
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Remove Expense");
-                uSure.setMessage("Has this expense been paid?");
+                uSure.setTitle(RemExp);
+                uSure.setMessage(Hasbeenpaidexp);
                 uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -361,7 +371,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             do2.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText("Total Expenses: $" + tot);
+                            totalE.setText(totalexp + tot);
                             if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                                 msg.setText(R.string.noExp);
                             }
@@ -386,9 +396,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             public void onClick(View v) {
 
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Remove Expense");
-                uSure.setMessage("Has this expense been paid?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setTitle(RemExp);
+                uSure.setMessage(Hasbeenpaidexp);
+                uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (c3.isChecked()) {
@@ -405,7 +415,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             do3.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText("Total Expenses: $" + tot);
+                            totalE.setText(totalexp + tot);
                             if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                                 msg.setText(R.string.noExp);
                             }
@@ -413,7 +423,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                         }
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         c3.setChecked(false);
@@ -430,9 +440,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             public void onClick(View v) {
 
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Remove All Expenses");
-                uSure.setMessage("Do you want to delete all your expenses?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setTitle(R.string.Remallexp);
+                uSure.setMessage(R.string.Deletallexp);
+                uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -475,12 +485,12 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
                         int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                         String tot = String.valueOf(total);
-                        totalE.setText("Total Expenses: $" + tot);
+                        totalE.setText(totalexp + tot);
 
-                        Toast.makeText(getContext(), "All expenses cleared", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), allexpclear, Toast.LENGTH_LONG).show();
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -495,7 +505,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
         total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
         String tot = String.valueOf(total);
-        totalE.setText("Total Expenses: $" + tot);
+        totalE.setText(totalexp + tot);
 
 
 
@@ -520,9 +530,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         switch (item.getItemId()) {
             case R.id.sign_out: {
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Logout");
-                uSure.setMessage("Are you sure you want to logout?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setTitle(logout);
+                uSure.setMessage(Surelogout);
+                uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
@@ -531,7 +541,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

@@ -15,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,7 +38,11 @@ import ispy.corp.moneywzrd.accounts.DAO.DAO;
 import ispy.corp.moneywzrd.accounts.adapter.RecyclerViewAdapter;
 import ispy.corp.moneywzrd.accounts.objects.Account;
 
+import static ispy.corp.moneywzrd.R.string.Surelogout;
+import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.logged;
+import static ispy.corp.moneywzrd.R.string.logout;
+import static ispy.corp.moneywzrd.R.string.ok;
 
 
 public class Accounts_fragment extends Fragment {
@@ -149,9 +151,9 @@ public class Accounts_fragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.sign_out: {
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Logout");
-                uSure.setMessage("Are you sure you want to logout?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setTitle(logout);
+                uSure.setMessage(Surelogout);
+                uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
@@ -160,7 +162,7 @@ public class Accounts_fragment extends Fragment {
 
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

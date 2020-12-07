@@ -11,7 +11,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,7 +29,11 @@ import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.Settings_activity;
 
+import static ispy.corp.moneywzrd.R.string.Surelogout;
 import static ispy.corp.moneywzrd.R.string.logged;
+import static ispy.corp.moneywzrd.R.string.logout;
+import static ispy.corp.moneywzrd.R.string.ok;
+import static ispy.corp.moneywzrd.R.string.cancel;
 
 public class Investment_fragment extends Fragment {
 
@@ -90,9 +93,9 @@ public class Investment_fragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.sign_out: {
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
-                uSure.setTitle("Logout");
-                uSure.setMessage("Are you sure you want to logout?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setTitle(logout);
+                uSure.setMessage(Surelogout);
+                uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
@@ -101,7 +104,7 @@ public class Investment_fragment extends Fragment {
 
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

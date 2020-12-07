@@ -22,6 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import static ispy.corp.moneywzrd.R.string.exclamation;
 import static ispy.corp.moneywzrd.R.string.welc2;
 import static ispy.corp.moneywzrd.R.string.wentwrong;
+import static ispy.corp.moneywzrd.R.string.successlog;
 
 public class Splash_Activity extends AppCompatActivity {
 
@@ -39,7 +40,7 @@ public class Splash_Activity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference(getString(R.string.userPath));
         userID = user.getUid();
         View loggy = findViewById(android.R.id.content);
-        Snackbar.make(loggy, "Successful login!", Snackbar.LENGTH_LONG).show();
+        Snackbar.make(loggy,successlog, Snackbar.LENGTH_LONG).show();
 
         TextView welcome = (TextView)findViewById(R.id.welcomeMSG);
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
