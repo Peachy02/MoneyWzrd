@@ -10,13 +10,14 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.accounts.DAO.DAO;
 import ispy.corp.moneywzrd.accounts.objects.Account;
+
+import static ispy.corp.moneywzrd.R.string.cancel;
+import static ispy.corp.moneywzrd.R.string.ok;
 
 public class AccountData extends AppCompatActivity {
     TextView nameet,valueet;
@@ -71,16 +72,16 @@ public class AccountData extends AppCompatActivity {
             public void onClick(View view) {
 
                 AlertDialog.Builder confirmdel = new AlertDialog.Builder(AccountData.this);
-                confirmdel.setTitle("Warning!");
-                confirmdel.setMessage("Are you sure you want to delete " + whichAccount + "?");
+                confirmdel.setTitle(R.string.warn);
+                confirmdel.setMessage(getString(R.string.suredelet) + whichAccount + getString(R.string.questionmark));
                 confirmdel.setCancelable(false);
-                confirmdel.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                confirmdel.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         deleteAccount();
                     }
                 });
-                confirmdel.setNegativeButton("No", null);
+                confirmdel.setNegativeButton(cancel, null);
                 confirmdel.create().show();
 
             }
