@@ -9,21 +9,16 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
-
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import ispy.corp.moneywzrd.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
@@ -114,7 +109,6 @@ public class AddStock extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
 
@@ -132,19 +126,19 @@ public class AddStock extends AppCompatActivity {
         }
     }
 
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setMessage(R.string.exit2)
-                .setCancelable(false)
-                .setPositiveButton(ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        startActivity(new Intent(AddStock.this, MainActivity.class));
-                    }
-                })
-                .setNegativeButton(cancel, null)
-                .show();
-
-    }
+//    public void onBackPressed() {
+//        new AlertDialog.Builder(this)
+//                .setMessage(R.string.exit2)
+//                .setCancelable(false)
+//                .setPositiveButton(ok, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface dialog, int id) {
+//                        startActivity(new Intent(AddStock.this, MainActivity.class));
+//                    }
+//                })
+//                .setNegativeButton(cancel, null)
+//                .show();
+//
+//    }
 
 
 
@@ -153,10 +147,12 @@ public class AddStock extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+        if (id == R.id.Settingsbtn) {
+            startActivity(new Intent(this, Settings_activity.class));
         }
+
+
 
 
 

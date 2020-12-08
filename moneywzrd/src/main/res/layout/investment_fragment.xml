@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/BackgroundPages"
+    app:boxedEdges="none"
     tools:context=".investments.Investment_fragment">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -29,21 +31,35 @@
             android:textColor="@android:color/white" />
 
 
-
     </androidx.appcompat.widget.Toolbar>
 
     <Button
         android:id="@+id/start_stock"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="285dp"
+        android:layout_width="185dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="119dp"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="342dp"
+        android:layout_marginBottom="180dp"
         android:text="@string/start_watching_stocks"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/Stock_Explanation" />
+
+    <TextView
+        android:id="@+id/Stock_Explanation"
+        android:layout_width="383dp"
+        android:layout_height="208dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="108dp"
+        android:layout_marginEnd="12dp"
+        android:background="#F1EBFB"
+        android:gravity="center"
+        android:text="How to use investments:\n\n 1. Type the stock ticker you would like view \n\n 2. Check the star to add to favorites \n\n 3. Use the action to view past history and news about that company"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

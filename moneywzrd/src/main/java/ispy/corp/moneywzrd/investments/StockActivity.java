@@ -1,38 +1,30 @@
 package ispy.corp.moneywzrd.investments;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -47,17 +39,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
+
+import static ispy.corp.moneywzrd.R.string.cancel;
+import static ispy.corp.moneywzrd.R.string.ok;
 
 public class StockActivity extends AppCompatActivity {
 
@@ -86,7 +77,6 @@ public class StockActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock_main);
-        //getSupportActionBar().setTitle("Stock News");
         favView = (RecyclerView)findViewById(R.id.favtable);
         clearButton = (Button) findViewById(R.id.button2);
         favView.setLayoutManager(new LinearLayoutManager(this));
@@ -128,14 +118,12 @@ public class StockActivity extends AppCompatActivity {
         autoComplete.addTextChangedListener(new TextWatcher(){
 
             public void afterTextChanged(Editable editable) {
-                // TODO Auto-generated method stub
 
             }
 
 
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // TODO Auto-generated method stub
 
             }
 
@@ -315,17 +303,7 @@ public class StockActivity extends AppCompatActivity {
 
 
                 }
-                //addToAdapter(favlist);
             }
-        }
-    }
-    public void addToAdapter(List<FavInfo> favlist){
-
-        if (favadapter == null) {
-            favadapter = new FavAdapter(this, favlist);
-            favView.setAdapter(favadapter);
-        } else {
-            favadapter.newFavs(favlist);
         }
     }
 
@@ -350,7 +328,7 @@ public class StockActivity extends AppCompatActivity {
                         Log.d("auto",response.toString());
                         JSONObject data = response;
                         JSONArray jArray = new JSONArray(data);
-                        // Display the first 500 characters of the response string.
+
                         suggest = new ArrayList<String>();
                         for(int i=0;i<jArray.length();i++){
                             JSONObject jsonobject = jArray.getJSONObject(i);
@@ -398,9 +376,7 @@ public class StockActivity extends AppCompatActivity {
                             try {
                                 String data = response;
                                 Log.d("auto","data"+data);
-                                //processData(response);
                                 JSONArray jArray = new JSONArray(data);
-                                // Display the first 500 characters of the response string.
                                 suggest = new ArrayList<String>();
                                 for(int i=0;i<jArray.length();i++){
                                     JSONObject jsonobject = jArray.getJSONObject(i);
@@ -425,7 +401,6 @@ public class StockActivity extends AppCompatActivity {
                     {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            // handle error response
                         }
                     }
             );
@@ -437,6 +412,20 @@ public class StockActivity extends AppCompatActivity {
 
     }
 
+
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.exit2)
+                .setCancelable(false)
+                .setPositiveButton(ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        startActivity(new Intent(StockActivity.this, MainActivity.class));
+                    }
+                })
+                .setNegativeButton(cancel, null)
+                .show();
+
+    }
 
 
 }

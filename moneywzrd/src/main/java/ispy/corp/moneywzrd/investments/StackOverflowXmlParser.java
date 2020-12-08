@@ -39,10 +39,10 @@ public class StackOverflowXmlParser {
             }
 
             String name = parser.getName();
-            // Starts by looking for the entry tag
+
             Log.d("ItemName",name);
             if (name.equals("channel")) {
-                //entries.add(readEntry(parser));
+
                 entries = readChannel(parser);
             } else {
                 skip(parser);

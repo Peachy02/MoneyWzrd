@@ -70,7 +70,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     class NewsViewHolder extends RecyclerView.ViewHolder{
         TextView ntitle;
         TextView nauthor;
-        String nlink;
         TextView ndate;
         public NewsViewHolder(View itemView) {
             super(itemView);

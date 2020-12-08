@@ -1,9 +1,5 @@
 package ispy.corp.moneywzrd.investments;
 
-/**
- * Created by poojadeole on 11/18/17.
- */
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -42,7 +38,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
@@ -87,8 +82,6 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
         mycontext = getActivity();
 
 
-        final int DEFAULT_MAX_RETRIES = 1;
-        final float DEFAULT_BACKOFF_MULT = 1f;
         View layout = inflater.inflate(R.layout.tab1charts, container, false);
         tableView = (RecyclerView) layout.findViewById(R.id.pricetable);
         favorite = (ImageButton) layout.findViewById(R.id.imageButton3);
@@ -123,14 +116,14 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
                 @Override
                 public void onResponse(JSONObject response) {
                     try {
-                        // Display the first 500 characters of the response string.
+
                         obj = response.getJSONObject("Time Series (Daily)");
                         metaobj = response.getJSONObject("Meta Data");
                         Log.d("Reply","Getting respone");
                         progressBar.setVisibility(View.INVISIBLE);
                         tableView.setHasFixedSize(true);
 
-//                    ((AddStock)getActivity()).string
+
                         tableView.setLayoutManager(new LinearLayoutManager(context));
                         tableView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
                         try {
@@ -142,7 +135,7 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
                         tableView.setAdapter(adapter);
 
                         Log.d("TAG", "hello");
-                        //e.printStackTrace();
+
                     } catch (JSONException e) {
                     }
                 }
@@ -168,7 +161,7 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
             if(progressBar!=null) {
                 progressBar.setVisibility(View.INVISIBLE);
             }
-//                    ((AddStock)getActivity()).string
+
             tableView.setLayoutManager(new LinearLayoutManager(context));
             tableView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL_LIST));
             try {
@@ -192,17 +185,6 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
                     favorite.setImageResource(R.drawable.star);
                 }
                 editor.apply();
-                /*Set<String> favoriteList = sharedPreferences.getStringSet("favoriteList", null);
-                if(favoriteList==null) {
-                    favoriteList = new LinkedHashSet<String>();
-                    favoriteList.add(symPassed);
-                } else {
-                    if(!favoriteList.contains(symPassed)) {
-                        favoriteList.add(symPassed);
-                    }
-                }
-                editor.putStringSet("favoriteList", favoriteList);
-                editor.commit();*/
             }});
 
         shareDialog = new ShareDialog(getActivity());
@@ -229,10 +211,6 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
 
 
         return layout;
-        //       Intent intent = getIntent(); 
-//        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE); 
-//        Log.d("pooja",message); 
-
     }
 
     public List<TableRows> getData() throws JSONException {
@@ -309,8 +287,6 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
         final TextView mytext = (TextView) view;
 
         if(mytext!=null) {
-           // Toast.makeText(this.context, "Your selection " + mytext.getText(), Toast.LENGTH_SHORT).show();
-       //     Log.d("indicator", "my indicator is selected");
 
 
             if(lastRendered.equals(mytext.getText())){
@@ -412,36 +388,33 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
                                                        {
                                                            public void onPageFinished(WebView view, String url){
 
-                                                               Picture picture = view.capturePicture();
-                                                               Bitmap b = Bitmap.createBitmap( picture.getWidth(),
-                                                                       picture.getHeight(), Bitmap.Config.ARGB_8888);
-                                                               Canvas c = new Canvas( b );
-                                                               picture.draw( c );
-                                                               FileOutputStream fos = null;
-                                                               File file;
-                                                               try{
-                                                                   file = new File(Environment.getExternalStorageDirectory().toString()+"/yahoo.jpg");
-                                                                   Log.d("file",file.getAbsolutePath());
-                                                                   fos = new FileOutputStream(file);
-                                                                   Log.d("PageFinFinished",fos.toString());
-                                                                   if (!file.exists()) {
-                                                                       file.createNewFile();
-                                                                   }
+                     Picture picture = view.capturePicture();
+                     Bitmap b = Bitmap.createBitmap( picture.getWidth(),
+                     picture.getHeight(), Bitmap.Config.ARGB_8888);
+                     Canvas c = new Canvas( b );
+                     picture.draw( c );
+                     FileOutputStream fos = null;
+                     File file;
+                     try{
+                     file = new File(Environment.getExternalStorageDirectory().toString()+"/yahoo.jpg");
+                     Log.d("file",file.getAbsolutePath());
+                     fos = new FileOutputStream(file);
+                     Log.d("PageFinFinished",fos.toString());
+                     if (!file.exists()) {
+                     file.createNewFile();
+                     }
 
-                                                                   if ( fos != null )
-                                                                   {
-                                                                       b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-                                                                       fos.close();
-                                                                   }
+                     if ( fos != null )
+                     {
+                     b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                     fos.close();
+                     }
 
-                                                               }
-                                                               catch (Exception e){
-                                                                    e.printStackTrace();
-                                                               }
-
-
-                                                           }
-                                                       });
+                     }
+                     catch (Exception e){
+                     e.printStackTrace();
+                     }
+                       }});
 
                         indicatorView.loadUrl("http://www-scf.usc.edu/~deole/highrsi.php/?sym="+symPassed);
                         indicatorView.setVisibility(View.VISIBLE);

@@ -65,7 +65,6 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
                 builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
-                        // Do nothing but close the dialog
                         ((StockActivity)context).removeFav(current.favsym);
                         dialog.dismiss();
                         Toast.makeText(context, "Selected Item Deleted", Toast.LENGTH_SHORT).show();
