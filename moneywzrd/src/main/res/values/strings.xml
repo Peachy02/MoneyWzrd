@@ -72,23 +72,36 @@
     <string name="Linkedgoogle">Failed to login, account may be linked to Google already?</string>
     <string name="settings_activity">settingsact</string>
 
-    <string name="general_settings_header">General Settings</string>
-    <string name="api_settings_header">API Settings</string>
-    <string name="api_key_title">API Key</string>
-    <string name="quote_api_title">Market Data Provider</string>
-    <string name="quote_api_help">Select a market data provider to use. You will have to obtain an API key from whichever you select. IEX Cloud and World Trading Data both have free services.</string>
-    <string name="note_alphavantage">Tap to set. Note: free keys are very limited and can only fetch 5 quotes per minute</string>
-    <string name="note_iexcloud">Tap to set.</string>
-    <string name="note_intrinio">Tap to set. Note: subscription is required.</string>
-    <string name="note_wtd">Tap to set. Note: free keys are limited to 250 queries per day.</string>
-    <string name="test_api">Test</string>
-    <string name="test_api_help">Tap to test the configuration for the selected provider.</string>
-    <string name="title_activity_stock_settings">StockSettings</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+
+    <string name="title_activity_send_string">SendString</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="facebook_app_id">166172813978375</string>
+    <string name="share">Share</string>
+    <string name="start_watching_stocks">Start Watching Stocks</string>
+    <string name="exit2">Are you sure you want to exit stocks?</string>
+
+    <string-array name="indicators">
+            <item>Price</item>
+            <item>SMA</item>
+            <item>EMA</item>
+            <item>STOCH</item>
+            <item>RSI</item>
+            <item>ADX</item>
+            <item>CCI</item>
+            <item>BBANDS</item>
+            <item>MACD</item>
+        </string-array>
+        <string-array name="sorting">
+            <item>Symbol</item>
+            <item>Price</item>
+            <item>Change</item>
+        </string-array>
+        <string-array name="order">
+            <item>Ascending</item>
+            <item>Descending</item>
+        </string-array>
+
 
 
 </resources>

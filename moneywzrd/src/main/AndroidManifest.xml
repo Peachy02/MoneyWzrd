@@ -11,15 +11,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MoneyWzrd">
-        <activity android:name=".Settings_activity"/>
+        android:theme="@style/Theme.MoneyWzrd"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".investments.StockActivity"/>
+        <activity android:name=".Settings_activity" />
         <activity android:name=".Splash_Activity" />
         <activity android:name=".accounts.AccountData" />
-        <activity android:name=".investments.Addstock" />
-        <activity android:name=".investments.Stock_edit" />
+        <activity android:name=".investments.AddStock"
+            android:parentActivityName=".investments.StockActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="ispy.corp.moneywzrd.investments.StockActivity" />
+        </activity>
         <activity android:name=".RegisterUser" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Login_main">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +38,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
     </application>
 
 </manifest>

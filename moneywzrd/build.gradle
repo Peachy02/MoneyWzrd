@@ -64,4 +64,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
+    implementation 'com.facebook.android:facebook-share:[4,5)'
 }
