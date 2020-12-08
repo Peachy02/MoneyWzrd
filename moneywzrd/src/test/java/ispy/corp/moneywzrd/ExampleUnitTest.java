@@ -16,19 +16,20 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-  //  private static final String FAKE_STRING = "HELLO_WORLD";
- //   private Context context = ApplicationProvider.getApplicationContext();
+    private static final String FAKE_STRING = "HELLO_WORLD";
+   // private Context context = ApplicationProvider.getApplicationContext();
 
- //   @Test
-   // public void readStringFromContext_LocalizedString() {
-        // Given a Context object retrieved from Robolectric...
-     //   Accounts_fragment testobj = new Accounts_fragment(context);
+  //  @Test
+  //  public void readStringFromContext_LocalizedString() {
+       // Given a Context object retrieved from Robolectric...
+    //   Accounts_fragment testobj = new Accounts_fragment(context);
 
-        // ...when the string is returned from the object under test...
-       //// String result = testobj.getHelloWorldString();
+       // ...when the string is returned from the object under test...
+    //   String result = testobj.ExtractDB();
 
-        // ...then the result should be the expected one.
-     //   assertThat(result).isEqualTo(FAKE_STRING);
+       // ...then the result should be the expected one.
+     //  assertThat(result).isEqualTo(FAKE_STRING);
+   // }
    }
 
 

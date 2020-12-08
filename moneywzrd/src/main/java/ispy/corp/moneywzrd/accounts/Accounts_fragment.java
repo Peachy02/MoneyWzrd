@@ -181,7 +181,7 @@ public class Accounts_fragment extends Fragment {
         }
         return true;
     }
-    private void ExtractDB() {
+    public void ExtractDB() {
         DAO dao2 = new DAO(getActivity().getApplicationContext());
 
         List<Account> accounts = dao2.searchAccount();

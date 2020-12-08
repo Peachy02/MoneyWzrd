@@ -244,7 +244,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             msg.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText(totalexp + tot);
+                            totalE.setText("Total expenses : $ " + tot);
 
                         }
                         else if (expense2.getText().toString().equals("") && date2.getText().toString().equals("")) {
@@ -265,7 +265,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             msg.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText(totalexp + tot);
+                            totalE.setText("Total expenses : $ " + tot);
                         }
                         else if (expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                             //String input = input.getText().toString();
@@ -285,7 +285,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             msg.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText(totalexp + tot);
+                            totalE.setText("Total expenses : $ " + tot);
                         }
                         else {
                             Toast.makeText(getContext(), morethanthree, Toast.LENGTH_LONG).show();
@@ -327,7 +327,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             do1.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText(totalexp + tot);
+                            totalE.setText("Total expenses : $ " + tot);
                             if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                                 msg.setText(R.string.noExp);
                             }
@@ -354,7 +354,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
                 uSure.setTitle(RemExp);
                 uSure.setMessage(Hasbeenpaidexp);
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (c2.isChecked()) {
@@ -371,7 +371,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             do2.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText(totalexp + tot);
+                            totalE.setText("Total expenses : $ " + tot);
                             if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                                 msg.setText(R.string.noExp);
                             }
@@ -379,7 +379,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                         }
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         c2.setChecked(false);
@@ -415,7 +415,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                             do3.setVisibility(View.INVISIBLE);
                             int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                             String tot = String.valueOf(total);
-                            totalE.setText(totalexp + tot);
+                            totalE.setText("Total expenses : $ " + tot);
                             if (expense1.getText().toString().equals("") && date1.getText().toString().equals("") && expense2.getText().toString().equals("") && date2.getText().toString().equals("") && expense3.getText().toString().equals("") && date3.getText().toString().equals("")) {
                                 msg.setText(R.string.noExp);
                             }
@@ -485,7 +485,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
                         int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                         String tot = String.valueOf(total);
-                        totalE.setText(totalexp + tot);
+                        totalE.setText("Total expenses : $ " + tot);
 
                         Toast.makeText(getContext(), allexpclear, Toast.LENGTH_LONG).show();
                     }
@@ -505,7 +505,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
         total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
         String tot = String.valueOf(total);
-        totalE.setText(totalexp + tot);
+        totalE.setText("Total expenses : $ " + tot);
 
 
 
