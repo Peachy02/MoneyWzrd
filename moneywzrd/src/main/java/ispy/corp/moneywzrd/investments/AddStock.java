@@ -55,20 +55,17 @@ public class AddStock extends AppCompatActivity {
         Intent intent = getIntent();
         message = intent.getStringExtra("my_data");
         isFav = intent.getBooleanExtra("favorite", false);
-        //       Intent intent = getIntent(); 
-//        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE); 
-//        Log.d("pooja",message); 
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(message);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
+
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
