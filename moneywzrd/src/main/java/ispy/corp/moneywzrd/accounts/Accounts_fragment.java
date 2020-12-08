@@ -43,6 +43,7 @@ import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.logged;
 import static ispy.corp.moneywzrd.R.string.logout;
 import static ispy.corp.moneywzrd.R.string.ok;
+import static ispy.corp.moneywzrd.R.string.Mustenterfields;
 
 
 public class Accounts_fragment extends Fragment {
@@ -101,7 +102,7 @@ public class Accounts_fragment extends Fragment {
                             noacc(noacc);
                         }
                         else{
-                            Toast.makeText(V.getContext(),"Please fill all the fields.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(V.getContext(),Mustenterfields, Toast.LENGTH_SHORT).show();
                         }
 
 
