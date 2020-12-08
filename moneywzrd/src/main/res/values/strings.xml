@@ -70,7 +70,23 @@
     <string name="SuccessGoogle">Successful login with Google!</string>
     <string name="UnsuccessGoogle">Unsuccessful login with Google, please try again!</string>
     <string name="Linkedgoogle">Failed to login, account may be linked to Google already?</string>
-    <string name="settings_activity">settingsact</string>
+    <string name="settings_activity" translatable="false">settingsact</string>
+    <string name="Surelogout">Are you sure you want to logout?</string>
+    <string name="Mustenterfields">MUST ENTER ALL REQUIRED FIELDS!</string>
+    <string name="selectduedate">Click to select due date</string>
+    <string name="totalexp">Total Expenses: $</string>
+    <string name="RemExp">Remove Expense</string>
+    <string name="Hasbeenpaidexp">Has this expense been paid?</string>
+    <string name="morethanthree">Cannot enter more then three expenses!</string>
+    <string name="expensepaid">Expense paid</string>
+    <string name="Remallexp">Remove All Expenses</string>
+    <string name="Deletallexp">Do you want to delete all your expenses?</string>
+    <string name="allexpclear">All expenses cleared</string>
+    <string name="successlog">Successful login!</string>
+    <string name="first_expense">First Expense</string>
+    <string name="second_expense">Second Expense</string>
+    <string name="third_expense">Third Expense</string>
+    <string name="clear_all">Clear All</string>
 
 
     <string name="title_activity_send_string">SendString</string>

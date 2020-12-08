@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Settings"
+            android:text="@string/Setbtn"
             android:textColor="@android:color/white" />
     </androidx.appcompat.widget.Toolbar>
 

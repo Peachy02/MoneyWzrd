@@ -59,7 +59,7 @@
     <string name="ToolbareditAcc">L\'éditeur de comptes</string>
     <string name="value">valeur</string>
     <string name="name">Nom</string>
-    <string name="welc2">Bienvenue</string>
+    <string name="welc2">"Bienvenue "</string>
     <string name="userPath">Utilisateurs</string>
     <string name="noacc_tv">Pas encore de comptes!</string>
     <string name="wentwrong">Quelque chose a mal tourné</string>
@@ -70,5 +70,21 @@
     <string name="SuccessGoogle">Connexion réussie avec Google!</string>
     <string name="UnsuccessGoogle">Connexion échouée avec Googel, essayer à nouveau S.V.P!</string>
     <string name="Linkedgoogle">Échec de connexion, le compte pourra être lié à Google dejá?</string>
+    <string name="Surelogout">Voulez-vous vraiment vous déconnecter?</string>
+    <string name="Mustenterfields">DOIT ENTRER TOUS LES CHAMPS OBLIGATOIRES</string>
+    <string name="selectduedate">Cliquez pour sélectionner l\'échéance</string>
+    <string name="totalexp">Dépenses totales: $</string>
+    <string name="RemExp">Retirer cette dépense</string>
+    <string name="Hasbeenpaidexp">A cette dépense été payée?</string>
+    <string name="morethanthree">Pas créer plus de trois dépenses!</string>
+    <string name="expensepaid">Dépense est payée</string>
+    <string name="Remallexp">Retirer toutes les dépenses</string>
+    <string name="Deletallexp">Voulez-vous retirer toutes ses dépenses?</string>
+    <string name="allexpclear">Toutes dépenses retirèrent</string>
+    <string name="successlog">Connexion réussie</string>
+    <string name="first_expense">Première dépense</string>
+    <string name="second_expense">Seconde dépense</string>
+    <string name="third_expense">Troisième dépense</string>
+    <string name="clear_all">Effacer tous</string>
 
 </resources>
