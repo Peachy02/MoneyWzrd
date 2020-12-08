@@ -14,6 +14,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 
 import static ispy.corp.moneywzrd.R.string.ok;
@@ -26,6 +28,7 @@ public class Settings_activity extends PreferenceActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_settings_activity);
         addPreferencesFromResource(R.xml.prefs);
+        //setHasOptionsMenu(true);
         Load_Setting();
     }
 
