@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:visibility="visible"
     android:background="@color/BackgroundPages"
-    tools:context=".Login_main">
+    tools:context=".Login.Login_main">
 
     <TextView
         android:id="@+id/banner"

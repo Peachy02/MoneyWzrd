@@ -2,7 +2,6 @@ package ispy.corp.moneywzrd.expenses;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -20,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,7 +36,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import ispy.corp.moneywzrd.Login_main;
+import ispy.corp.moneywzrd.Login.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.Settings_activity;
@@ -48,7 +46,6 @@ import static ispy.corp.moneywzrd.R.string.RemExp;
 import static ispy.corp.moneywzrd.R.string.logged;
 import static ispy.corp.moneywzrd.R.string.Mustenterfields;
 import static ispy.corp.moneywzrd.R.string.selectduedate;
-import static ispy.corp.moneywzrd.R.string.totalexp;
 import static ispy.corp.moneywzrd.R.string.ok;
 import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.morethanthree;

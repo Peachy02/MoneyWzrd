@@ -1,4 +1,4 @@
-package ispy.corp.moneywzrd;
+package ispy.corp.moneywzrd.Login;
 
 public class User {
 

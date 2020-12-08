@@ -1,4 +1,4 @@
-package ispy.corp.moneywzrd;
+package ispy.corp.moneywzrd.Login;
 
 
 import androidx.annotation.NonNull;
@@ -35,11 +35,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import ispy.corp.moneywzrd.R;
+
 import static ispy.corp.moneywzrd.R.string.Linkedgoogle;
-import static ispy.corp.moneywzrd.R.string.SuccessGoogle;
 import static ispy.corp.moneywzrd.R.string.UnsuccessGoogle;
 import static ispy.corp.moneywzrd.R.string.pass_reset;
-import static ispy.corp.moneywzrd.R.string.success_log;
 
 
 import static ispy.corp.moneywzrd.R.string.ok;

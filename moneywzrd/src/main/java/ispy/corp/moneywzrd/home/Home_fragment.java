@@ -1,8 +1,6 @@
 package ispy.corp.moneywzrd.home;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -37,11 +35,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import ispy.corp.moneywzrd.Login_main;
+import ispy.corp.moneywzrd.Login.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.Settings_activity;
-import ispy.corp.moneywzrd.User;
+import ispy.corp.moneywzrd.Login.User;
 import ispy.corp.moneywzrd.accounts.DAO.DAO;
 import ispy.corp.moneywzrd.accounts.adapter.RecyclerViewAdapter;
 import ispy.corp.moneywzrd.accounts.objects.Account;
