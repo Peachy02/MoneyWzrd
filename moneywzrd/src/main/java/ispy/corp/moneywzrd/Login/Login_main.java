@@ -45,9 +45,9 @@ import static ispy.corp.moneywzrd.R.string.pass_reset;
 import static ispy.corp.moneywzrd.R.string.ok;
 import static ispy.corp.moneywzrd.R.string.cancel;
 
-public class Login_main extends AppCompatActivity implements View.OnClickListener{
+public class Login_main extends AppCompatActivity implements View.OnClickListener{ //ISPY CORP
 
-    private TextView register, forgotPass;
+    private TextView register, forgotPass; //define all objects used in the code
     private EditText editTextEmail, editTextPassword;
     private Button signIn;
 
@@ -65,7 +65,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
     private int RC_SIGN_IN = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //references the objects used and sets their onclick to this activities onclick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
 
@@ -106,7 +106,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) { //onclick for this activity
         switch (v.getId()) {
             case R.id.register:
                 startActivity(new Intent(this, RegisterUser.class));
@@ -124,13 +124,13 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
 
     }
 
-    private void signIn() {
+    private void signIn() { //creates a sign in intent for google sign in
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { //on the activity result for the google sign in, it will handle the sign in for the task that is trying to be handled
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -138,7 +138,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) { //handles the google sign in, and makes a google account
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
             //Toast.makeText(Login_main.this, SuccessGoogle, Toast.LENGTH_LONG).show();
@@ -150,7 +150,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
         }
     }
 
-    private void FirebaseGoogleAuth(GoogleSignInAccount acct) {
+    private void FirebaseGoogleAuth(GoogleSignInAccount acct) { //signs the user in with their now created google sign in, and sets the current user in the firebase (will overwrite previous emails not signed into google) and change activities to the splash
         AuthCredential authCredential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
@@ -167,7 +167,7 @@ public class Login_main extends AppCompatActivity implements View.OnClickListene
         });
     }
 
-    private void forgotPass() {
+    private void forgotPass() { //method to handle if the user clicks forgot password, will send a password reset link to their email
         String email = editTextEmail.getText().toString().trim();
 
         if (email.isEmpty()){

@@ -21,10 +21,10 @@ import android.view.MenuItem;
 import static ispy.corp.moneywzrd.R.string.ok;
 import static ispy.corp.moneywzrd.R.string.cancel;
 
-public class Settings_activity extends PreferenceActivity {
+public class Settings_activity extends PreferenceActivity { //ISPY CORP
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //calls the settings method and adds the preference screen to the activity
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_settings_activity);
         addPreferencesFromResource(R.xml.prefs);
@@ -33,7 +33,7 @@ public class Settings_activity extends PreferenceActivity {
     }
 
 
-    private void Load_Setting(){
+    private void Load_Setting(){ //uses shared prefs to save preferences the user may chose, changes the background for night mode, and orientation preferences using preferences checkboxes
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean chk_night = sp.getBoolean("NIGHT", false);
         if (chk_night){
@@ -107,12 +107,12 @@ public class Settings_activity extends PreferenceActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() { //when the app resumes, load the same settings
         Load_Setting();
         super.onResume();
     }
 
-    public void onBackPressed() {
+    public void onBackPressed() { //handles android back press from settings page
         new AlertDialog.Builder(this)
                 .setMessage(R.string.exit)
                 .setCancelable(false)

@@ -25,7 +25,7 @@ import ispy.corp.moneywzrd.R;
 import static ispy.corp.moneywzrd.R.string.fail_regis;
 import static ispy.corp.moneywzrd.R.string.usr_regis;
 
-public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
+public class RegisterUser extends AppCompatActivity implements View.OnClickListener{ //ISPY CORP
 
 
     private TextView banner, registerUser;
@@ -34,7 +34,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth mAuth;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //defines objects within the activity for reference in the code
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
 
@@ -54,14 +54,14 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onStart() {
+    public void onStart() { //at the start it will set the current user
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) { //switch case handling the clicks
         switch (v.getId()) {
             case R.id.banner:
                 startActivity(new Intent(this, Login_main.class));
@@ -72,7 +72,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void registerUser() {
+    private void registerUser() { //this method checks to see if the user has entered valid information and then creates a user account within the firebase database, once its done it will direct to login
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
         String fullName = editTextFullName.getText().toString().trim();
