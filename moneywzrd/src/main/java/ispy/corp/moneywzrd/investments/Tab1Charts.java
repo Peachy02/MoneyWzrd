@@ -69,7 +69,6 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
     Button changeButton;
     WebView indicatorView;
     Spinner indicatorSpinner;
-    ImageButton fbButton;
     ShareDialog shareDialog;
     String lastRendered = "";
 
@@ -83,12 +82,12 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
 
 
         View layout = inflater.inflate(R.layout.tab1charts, container, false);
-        tableView = (RecyclerView) layout.findViewById(R.id.pricetable);
-        favorite = (ImageButton) layout.findViewById(R.id.imageButton3);
-        progressBar =  (ProgressBar) layout.findViewById(R.id.progressBar);
-        indicatorView =(WebView) layout.findViewById(R.id.indicatorView);
-        indicatorSpinner =(Spinner) layout.findViewById(R.id.spinner);
-        fbButton =(ImageButton) layout.findViewById(R.id.fbButton);
+        tableView =  layout.findViewById(R.id.pricetable);
+        favorite = layout.findViewById(R.id.imageButton3);
+        progressBar =  layout.findViewById(R.id.progressBar);
+        indicatorView = layout.findViewById(R.id.indicatorView);
+        indicatorSpinner = layout.findViewById(R.id.spinner);
+
         context = getActivity();
         changeButton = (Button) layout.findViewById(R.id.indicatorButton);
         isFav = ((AddStock)context).isFav;
@@ -98,16 +97,12 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
             favorite.setImageResource(R.drawable.star);
         }
         final String symPassed = ((AddStock)getActivity()).message;
-        Log.d("Symbol",symPassed);
         String JsonURL = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+symPassed+"&outputsize=full&apikey=7GFR6K8SGU99N55C";
-        Log.d("Making request again",symPassed);
-        Log.d("pooja","outside");
-        spinner = (Spinner) layout.findViewById(R.id.spinner);
+        spinner = layout.findViewById(R.id.spinner);
         ArrayAdapter spinnerAdapter = ArrayAdapter.createFromResource(this.context,R.array.indicators,R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(this);
         if(!(((AddStock)getActivity()).isSet)) {
-            Log.d("pooja","called");
             ((AddStock)getActivity()).isSet = true;
             RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
@@ -188,25 +183,7 @@ public class Tab1Charts extends Fragment implements AdapterView.OnItemSelectedLi
             }});
 
         shareDialog = new ShareDialog(getActivity());
-        fbButton.setOnClickListener(new View.OnClickListener(){
 
-            @Override
-            public void onClick(View v) {
-                String renderMe = lastRendered.toLowerCase();
-                Log.d("fbButton","FaceBook button");
-                Bitmap image = BitmapFactory.decodeFile(Environment.getExternalStorageDirectory().toString()+"/yahoo.jpg",new BitmapFactory.Options());
-                if (ShareDialog.canShow(ShareLinkContent.class)){
-                    ShareLinkContent content = new ShareLinkContent.Builder()
-                            .setContentUrl(Uri.parse("http://www-scf.usc.edu/~deole/high"+renderMe+".php/?sym="+symPassed))
-                            .build();
-
-                    shareDialog.show(content);
-                }
-
-
-
-            }
-        });
 
 
 
