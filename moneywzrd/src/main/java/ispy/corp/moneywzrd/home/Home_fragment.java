@@ -83,8 +83,6 @@ public class Home_fragment extends Fragment {
         context = rootView.getContext();
         ExtractDB();
 
-
-
         TextView msg = rootView.findViewById(R.id.friendlymsg);
         TextView eHome1 = (TextView)rootView.findViewById(R.id.eHome1);
         TextView eHome2 = (TextView)rootView.findViewById(R.id.eHome2);

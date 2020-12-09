@@ -113,7 +113,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         int importance = NotificationManager.IMPORTANCE_HIGH;
         NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
         Notification notification = new Notification.Builder(getActivity())
-                .setContentTitle("Payment Confirmation")
+                .setContentTitle("Payment Confirmation:")
                 .setContentText("Congratulations, and expense has been paid!")
                 .setSmallIcon(R.drawable.expenses_icon)
                 .setChannelId(CHANNEL_ID)
