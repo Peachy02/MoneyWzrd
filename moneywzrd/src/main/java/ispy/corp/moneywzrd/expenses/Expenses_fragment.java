@@ -57,7 +57,7 @@ import static ispy.corp.moneywzrd.R.string.allexpclear;
 import static ispy.corp.moneywzrd.R.string.logout;
 import static ispy.corp.moneywzrd.R.string.Surelogout;
 
-public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
+public class Expenses_fragment extends Fragment { //ISPY CORP.
 
     View rootView;
 
@@ -69,8 +69,8 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, //references all objects that are modified and modifies these objects once a user adds or deletes and expense
+                             @Nullable Bundle savedInstanceState) { //uses shared prefs to store values and will be remembered and available for use in home page or when app restarts
 
         rootView = inflater.inflate(R.layout.expenses_fragment, container, false);
         TextView msg = (TextView) rootView.findViewById(R.id.friendlymsg);
@@ -107,6 +107,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         setHasOptionsMenu(true);
         int total;
 
+        //notification channel and manager code
         int notifyID = 1;
         String CHANNEL_ID = "my_channel_01";
         CharSequence name = "Expense";
@@ -136,7 +137,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             do1.setVisibility(View.VISIBLE);
         }
 
-        //do above for the rest of the expenses
+        //sets values if anything is saved
         expense2.setText(pref.getString("expense2", ""));
         date2.setText(pref.getString("date2", ""));
         price2.setText(pref.getString("price2", ""));
@@ -151,7 +152,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             c2.setVisibility(View.VISIBLE);
             do2.setVisibility(View.VISIBLE);
         }
-
+        //sets values if anything is saved
         expense3.setText(pref.getString("expense3", ""));
         date3.setText(pref.getString("date3", ""));
         price3.setText(pref.getString("price3", ""));
@@ -170,11 +171,11 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             msg.setText(R.string.noExp);
         }
 
-
+        //listener for the add expense button
         addExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext()); //creates and displays an alert dialog for adding an expense
                 builder.setTitle(R.string.ExpEnt);
 
                 final EditText input1 = new EditText(getContext());
@@ -226,16 +227,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                         if (input1.getText().toString().isEmpty() || input2.getText().toString().equals(getString(selectduedate)) || price.getText().toString().isEmpty() || price.getText().toString().equals("$")) {
                             Toast.makeText(getContext(), Mustenterfields, Toast.LENGTH_LONG).show();
                             dialog.cancel();
-                           // input1.setError("Cannot be empty!");
-                           // input1.requestFocus();
-                        }
-                        /*if (input2.getText().toString().equals("Click to select due date")) {
-                            input2.setError("Date required!");
-                            input2.requestFocus();
-                        }
 
-                         */
-
+                        }
+                        //else if statements to add inputs to shared prefs and pick the textviews that need to be modified
                         else if (expense1.getText().toString().equals("") && date1.getText().toString().equals("")) {
                             //String input = input.getText().toString();
                             String i1 = input1.getText().toString();
@@ -315,7 +309,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
             }
         });
 
-        c1.setOnClickListener(new View.OnClickListener() {
+        c1.setOnClickListener(new View.OnClickListener() { //checkbox ones listener that will delete the first expense (uses alert dialog and displays notification)
             @Override
             public void onClick(View v) {
 
@@ -362,7 +356,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
             }
         });
-        c2.setOnClickListener(new View.OnClickListener() {
+        c2.setOnClickListener(new View.OnClickListener() { //checkbox twos listener (uses a alert dialog to ask if the user is sure)
             @Override
             public void onClick(View v) {
 
@@ -409,7 +403,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
             }
         });
-        c3.setOnClickListener(new View.OnClickListener() {
+        c3.setOnClickListener(new View.OnClickListener() { //checkbox for 3rd expense
             @Override
             public void onClick(View v) {
 
@@ -456,7 +450,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
             }
         });
-        clearExp.setOnClickListener(new View.OnClickListener() {
+        clearExp.setOnClickListener(new View.OnClickListener() { //clear all expenses button listener
             @Override
             public void onClick(View v) {
 
@@ -506,7 +500,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
                         int total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
                         String tot = String.valueOf(total);
-                        totalE.setText("Total expenses : $ " + tot);
+                        totalE.setText("Total expenses : $ " + tot); //sets the total of all expenses by adding all the ints of price and converting it to string to display
 
                         Toast.makeText(getContext(), allexpclear, Toast.LENGTH_LONG).show();
                     }
@@ -526,7 +520,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
 
         total = Integer.parseInt(price1.getText().toString()) + Integer.parseInt(price2.getText().toString()) + Integer.parseInt(price3.getText().toString());
         String tot = String.valueOf(total);
-        totalE.setText("Total expenses : $ " + tot);
+        totalE.setText("Total expenses : $ " + tot); //sets the total of all expenses by adding all the ints of price and converting it to string to display
 
 
 
@@ -534,23 +528,16 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
     }
 
 
-    /*@Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        Button addExpenses = (Button)getActivity().findViewById(R.id.addExpense);
-    }
-
-     */
-
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) { //inflate the toolbar menu so that settings and logout are accessible
         inflater.inflate(R.menu.toolbar_menu, menu);
         super.onCreateOptionsMenu(menu,inflater);
     }
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) { //handles the overflow menu selections, such as logout will signout the firebase user and settings will redirect to settings activity
         switch (item.getItemId()) {
             case R.id.sign_out: {
-                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
+                AlertDialog.Builder uSure = new AlertDialog.Builder(getContext()); //alert dialog to logout
                 uSure.setTitle(logout);
                 uSure.setMessage(Surelogout);
                 uSure.setPositiveButton(ok, new DialogInterface.OnClickListener() {

@@ -25,12 +25,12 @@ import ispy.corp.moneywzrd.investments.Investment_fragment;
 import static ispy.corp.moneywzrd.R.string.ok;
 import static ispy.corp.moneywzrd.R.string.cancel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity { //ISPY CORP.
 
     private ConstraintLayout ml;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //displays the bottom navigation that shows the other pages and loads the current settings
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView bottomNav = findViewById(R.id.nav_view);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void Load_settings() {
+    private void Load_settings() { //loads the settings saved into shared prefs by the user in the settings activity
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         boolean chk_night = sp.getBoolean("NIGHT", false);
         if (chk_night){
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-    public void onBackPressed() {
+    public void onBackPressed() { //handles the back press within the main activity (all fragments are in the main activity)
         new AlertDialog.Builder(this)
                 .setMessage(R.string.Exitapp)
                 .setCancelable(false)
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() { //loads the settings even when the app resumes
         Load_settings();
         super.onResume();
     }

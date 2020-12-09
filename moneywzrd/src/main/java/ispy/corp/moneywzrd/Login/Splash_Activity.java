@@ -26,7 +26,7 @@ import static ispy.corp.moneywzrd.R.string.exclamation;
 import static ispy.corp.moneywzrd.R.string.wentwrong;
 import static ispy.corp.moneywzrd.R.string.successlog;
 
-public class Splash_Activity extends AppCompatActivity {
+public class Splash_Activity extends AppCompatActivity { //ISPY CORP
 
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -34,7 +34,7 @@ public class Splash_Activity extends AppCompatActivity {
     private Handler mHandler = new Handler();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //This is used to display the splash screen for 4 seconds upon login before it redirects to the main app. It uses a image and progress bar, while displaying the users name
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_);
 
