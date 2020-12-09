@@ -1,5 +1,6 @@
 package ispy.corp.moneywzrd.accounts.objects;
-
+//ISpy Corp
+//Object class with getters and setters for names and values in accounts
 public class Account {
     String name;
     Integer value;
