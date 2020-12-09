@@ -1,4 +1,4 @@
-package ispy.corp.moneywzrd;
+package ispy.corp.moneywzrd.Login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+
+import ispy.corp.moneywzrd.R;
 
 import static ispy.corp.moneywzrd.R.string.fail_regis;
 import static ispy.corp.moneywzrd.R.string.usr_regis;

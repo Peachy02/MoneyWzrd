@@ -59,7 +59,6 @@
     <string name="ToolbareditAcc">Account editor</string>
     <string name="value">Value:</string>
     <string name="name">Name:</string>
-    <string name="welc2">Welcome </string>
     <string name="userPath">Users</string>
     <string name="noacc_tv">You have no accounts yet!</string>
     <string name="wentwrong">Something went wrong!</string>
@@ -90,12 +89,14 @@
 
 
     <string name="title_activity_send_string">SendString</string>
-    <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="facebook_app_id">166172813978375</string>
     <string name="share">Share</string>
     <string name="start_watching_stocks">Start Watching Stocks</string>
     <string name="exit2">Are you sure you want to exit stocks?</string>
+    <string name="warn">Warning!</string>
+    <string name="suredelet">Are you sure you want to delete</string>
+    <string name="questionmark">\?</string>
 
     <string-array name="indicators">
             <item>Price</item>

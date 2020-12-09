@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".investments.StockActivity"/>
         <activity android:name=".Settings_activity" />
-        <activity android:name=".Splash_Activity" />
+        <activity android:name=".Login.Splash_Activity" />
         <activity android:name=".accounts.AccountData" />
         <activity android:name=".investments.AddStock"
             android:parentActivityName=".investments.StockActivity">
@@ -23,9 +23,9 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value="ispy.corp.moneywzrd.investments.StockActivity" />
         </activity>
-        <activity android:name=".RegisterUser" />
+        <activity android:name=".Login.RegisterUser" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Login_main">
+        <activity android:name=".Login.Login_main">
 
 
             <intent-filter>

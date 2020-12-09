@@ -1,4 +1,4 @@
-package ispy.corp.moneywzrd;
+package ispy.corp.moneywzrd.Login;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +19,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import ispy.corp.moneywzrd.MainActivity;
+import ispy.corp.moneywzrd.R;
+
 import static ispy.corp.moneywzrd.R.string.exclamation;
-import static ispy.corp.moneywzrd.R.string.welc2;
 import static ispy.corp.moneywzrd.R.string.wentwrong;
 import static ispy.corp.moneywzrd.R.string.successlog;
 
@@ -46,7 +48,7 @@ public class Splash_Activity extends AppCompatActivity {
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String wel = getString(welc2);
+                String wel = "Welcome ";
                 String exc = getString(exclamation);
                 User userprofile = snapshot.getValue(User.class);
                 if (userprofile != null) {

@@ -86,5 +86,8 @@
     <string name="second_expense">Seconde dépense</string>
     <string name="third_expense">Troisième dépense</string>
     <string name="clear_all">Effacer tous</string>
+    <string name="warn">Avertissement!</string>
+    <string name="suredelet">Êtes-vous sûr de vouloir effacer ça?</string>
+    <string name="questionmark">\?</string>
 
 </resources>

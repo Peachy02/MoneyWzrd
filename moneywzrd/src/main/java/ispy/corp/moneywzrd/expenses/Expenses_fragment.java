@@ -2,10 +2,12 @@ package ispy.corp.moneywzrd.expenses;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,7 +39,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import ispy.corp.moneywzrd.Login_main;
+import ispy.corp.moneywzrd.Login.Login_main;
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.Settings_activity;
@@ -48,7 +49,6 @@ import static ispy.corp.moneywzrd.R.string.RemExp;
 import static ispy.corp.moneywzrd.R.string.logged;
 import static ispy.corp.moneywzrd.R.string.Mustenterfields;
 import static ispy.corp.moneywzrd.R.string.selectduedate;
-import static ispy.corp.moneywzrd.R.string.totalexp;
 import static ispy.corp.moneywzrd.R.string.ok;
 import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.morethanthree;
@@ -67,6 +67,7 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         return new Expenses_fragment();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -106,6 +107,17 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
         setHasOptionsMenu(true);
         int total;
 
+        int notifyID = 1;
+        String CHANNEL_ID = "my_channel_01";
+        CharSequence name = "Expense";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+        Notification notification = new Notification.Builder(getActivity())
+                .setContentTitle("Payment Confirmation:")
+                .setContentText("Congratulations, and expense has been paid!")
+                .setSmallIcon(R.drawable.expenses_icon)
+                .setChannelId(CHANNEL_ID)
+                .build();
 
         //sets values if anything is saved
         expense1.setText(pref.getString("expense1", ""));
@@ -314,6 +326,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (c1.isChecked()) {
+                            NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                            mNotificationManager.createNotificationChannel(mChannel);
+                            mNotificationManager.notify(notifyID , notification);
                             price1.setText("0");
                             price1.setVisibility(View.INVISIBLE);
                             editor.remove("expense1");
@@ -358,6 +373,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (c2.isChecked()) {
+                            NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                            mNotificationManager.createNotificationChannel(mChannel);
+                            mNotificationManager.notify(notifyID , notification);
                             price2.setText("0");
                             price2.setVisibility(View.INVISIBLE);
                             editor.remove("expense2");
@@ -402,6 +420,9 @@ public class Expenses_fragment extends Fragment { //brandon nicoll - n01338740
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (c3.isChecked()) {
+                            NotificationManager mNotificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                            mNotificationManager.createNotificationChannel(mChannel);
+                            mNotificationManager.notify(notifyID , notification);
                             price3.setText("0");
                             price3.setVisibility(View.INVISIBLE);
                             editor.remove("expense3");
