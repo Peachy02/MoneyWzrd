@@ -50,7 +50,8 @@ import static ispy.corp.moneywzrd.R.string.logout;
 import static ispy.corp.moneywzrd.R.string.ok;
 import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.Surelogout;
-
+//ISpy Corp
+//Home fragment screen in the main activity
 public class Home_fragment extends Fragment {
 
     View rootView;
@@ -82,7 +83,7 @@ public class Home_fragment extends Fragment {
         rv = rootView.findViewById(R.id.rvh);
         context = rootView.getContext();
         ExtractDB();
-
+        //gathers all the data from the shared preferences from the expenses
         TextView msg = rootView.findViewById(R.id.friendlymsg);
         TextView eHome1 = (TextView)rootView.findViewById(R.id.eHome1);
         TextView eHome2 = (TextView)rootView.findViewById(R.id.eHome2);
@@ -90,13 +91,14 @@ public class Home_fragment extends Fragment {
         TextView eDate1 = (TextView)rootView.findViewById(R.id.eDate1);
         TextView eDate2 = (TextView)rootView.findViewById(R.id.eDate2);
         TextView eDate3 = (TextView)rootView.findViewById(R.id.eDate3);
+        //Sets the expenses textview to the values in shared preferences
         eHome1.setText(pref.getString("expense1", null));
         eHome2.setText(pref.getString("expense2", null));
         eHome3.setText(pref.getString("expense3", null));
         eDate1.setText(pref.getString("date1", null));
         eDate2.setText(pref.getString("date2", null));
         eDate3.setText(pref.getString("date3", null));
-
+        //Sets the empty textview to show the message if you have no expenses
         if (eHome1.getText().toString().equals("") && eDate1.getText().toString().equals("") && eHome2.getText().toString().equals("") && eDate2.getText().toString().equals("") && eHome3.getText().toString().equals("") && eDate3.getText().toString().equals("")) {
             msg.setText(R.string.noExp);
         }
@@ -107,6 +109,7 @@ public class Home_fragment extends Fragment {
 
         TextView welcome = (TextView)rootView.findViewById(R.id.welcomeName);
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            //Sets the textview for the greeting message
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String wel = rootView.getResources().getString(R.string.welc);
@@ -122,7 +125,7 @@ public class Home_fragment extends Fragment {
                     welcome.setText(String.format("%s%s%s", wel, "User", exc));
                 }
             }
-
+            //Displays an error message if you cancel the onCreate
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), wentwrong, Toast.LENGTH_LONG).show();
@@ -132,16 +135,18 @@ public class Home_fragment extends Fragment {
 
         return rootView;
     }
-
+    //Inflates the overflow menu
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
         super.onCreateOptionsMenu(menu,inflater);
     }
+    //Handles the button clicks for overflow menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.sign_out: {
+                //Alertdialog to ask user if they are sure they want to exit
                 AlertDialog.Builder uSure = new AlertDialog.Builder(getContext());
                 uSure.setTitle(logout);
                 uSure.setMessage(Surelogout);
@@ -172,7 +177,7 @@ public class Home_fragment extends Fragment {
         }
         return true;
     }
-
+    //Extracts data from the sql database in the DAO to fill up the recyclerview of accounts in the home page
     private void ExtractDB() {
         DAO dao2 = new DAO(getActivity().getApplicationContext());
 

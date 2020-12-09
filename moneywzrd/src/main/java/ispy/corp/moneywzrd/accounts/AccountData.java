@@ -19,11 +19,14 @@ import ispy.corp.moneywzrd.accounts.objects.Account;
 import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.ok;
 
+//ISpy Corp
+//Activity that opens from the editbutton in accounts fragment
 public class AccountData extends AppCompatActivity {
     TextView nameet,valueet;
     String whichAccount;
     Button editbtn, deletebtn, backbtn;
 
+    //Creates the layout for AccountData
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +46,7 @@ public class AccountData extends AppCompatActivity {
         Intent intent = getIntent();
         //get which account was clicked
         whichAccount = intent.getStringExtra("name");
-
+        //sets the textviews to the values gathered from the strings in the table
         nameet.setText(intent.getStringExtra("name"));
         valueet.setText(intent.getStringExtra("value"));
         String display = valueet.getText().toString();
@@ -53,24 +56,25 @@ public class AccountData extends AppCompatActivity {
 
             valueet.setText(display);
         }
-
+        //Handles back button press
         backbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-
+        //handles edit button press
         editbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editAccount();
             }
         });
+        //handles delete button press
         deletebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //Shows an alert dialog to confirm deletion, if confirmed it deletes that entry in the table in the database
                 AlertDialog.Builder confirmdel = new AlertDialog.Builder(AccountData.this);
                 confirmdel.setTitle(R.string.warn);
                 confirmdel.setMessage(getString(R.string.suredelet) + whichAccount + getString(R.string.questionmark));
@@ -87,6 +91,7 @@ public class AccountData extends AppCompatActivity {
             }
         });
     }
+    //Edits the account according to the one selected on the recyclerView, using the name passed from it to define the entry
     private void editAccount() {
         DAO dao = new DAO(getApplicationContext());
         Account accountedit = new Account();
@@ -96,6 +101,7 @@ public class AccountData extends AppCompatActivity {
         dao.close();
         finish();
     }
+    //Deletes the account using the selected entry to choose which one
     private void deleteAccount() {
         DAO dao = new DAO(getApplicationContext());
         dao.deleteAccount(whichAccount);

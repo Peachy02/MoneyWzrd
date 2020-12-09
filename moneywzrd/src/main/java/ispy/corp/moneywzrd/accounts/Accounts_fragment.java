@@ -45,7 +45,8 @@ import static ispy.corp.moneywzrd.R.string.logout;
 import static ispy.corp.moneywzrd.R.string.ok;
 import static ispy.corp.moneywzrd.R.string.Mustenterfields;
 
-
+//ISpy Corp
+//Screen on the main app for accounts
 public class Accounts_fragment extends Fragment {
 
     Context context;
@@ -74,7 +75,7 @@ public class Accounts_fragment extends Fragment {
         context = V.getContext();
         ExtractDB();
         noacc(noacc);
-
+        //Plus button handling to add a new account
         addAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +122,7 @@ public class Accounts_fragment extends Fragment {
         });
         return V;
     }
-
+    //Set the textview with the message that you have no accounts to invisible if there are no items in the recyclerview
     private void noacc(TextView noacc) {
         if (rvAdap.getItemCount() == 0)
         {
@@ -132,12 +133,13 @@ public class Accounts_fragment extends Fragment {
             noacc.setVisibility(View.GONE);
         }
     }
-
+    //Inflates the overflow menu
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.toolbar_menu, menu);
         super.onCreateOptionsMenu(menu,inflater);
     }
+    //Inserts the account name and value gathered from the user into the database
     private void insertAccount(EditText name, EditText value) {
         DAO dao = new DAO(getActivity().getApplicationContext());
         Account account = new Account();
@@ -146,7 +148,7 @@ public class Accounts_fragment extends Fragment {
         dao.insertAccount(account, null);
         dao.close();
     }
-
+    //Handles the button clicks in the overflow menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -181,6 +183,7 @@ public class Accounts_fragment extends Fragment {
         }
         return true;
     }
+    //Extracts the database to fill up the recyclerview
     public void ExtractDB() {
         DAO dao2 = new DAO(getActivity().getApplicationContext());
 
@@ -205,6 +208,7 @@ public class Accounts_fragment extends Fragment {
         rvAdap = new RecyclerViewAdapter(context,data_names, data_values);
         rv.setAdapter(rvAdap);
     }
+    //Extracts the database even when you add a new one
     @Override
     public void onResume(){
         super.onResume();

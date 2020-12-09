@@ -11,24 +11,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ispy.corp.moneywzrd.accounts.objects.Account;
-
+//ISpy Corp
+//Data access object
 public class DAO extends SQLiteOpenHelper {
+    //Creates a data bank in SQLite
     public DAO(Context context){
         super(context,"banco",null, 11);
     }
+
+    //Creates a table account in the database to save the name and value of the accounts
     @Override
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE account(name TEXT UNIQUE,value Integer);";
         db.execSQL(sql);
     }
-
+    //Updates the table if it already exists
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         String sql = "DROP TABLE IF EXISTS account;";
         db.execSQL(sql);
         onCreate(db);
     }
-
+    //Inserts account name and value if the parameter passed to whichAcc is not null, that works with the edit button to edit the account name you selected, if
+    //it is null it just gets the name that you put
     public void insertAccount(Account account, String whichAcc) {
         SQLiteDatabase db = getWritableDatabase();
 
@@ -49,6 +54,7 @@ public class DAO extends SQLiteOpenHelper {
             db.update("account",data,"name = ?", new String[]{whichAcc});
         }
     }
+    //This method goes over the values stored in the table account, it return accounts, with the names and values in that list
     public List<Account> searchAccount(){
         SQLiteDatabase db = getReadableDatabase();
         String sql = "SELECT * FROM account;";
@@ -68,6 +74,7 @@ public class DAO extends SQLiteOpenHelper {
         return accounts;
 
     }
+    //This deletes the account from the table which has the same name as the parameter passed
     public void deleteAccount(String name){
         SQLiteDatabase db = getWritableDatabase();
         String sql = "DELETE FROM account WHERE name = " + "'" + name + "'";
