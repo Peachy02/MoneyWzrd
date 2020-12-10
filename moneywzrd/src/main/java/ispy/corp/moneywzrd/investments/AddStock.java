@@ -1,46 +1,31 @@
 package ispy.corp.moneywzrd.investments;
-
-
+//ISpy Corp
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
-
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import ispy.corp.moneywzrd.Login_main;
-import ispy.corp.moneywzrd.MainActivity;
+import ispy.corp.moneywzrd.Login.Login_main;
 import ispy.corp.moneywzrd.R;
 import ispy.corp.moneywzrd.Settings_activity;
-
-import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.logged;
-import static ispy.corp.moneywzrd.R.string.ok;
+
 
 public class AddStock extends AppCompatActivity {
-
-
-
-
+    //Declaration of variables
     private AddStock.SectionsPagerAdapter mSectionsPagerAdapter;
-
-
     private ViewPager mViewPager;
     public String message;
     public boolean isSet;
@@ -53,47 +38,30 @@ public class AddStock extends AppCompatActivity {
         setContentView(R.layout.activity_send_string);
 
         Intent intent = getIntent();
-        message = intent.getStringExtra("my_data");
-        isFav = intent.getBooleanExtra("favorite", false);
-
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        message = intent.getStringExtra(getString(R.string.MyData));
+        isFav = intent.getBooleanExtra(getString(R.string.fav), false);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(message);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
-
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-
     }
-
-
     @Override
+    //grabs the toolbar
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     }
-
-
-
-
-
+    //Builds the different pages and allows you to switch between them
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
-
         @Override
         public Fragment getItem(int position) {
             switch(position){
@@ -113,60 +81,35 @@ public class AddStock extends AppCompatActivity {
         }
 
         @Override
+        //setting how many fragments there are see SectionsPagerAdapter
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
 
+        //Sets the string names for the action bar fragments
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Charts";
+                    return getString(R.string.Charts);
                 case 1:
-                    return "History";
+                    return getString(R.string.History);
                 case 2:
-                    return "News Feed";
+                    return getString(R.string.NewsFeed);
             }
             return null;
         }
     }
 
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setMessage(R.string.exit2)
-                .setCancelable(false)
-                .setPositiveButton(ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        startActivity(new Intent(AddStock.this, MainActivity.class));
-                    }
-                })
-                .setNegativeButton(cancel, null)
-                .show();
-
-    }
-
-
-
-
+    //This sets functionality for overflow sign out and settings
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-
-
-
         switch (item.getItemId()) {
             case R.id.sign_out: {
                 AlertDialog.Builder uSure = new AlertDialog.Builder(this);
-                uSure.setTitle("Logout");
-                uSure.setMessage("Are you sure you want to logout?");
-                uSure.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                uSure.setTitle(R.string.logout);
+                uSure.setMessage(R.string.Surelogout);
+                uSure.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         FirebaseAuth.getInstance().signOut();
@@ -175,7 +118,7 @@ public class AddStock extends AppCompatActivity {
 
                     }
                 });
-                uSure.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                uSure.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -189,10 +132,8 @@ public class AddStock extends AppCompatActivity {
                 startActivity(new Intent(this, Settings_activity.class));
                 break;
             }
-
         }
         return super.onOptionsItemSelected(item);
-
     }
 
 

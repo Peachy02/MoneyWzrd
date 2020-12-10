@@ -88,15 +88,38 @@
     <string name="clear_all">Clear All</string>
 
 
-    <string name="title_activity_send_string">SendString</string>
-    <string name="section_format">Hello World from section: %1$d</string>
-    <string name="facebook_app_id">166172813978375</string>
-    <string name="share">Share</string>
+
+
+
     <string name="start_watching_stocks">Start Watching Stocks</string>
     <string name="exit2">Are you sure you want to exit stocks?</string>
     <string name="warn">Warning!</string>
     <string name="suredelet">Are you sure you want to delete</string>
     <string name="questionmark">\?</string>
+    <string name="Charts">Charts</string>
+    <string name="History">History</string>
+    <string name="NewsFeed">News Feed</string>
+    <string name="fav">favorite</string>
+    <string name="MyData">my_data</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="removefav">Remove from favorites?</string>
+    <string name="symbol">Symbol</string>
+    <string name="ascend">Ascending</string>
+    <string name="price">Price</string>
+    <string name="change">Change</string>
+    <string name="decend">Descending</string>
+    <string name="channel">channel</string>
+    <string name="item">item</string>
+    <string name="title">title</string>
+    <string name="publishdate">pubDate</string>
+    <string name="author">sa:author_name</string>
+    <string name="link">link</string>
+    <string name="stockMsg">Please enter a Stock name or a symbol</string>
+    <string name="errorfetch">Error while fetching API</string>
+    <string name="timeSeries">Time Series (Daily)</string>
+    <string name="Metadata">Meta Data</string>
+
 
     <string-array name="indicators">
             <item>Price</item>

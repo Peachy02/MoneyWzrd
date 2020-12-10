@@ -1,12 +1,8 @@
-
-
-    <androidx.core.widget.NestedScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,17 +34,6 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:textSize="20sp"
-        android:textColor="@android:color/black"
-        android:text="Indicators"
-        android:layout_below="@id/pricetable"
-        android:layout_alignStart="@id/textView" />
-
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -63,15 +48,6 @@
         android:layout_alignBottom="@+id/textView"
         android:layout_alignTop="@+id/textView" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/textView2"
-        android:layout_marginStart="10dp"
-        android:layout_alignBottom="@id/textView2"
-        android:layout_alignTop="@id/textView2"/>
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -85,19 +61,10 @@
             android:id="@+id/indicatorView"
             android:layout_width="350dp"
             android:layout_height="300dp"
-            android:layout_below="@+id/textView2"
+            android:layout_below="@+id/pricetable"
             android:layout_marginTop="53dp"
             android:visibility="gone"/>
 
-        <Button
-            android:id="@+id/indicatorButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/progressBar"
-            android:layout_marginTop="280dp"
-            style="?android:attr/borderlessButtonStyle"
-            android:text="Change" />
 
 
     </RelativeLayout>

@@ -1,41 +1,31 @@
 package ispy.corp.moneywzrd.investments;
-
+//ISpy Corp
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.Collections;
 import java.util.List;
-
 import ispy.corp.moneywzrd.R;
 
-/**
- * Created by poojadeole on 11/21/17.
- */
+
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
-
     private  final LayoutInflater inflator;
     List<NewsInfo> newsdata = Collections.emptyList();
     Context context;
-
+//setting the news page inflator
     public NewsAdapter(Context context, List<NewsInfo> newsdata){
         inflator = LayoutInflater.from(context);
         this.context = context;
         this.newsdata = newsdata;
-
     }
-
-
-
     @Override
     public NewsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflator.inflate(R.layout.custom_news,parent,false);
@@ -44,7 +34,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     }
 
 
-
+//this method will bind the information to the null text views to give the information about stock specific
     @Override
     public void onBindViewHolder(NewsViewHolder holder, int position) {
         final NewsInfo currentNews = newsdata.get(position);
@@ -54,7 +44,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.ntitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("link",currentNews.nlink);
                 String url = currentNews.nlink;
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
@@ -62,15 +51,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             }});
     }
 
+
     @Override
+    //sets the text views
     public int getItemCount() {
         return newsdata.size();
     }
-
     class NewsViewHolder extends RecyclerView.ViewHolder{
         TextView ntitle;
         TextView nauthor;
         TextView ndate;
+
+        //links text views to proper ids
         public NewsViewHolder(View itemView) {
             super(itemView);
             ntitle = (TextView) itemView.findViewById(R.id.newstitle);
@@ -81,3 +73,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         }
     }
 }
+
+
+

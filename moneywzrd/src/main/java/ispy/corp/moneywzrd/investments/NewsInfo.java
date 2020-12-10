@@ -1,9 +1,7 @@
 package ispy.corp.moneywzrd.investments;
+//ISpy Corp
 
-/**
- * Created by poojadeole on 11/21/17.
- */
-
+//sets the strings for article
 public class NewsInfo {
     String ntitle;
     String nauthor;

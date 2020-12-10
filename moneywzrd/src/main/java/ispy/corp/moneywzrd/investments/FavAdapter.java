@@ -1,46 +1,42 @@
 package ispy.corp.moneywzrd.investments;
-
+//ISpy Corp
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-//import android.support.v7.app.AlertDialog;
-//import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import ispy.corp.moneywzrd.R;
 
-/**
- * Created by poojadeole on 11/23/17.
- */
+
 
 public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
+   //setting class variables
     private LayoutInflater inflator;
-    List<FavInfo> favdata = Collections.emptyList();
+    List<FavInfo> favdata;
     private Context context;
+
 
     public FavAdapter(Context context, List<FavInfo> favdata){
         inflator = LayoutInflater.from(context);
         this.context = context;
         this.favdata = favdata;
     }
+
     @Override
     public FavViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflator.inflate(R.layout.custom_fav,parent,false);
-        FavViewHolder holder = new FavViewHolder(context, view);
+        FavViewHolder holder = new FavViewHolder(view);
         return holder;
     }
 
@@ -51,66 +47,56 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
         holder.fprice.setText(current.favprice);
         holder.fchange.setText(current.favchange);
         if(current.favchange.charAt(0)!='-'){
-            holder.fchange.setTextColor(Color.parseColor("#32CD32"));
+            holder.fchange.setTextColor(Color.parseColor("#32CD32")); //not allowed to extract colour resource string
                                 }
                                else{
-            holder.fchange.setTextColor(Color.parseColor("#FF0000"));
+            holder.fchange.setTextColor(Color.parseColor("#FF0000"));//not allowed to extract colour resource string
                                 }
         holder.favRow.setOnLongClickListener(new View.OnLongClickListener() {
+
+            //this gives you the option to remove your favorite stocks from the main screen
             @Override
             public boolean onLongClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder((StockActivity)context);
-                builder.setTitle("Remove from favorites?");
-                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle(R.string.removefav);
+                builder.setPositiveButton(R.string.Yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int which) {
                         ((StockActivity)context).removeFav(current.favsym);
                         dialog.dismiss();
-                        Toast.makeText(context, "Selected Item Deleted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Selected Item Deleted", Toast.LENGTH_SHORT).show(); //not allowed to extract toast string here
                     }
                 });
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.No, new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        // Do nothing
                         dialog.dismiss();
                     }
                 });
 
                 AlertDialog alert = builder.create();
                 alert.show();
-
-
-
                 return false;
             }
         });
         holder.favRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(((StockActivity)context), AddStock.class);
-                intent.putExtra("my_data", current.favsym);
-                intent.putExtra("favorite", true);
+                Intent intent = new Intent(context, AddStock.class);
+                intent.putExtra("my_data", current.favsym); //cant extract resource
+                intent.putExtra("favorite", true);//cant extract resource
                 context.startActivity(intent);
             }
         });
 
     }
 
+    //this is the code to remove favorite from the specific stock screen
     @Override
     public int getItemCount() {
         return favdata.size();
     }
-
-    public void newFavs(List<FavInfo> newList) {
-        favdata.clear();
-        favdata.addAll(newList);
-        notifyDataSetChanged();
-    }
-
     public void removeFav(String str) {
         for(FavInfo fav : favdata) {
             if(fav.favsym.equals(str)) {
@@ -120,46 +106,49 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
             }
         }
     }
-
+//this will clear the data from the main screen if you unfavorable a stock
     public void clearData() {
         favdata.clear();
         notifyDataSetChanged();
     }
+    //this will add the stock to the main stock screen
     public void addFav(FavInfo favInfo) {
         favdata.add(favInfo);
         notifyDataSetChanged();
     }
 
+
+    //this method will use the spinners to set the organization of the stock list
     public void sort(String sort, String order) {
-        if(sort.equals("Symbol") && order.equals("Ascending")) {
+        if(sort.equals(R.string.symbol) && order.equals("Ascending")) {//cant extract this string
             Collections.sort(favdata, new Comparator<FavInfo>() {
                 @Override
                 public int compare(FavInfo o1, FavInfo o2) {
                     return o1.favsym.compareTo(o2.favsym);
                 }
             });
-        } else if(sort.equals("Symbol") && order.equals("Descending")) {
+        } else if(sort.equals(R.string.symbol) && order.equals("Descending")) {//cant extract this string
             Collections.sort(favdata, new Comparator<FavInfo>() {
                 @Override
                 public int compare(FavInfo o1, FavInfo o2) {
                     return o2.favsym.compareTo(o1.favsym);
                 }
             });
-        } else if(sort.equals("Price") && order.equals("Ascending")) {
+        } else if(sort.equals(R.string.price) && order.equals("Ascending")) {//cant extract this string
             Collections.sort(favdata, new Comparator<FavInfo>() {
                 @Override
                 public int compare(FavInfo o1, FavInfo o2) {
                     return Math.round(Float.parseFloat(o1.favprice)- (Float.parseFloat(o2.favprice)));
                 }
             });
-        } else if(sort.equals("Price") && order.equals("Descending")) {
+        } else if(sort.equals(R.string.price) && order.equals("Descending")) {//cant extract this string
             Collections.sort(favdata, new Comparator<FavInfo>() {
                 @Override
                 public int compare(FavInfo o1, FavInfo o2) {
                     return Math.round(Float.parseFloat(o2.favprice)- Float.parseFloat(o1.favprice));
                 }
             });
-        } else if(sort.equals("Change") && order.equals("Ascending")) {
+        } else if(sort.equals(R.string.change) && order.equals("Ascending")) {//cant extract this string
             Collections.sort(favdata, new Comparator<FavInfo>() {
                 @Override
                 public int compare(FavInfo o1, FavInfo o2) {
@@ -168,7 +157,7 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
                     return Math.round(Float.parseFloat(a[0]) - Float.parseFloat(b[0]));
                 }
             });
-        } else if(sort.equals("Change") && order.equals("Descending")) {
+        } else if(sort.equals(R.string.change) && order.equals("Descending")) {//cant extract this string
             Collections.sort(favdata, new Comparator<FavInfo>() {
                 @Override
                 public int compare(FavInfo o1, FavInfo o2) {
@@ -181,17 +170,18 @@ public class FavAdapter extends RecyclerView.Adapter<FavAdapter.FavViewHolder> {
         notifyDataSetChanged();
     }
 
+    //this will set the id for view of dependant sort method eg price, symbol, change
     class FavViewHolder extends RecyclerView.ViewHolder{
         TextView fsymbol;
         TextView fprice;
         TextView fchange;
         LinearLayout favRow;
-        public FavViewHolder(final Context context, View itemView){
+        public FavViewHolder(View itemView){
             super(itemView);
-            favRow = (LinearLayout)itemView.findViewById(R.id.favRow);
-            fsymbol = (TextView)itemView.findViewById(R.id.favSym);
-            fprice = (TextView)itemView.findViewById(R.id.favPrice);
-            fchange = (TextView)itemView.findViewById(R.id.favChange);
+            favRow = itemView.findViewById(R.id.favRow);
+            fsymbol = itemView.findViewById(R.id.favSym);
+            fprice = itemView.findViewById(R.id.favPrice);
+            fchange = itemView.findViewById(R.id.favChange);
         }
     }
 }

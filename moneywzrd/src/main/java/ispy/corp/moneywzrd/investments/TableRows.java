@@ -1,9 +1,7 @@
 package ispy.corp.moneywzrd.investments;
+//ISpy Corp
 
-/**
- * Created by poojadeole on 11/19/17.
- */
-
+//settings string names for rows
 public class TableRows {
     String title;
     String header;

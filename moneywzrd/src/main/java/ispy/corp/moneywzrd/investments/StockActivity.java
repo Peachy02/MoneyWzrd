@@ -1,5 +1,5 @@
 package ispy.corp.moneywzrd.investments;
-
+//ISpy Corp
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.os.Handler;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -25,7 +24,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,24 +32,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import ispy.corp.moneywzrd.MainActivity;
 import ispy.corp.moneywzrd.R;
-
 import static ispy.corp.moneywzrd.R.string.cancel;
 import static ispy.corp.moneywzrd.R.string.ok;
 
 public class StockActivity extends AppCompatActivity {
-
 
     private SharedPreferences sharedPreferences;
     private RecyclerView favView;
@@ -71,13 +64,12 @@ public class StockActivity extends AppCompatActivity {
     Spinner orderSpinner;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //setting local variables
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stock_main);
-        favView = (RecyclerView)findViewById(R.id.favtable);
+        favView = (RecyclerView) findViewById(R.id.favtable);
         clearButton = (Button) findViewById(R.id.button2);
         favView.setLayoutManager(new LinearLayoutManager(this));
         sharedPreferences = getSharedPreferences("favorite", Context.MODE_PRIVATE);
@@ -87,24 +79,17 @@ public class StockActivity extends AppCompatActivity {
         switchToggle = (Switch) findViewById(R.id.toggle);
         orderSpinner = (Spinner) findViewById(R.id.orderSpinner);
         sortSpinner = (Spinner) findViewById(R.id.sortSpinner);
-        ArrayAdapter orderAdapter =  ArrayAdapter.createFromResource(this,R.array.order,android.R.layout.simple_spinner_item);
+        ArrayAdapter orderAdapter = ArrayAdapter.createFromResource(this, R.array.order, android.R.layout.simple_spinner_item);
         orderSpinner.setAdapter(orderAdapter);
-
-        ArrayAdapter sortAdapter =  ArrayAdapter.createFromResource(this,R.array.sorting,android.R.layout.simple_spinner_item);
+        ArrayAdapter sortAdapter = ArrayAdapter.createFromResource(this, R.array.sorting, android.R.layout.simple_spinner_item);
         sortSpinner.setAdapter(sortAdapter);
 
-
-
-
-
-        autoComplete= (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView);
+        autoComplete = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long rowId) {
-                String selection = (String)parent.getItemAtPosition(position);
-                selection  = selection.split("\n")[0];
+                String selection = (String) parent.getItemAtPosition(position);
+                selection = selection.split("\n")[0];
                 autoComplete.setText(selection);
-
-
             }
         });
 
@@ -114,27 +99,20 @@ public class StockActivity extends AppCompatActivity {
                 autoComplete.setText("");
             }
         });
-
-        autoComplete.addTextChangedListener(new TextWatcher(){
+        autoComplete.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable editable) {
-
             }
-
-
-
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d("auto","auto complete called");
                 String newText = s.toString();
                 new getJsonAutoComplete().executethis(newText);
             }
 
         });
 
+        //this sets the auto refresh on the main stock page
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,14 +130,14 @@ public class StockActivity extends AppCompatActivity {
         switchToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(switchToggle.isChecked()) {
+                if (switchToggle.isChecked()) {
                     ha.postDelayed(r, 20000);
                 } else {
                     ha.removeCallbacks(r);
                 }
             }
         });
-
+            //Method setters
         sortSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -183,26 +161,26 @@ public class StockActivity extends AppCompatActivity {
             }
         });
     }
-
+//sets the sorting method for when you use the spinners
     private void sort() {
         String sort = sortSpinner.getSelectedItem().toString();
         String order = orderSpinner.getSelectedItem().toString();
-        if(favadapter!=null) {
+        if (favadapter != null) {
             favadapter.sort(sort, order);
         }
 
     }
 
-    public void sendMessage(View view){
+    //this will check if you have any text in the search and will give message if there isn't
+    public void sendMessage(View view) {
         String message = autoComplete.getText().toString();
         message = message.trim();
-        if(!message.equals("")) {
+        if (!message.equals("")) {
             Intent intent = new Intent(this, AddStock.class);
             intent.putExtra("my_data", message);
             intent.putExtra("favorite", favList.contains(message));
             startActivity(intent);
-        }
-        else{
+        } else {
             Toast.makeText(this, "Please enter a Stock name or a symbol", Toast.LENGTH_SHORT).show();
 
         }
@@ -213,49 +191,38 @@ public class StockActivity extends AppCompatActivity {
         super.onResume();
         update();
     }
-
+//this gives the fav list the ability to update information based on what you have chosen in the sort this also calls the api with entry key being the stock ticker to retrieve the stock information
     private void update() {
-        if(sharedPreferences!=null) {
+        if (sharedPreferences != null) {
 
             Map<String, ?> favoriteList = sharedPreferences.getAll();
             final List<FavInfo> favlist = new ArrayList<>();
-            if(favoriteList!=null) {
+            if (favoriteList != null) {
                 favList.clear();
-                if(favadapter!=null) {
+                if (favadapter != null) {
                     favadapter.clearData();
                 }
-                for(final Map.Entry<String, ?> entry : favoriteList.entrySet()) {
-
-
-                    Log.d("Entry",entry.getKey());
+                for (final Map.Entry<String, ?> entry : favoriteList.entrySet()) {
                     favList.add(entry.getKey());
-
-                    String refreshUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol="+entry.getKey()+"&outputsize=full&apikey=7GFR6K8SGU99N55C";
-
+                    String refreshUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + entry.getKey() + "&outputsize=full&apikey=7GFR6K8SGU99N55C";
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-
                     JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, refreshUrl, new Response.Listener<JSONObject>() {
-
                         @Override
                         public void onResponse(JSONObject response) {
                             try {
                                 // Display the first 500 characters of the response string.
                                 obj = response.getJSONObject("Time Series (Daily)");
                                 metaobj = response.getJSONObject("Meta Data");
-                                Log.d("Reply","Getting respone");
                                 int count = 0;
-                                String currentKey="";
+                                String currentKey = "";
                                 String prevKey = "";
-                                Iterator<?> keys =  obj.keys();
-                                while( keys.hasNext() && count!=2){
+                                Iterator<?> keys = obj.keys();
+                                while (keys.hasNext() && count != 2) {
                                     String key = (String) keys.next();
-                                    if(count == 0){
+                                    if (count == 0) {
                                         currentKey = key;
-                                        Log.d("jsonkey",currentKey);
-                                    }
-                                    else if(count == 1){
+                                    } else if (count == 1) {
                                         prevKey = key;
-                                        Log.d("jsonkey",prevKey);
                                     }
                                     count++;
                                 }
@@ -264,14 +231,14 @@ public class StockActivity extends AppCompatActivity {
                                 JSONObject obj2 = obj.getJSONObject(prevKey);
                                 Float currclose = Float.valueOf(obj1.getString("4. close"));
                                 Float prevclose = Float.valueOf(obj2.getString("4. close"));
-                                Float change = ((currclose-prevclose)/prevclose)*100;
+                                Float change = ((currclose - prevclose) / prevclose) * 100;
 //
                                 String changeno = String.format("%.2f", change);
-                                Float changediff = currclose-prevclose;
+                                Float changediff = currclose - prevclose;
                                 String change2diff = String.format("%.2f", changediff);
-                                String changetoadd = change2diff + "("+ changeno +"%)";
-                                Log.d("Curree",changetoadd);
-                                FavInfo favInfo = new FavInfo(entry.getKey(),currclose.toString(),changetoadd);
+                                String changetoadd = change2diff + "(" + changeno + "%)";
+
+                                FavInfo favInfo = new FavInfo(entry.getKey(), currclose.toString(), changetoadd);
                                 favlist.add(favInfo);
                                 if (favadapter == null) {
                                     List<FavInfo> f = new ArrayList<>();
@@ -282,7 +249,7 @@ public class StockActivity extends AppCompatActivity {
                                     favadapter.addFav(favInfo);
                                 }
 
-                                Log.d("TAGthis", "hello");
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -291,7 +258,7 @@ public class StockActivity extends AppCompatActivity {
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.e("Volley", "Error11" + error.toString());
+
                         }
                     });
                     stringRequest.setRetryPolicy(new DefaultRetryPolicy(
@@ -307,6 +274,8 @@ public class StockActivity extends AppCompatActivity {
         }
     }
 
+
+    //remove favorite stock from shared preference
     public void removeFav(String str) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.remove(str);
@@ -315,37 +284,29 @@ public class StockActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    class getJsonAutoComplete{
+    class getJsonAutoComplete {
 
         public void execute(String newText) {
-            String JsonURL = "http://dev.markitondemand.com/MODApis/Api/v2/Lookup/json?input="+newText;
-            Log.d("auto","input "+JsonURL);
+            String JsonURL = "http://dev.markitondemand.com/MODApis/Api/v2/Lookup/json?input=" + newText;
+
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
             JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.GET, JsonURL, new Response.Listener<JSONObject>() {
                 @Override
+                //this will start to
                 public void onResponse(JSONObject response) {
                     try {
-                        Log.d("auto",response.toString());
                         JSONObject data = response;
                         JSONArray jArray = new JSONArray(data);
-
+                         //Display the first 500 characters of the response string.
                         suggest = new ArrayList<String>();
-                        for(int i=0;i<jArray.length();i++){
+                        for (int i = 0; i < jArray.length(); i++) {
                             JSONObject jsonobject = jArray.getJSONObject(i);
-
-                            suggest.add(i, Html.fromHtml("<b>"+jsonobject.getString("Symbol")+"</b>")+"\n"+jsonobject.getString("Name")+" ("+jsonobject.getString("Exchange")+")") ;
+                            suggest.add(i, Html.fromHtml("<b>" + jsonobject.getString("Symbol") + "</b>") + "\n" + jsonobject.getString("Name") + " (" + jsonobject.getString("Exchange") + ")");
                         }
-
-
-                        aAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.autocomplete,suggest);
+                        aAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.autocomplete, suggest);
                         autoComplete.setAdapter(aAdapter);
-
                         aAdapter.notifyDataSetChanged();
 
-                        Log.d("Reply", "Getting respone");
-
-
-                        Log.d("TAG", "hello");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -354,65 +315,48 @@ public class StockActivity extends AppCompatActivity {
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.e("Volley", "Error11" + error.toString());
                         }
                     }
             );
             queue.add(stringRequest);
         }
 
-
-        public void executethis(String newText){
-            String JsonURL = "http://dev.markitondemand.com/MODApis/Api/v2/Lookup/json?input="+newText;
-            Log.d("auto","input "+JsonURL);
+// this will execute the string request depending on the stock you search for it uses JSON
+        public void executethis(String newText) {
+            String JsonURL = "http://dev.markitondemand.com/MODApis/Api/v2/Lookup/json?input=" + newText;
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-
-
             StringRequest req = new StringRequest(Request.Method.GET, JsonURL,
-                    new Response.Listener<String>()
-                    {
+                    new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             try {
                                 String data = response;
-                                Log.d("auto","data"+data);
                                 JSONArray jArray = new JSONArray(data);
                                 suggest = new ArrayList<String>();
-                                for(int i=0;i<jArray.length();i++){
+                                for (int i = 0; i < jArray.length(); i++) {
                                     JSONObject jsonobject = jArray.getJSONObject(i);
-
-                                    suggest.add(i, Html.fromHtml("<b>"+jsonobject.getString("Symbol")+"</b>")+"\n"+jsonobject.getString("Name")+" ("+jsonobject.getString("Exchange")+")") ;
+                                    suggest.add(i, Html.fromHtml("<b>" + jsonobject.getString("Symbol") + "</b>") + "\n" + jsonobject.getString("Name") + " (" + jsonobject.getString("Exchange") + ")");//cant extract these strings
                                 }
-
-
-                                aAdapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.autocomplete,suggest);
+                                aAdapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.autocomplete, suggest);
                                 autoComplete.setAdapter(aAdapter);
-
-                                aAdapter.notifyDataSetChanged();Log.d("Reply", "Getting respone");
-
-
-
+                                aAdapter.notifyDataSetChanged();
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
                         }
                     },
-                    new Response.ErrorListener()
-                    {
+                    new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            // handle error response
                         }
                     }
             );
             queue.add(req);
 
         }
-
-
-
     }
-
-
+//handles back key press
     public void onBackPressed() {
         new AlertDialog.Builder(this)
                 .setMessage(R.string.exit2)

@@ -1,8 +1,7 @@
 package ispy.corp.moneywzrd.investments;
-
+//ISpy Corp
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,19 +15,19 @@ import java.util.List;
 
 import ispy.corp.moneywzrd.R;
 
-/**
- * Created by poojadeole on 11/19/17.
- */
+
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHolder> {
 
     private LayoutInflater inflater;
     List<TableRows> data = Collections.emptyList();
 
+    //sets the table adapter
     public TableAdapter(Context context, List<TableRows> data){
         inflater= LayoutInflater.from(context);
         this.data = data;
     }
+    //inflates the view
     @Override
     public TableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -38,6 +37,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
 
     }
 
+    //sets the view to bind the changes made to the table
     @Override
     public void onBindViewHolder(TableViewHolder holder, int position) {
 
@@ -45,11 +45,11 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
         if (position == 2) {
             holder.title.setText(current.title);
             if(current.title.charAt(0) != '-') {
-                holder.title.setTextColor(Color.parseColor("#32CD32"));
+                holder.title.setTextColor(Color.parseColor("#32CD32"));//cant extract string here
                 holder.imagetable.setImageResource(R.drawable.up);
             }
             else{
-                holder.title.setTextColor(Color.parseColor("#FF0000"));
+                holder.title.setTextColor(Color.parseColor("#FF0000"));//cant extract string here
                 holder.imagetable.setImageResource(R.drawable.down);
             }
             holder.header.setText(current.header);
@@ -58,7 +58,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
             holder.title.setText(current.title);
             holder.header.setText(current.header);
         }
-        Log.d("mytable",current.title);
+
 
 
     }
@@ -66,10 +66,9 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.TableViewHol
     @Override
     public int getItemCount() {
         int dsize = data.size();
-        Log.d("data_size",  Float.toString(dsize));
         return data.size();
     }
-
+// initiates and sets the variables for the articles
     class TableViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView header;

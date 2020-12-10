@@ -59,7 +59,6 @@
     <string name="ToolbareditAcc">L\'éditeur de comptes</string>
     <string name="value">valeur</string>
     <string name="name">Nom</string>
-    <string name="welc2">"Bienvenue "</string>
     <string name="userPath">Utilisateurs</string>
     <string name="noacc_tv">Pas encore de comptes!</string>
     <string name="wentwrong">Quelque chose a mal tourné</string>
@@ -89,5 +88,30 @@
     <string name="warn">Avertissement!</string>
     <string name="suredelet">Êtes-vous sûr de vouloir effacer ça?</string>
     <string name="questionmark">\?</string>
+    <string name = "start_watching_stocks"> Commencez à surveiller les actions </string>
+    <string name = "exit2"> Êtes-vous sûr de vouloir quitter les actions? </string>
+    <string name="Charts">Charts</string>
+    <string name = "History"> Historique </string>
+    <string name = "NewsFeed"> Fil d\'actualité </string>
+    <string name = "fav"> favori </string>
+    <string name = "MyData"> mes_données </string>
+    <string name = "symbol"> Symbole </string>
+    <string name = "No"> Non </string>
+    <string name = "Yes"> Oui </string>
+    <string name = "removefav"> Supprimer des favoris? </string>
+    <string name="ascend">Ascending</string>
+    <string name = "price"> Prix </string>
+    <string name = "change"> Modificateur </string>
+    <string name = "decend"> Décroissant </string>
+    <string name = "channel"> chaîne </string>
+    <string name="title">titre</string>
+    <string name = "item"> élément </string>
+    <string name = "author"> sa: nom_auteur </string>
+    <string name = "publishdate"> pubDate </string>
+    <string name = "link"> lien </string>
+    <string name = "stockMsg"> Veuillez saisir un nom de stock ou un symbole </string>
+    <string name = "errorfetch"> Erreur lors de la récupération de l\'API </string>
+    <string name = "Metadata"> Méta-données </string>
+    <string name = "timeSeries"> Série chronologique (quotidienne) </string>
 
 </resources>
